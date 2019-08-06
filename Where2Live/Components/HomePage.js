@@ -22,12 +22,12 @@ export default class HomeMenuView extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/backGroung.jpg")}
+        source={require("../assets/Street.jpg")}
         style={styles.container}
       >
         <View style={{ padding: 20 }}>
           <Image
-            source={require("../assets/smalllogo.png")}
+            source={require("../assets/Street.jpg")}
             style={styles.cardImage}
             resizeMode="cover"
           />

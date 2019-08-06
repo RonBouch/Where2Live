@@ -33,6 +33,8 @@ export default class Login extends React.Component {
   };
 
   validation = () => {
+    this.props.navigation.navigate("HomePage");
+
     if (this.email == "") {
       this.setState({ message: "* אנא הכנס כתובת אימייל" });
     } else if (this.password == "") {
@@ -44,6 +46,7 @@ export default class Login extends React.Component {
   };
 
   login = () => {
+
     if (this.vaildForm) {
       const data = {
         password: this.password,
@@ -105,14 +108,14 @@ export default class Login extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/backGroung.jpg")}
+        source={require("../assets/Street.jpg")}
         style={styles.container}
       >
         <View style={styles.container}>
           <View style={styles.formContainer}>
             <View>
               <Image
-                source={require("../assets/smalllogo.png")}
+                source={require("../assets/Street.jpg")}
                 style={styles.cardImage}
                 resizeMode="cover"
               />

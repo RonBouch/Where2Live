@@ -245,7 +245,7 @@ export default class PartyPage extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../assets/backGroung.jpg")}
+        source={require("../assets/Street.jpg")}
         style={styles.container}
       >
         <View
@@ -258,7 +258,7 @@ export default class PartyPage extends React.Component {
         <View style={styles.Header}>
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/smalllogo.png")}
+              source={require("../assets/Street.jpg")}
               style={styles.cardImage}
               resizeMode="cover"
             />
@@ -334,7 +334,7 @@ export default class PartyPage extends React.Component {
             {this.state.pageToShow != null ? (
               <View style={styles.card}>
                 <ImageBackground
-                  source={require("../assets/5.jpg")}
+                  source={require("../assets/Street.jpg")}
                   style={{ width: "100%", height: "100%" }}
                 >
                   <View

@@ -194,7 +194,7 @@ export default class Public extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/backGroung.jpg")}
+        source={require("../assets/Street.jpg")}
         style={styles.container}
       >
         <View
@@ -215,7 +215,7 @@ export default class Public extends React.Component {
           }}
         >
           <Image
-            source={require("../assets/smalllogo.png")}
+            source={require("../assets/Street.jpg")}
             style={styles.cardImage}
             resizeMode="cover"
           />

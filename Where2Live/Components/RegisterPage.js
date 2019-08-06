@@ -190,7 +190,7 @@ export default class Register extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/backGroung.jpg")}
+        source={require("../assets/Street.jpg")}
         style={styles.container}
       >
         <View style={styles.container}>
@@ -209,7 +209,7 @@ export default class Register extends React.Component {
                 </View>
                 <View>
                   <Image
-                    source={require("../assets/smalllogo.png")}
+                    source={require("../assets/Street.jpg")}
                     style={styles.cardImage}
                     resizeMode="cover"
                   />
