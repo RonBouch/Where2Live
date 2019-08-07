@@ -6,9 +6,9 @@ import HomePage from "./Components/HomePage.js";
 import SearchPage from "./Components/SearchPage.js";
 import PublishPage from "./Components/PublishPage";
 import FaceBookPage from "./Components/FaceBookPage";
-import AboutUsPage from "./Components/AboutUsPage"; 
-import GooglePage from './Components/GooglePage';
-
+import AboutUsPage from "./Components/AboutUsPage";
+import GooglePage from "./Components/GooglePage";
+import NewPage from "./Components/NewPage";
 
 class App extends React.Component {
   render() {
@@ -18,7 +18,11 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {
+
     LoginPage: LoginPage,
+
+    NewPage: NewPage,
+
 
     HomePage: HomePage,
 
@@ -28,12 +32,11 @@ const StackNav = createStackNavigator(
 
     RegisterPage: RegisterPage,
 
-
     PublishPage: PublishPage,
 
     FaceBookPage: FaceBookPage,
 
-    GooglePage: GooglePage,
+    GooglePage: GooglePage
   },
   { headerMode: "none", defaultNavigationOptions: { headerVisable: false } },
   {

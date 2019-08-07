@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./StyleSheet";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
@@ -9,9 +10,12 @@ import {
   ImageBackground,
   Image
 } from "react-native";
-import {Input} from 'react-native-elements';
+
+import { Icon } from "react-native-elements";
+
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { AuthSession } from "expo";
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +50,6 @@ export default class Login extends React.Component {
   };
 
   login = () => {
-
     if (this.vaildForm) {
       const data = {
         password: this.password,
@@ -108,38 +111,50 @@ export default class Login extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
-        style={styles.container}
+        source={require("../assets/background2.jpg")}
+        style={styles.backgroundImage}
       >
         <View style={styles.container}>
-          <View style={styles.formContainer}>
-            <View>
-              <Image
-                source={require("../assets/Street.jpg")}
-                style={styles.cardImage}
-                resizeMode="cover"
-              />
-            </View>
+          <View style={styles.main}>
+            <Image
+              source={require("../assets/houseLogo.png")}
+              style={styles.logo}
+              resizeMode="contain"
+            />
             <View style={styles.loginForm}>
-              <TextInput
-                style={styles.input}
-                keyboardType="email-address"
-                placeholder="אימייל"
-                onChangeText={this.changeEmail}
-              />
-
-              <TextInput
-                style={styles.input}
-                secureTextEntry={true}
-                placeholder="סיסמא"
-                onChangeText={this.changePass}
-              />
-
+              <View style={styles.input}>
+                <Icon
+                  iconStyle={{ marginEnd: "10%" }}
+                  name="envelope"
+                  type="font-awesome"
+                  color="gray"
+                  size={28}
+                />
+                <TextInput
+                  keyboardType="email-address"
+                  placeholder="אימייל"
+                  onChangeText={this.changeEmail}
+                />
+              </View>
+              <View style={styles.input}>
+                <Icon
+                  iconStyle={{ marginEnd: "10%" }}
+                  name="lock"
+                  type="font-awesome"
+                  color="gray"
+                  size={35}
+                />
+                <TextInput
+                  secureTextEntry={true}
+                  placeholder="סיסמא"
+                  onChangeText={this.changePass}
+                />
+              </View>
               <TouchableOpacity
                 style={styles.loginButton}
                 onPress={this.validation}
               >
-                <Text style={styles.loginButton}>התחבר</Text>
+                <Text>התחבר</Text>
               </TouchableOpacity>
 
               <Text style={styles.textMessage}>{this.state.message}</Text>
@@ -149,18 +164,27 @@ export default class Login extends React.Component {
               style={styles.registerButton}
               onPress={this.RegisterBtn}
             >
-              <Text>הרשמה</Text>
+              <Text>
+                הרשמה
+                {"  "}
+              </Text>
+              <Icon
+                name="user-plus"
+                type="font-awesome"
+                color="black"
+                size={18}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('GooglePage')}
+              onPress={() => this.props.navigation.navigate("GooglePage")}
               style={styles.googleButton}
             >
               <Text style={styles.buttonText}>
-                <Ionicons name="logo-google" size={18} style={styles.icon} />
                 {"  "}
                 Google
               </Text>
+              <Icon name="google" type="font-awesome" color="white" size={18} />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -168,10 +192,15 @@ export default class Login extends React.Component {
               style={styles.faceBookButton}
             >
               <Text style={styles.buttonText}>
-                <Ionicons name="logo-facebook" size={18} style={styles.icon} />
                 {"  "}
                 FaceBook
               </Text>
+              <Icon
+                name="facebook-square"
+                type="font-awesome"
+                color="white"
+                size={18}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -179,84 +208,3 @@ export default class Login extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "rgba(255,255,255,.3)",
-    alignItems: "center",
-    padding: 40
-  },
-  title: {
-    fontSize: 40,
-    margin: 30
-  },
-  loginForm: {
-    marginTop: 20
-  },
-  loginButton: {
-    color: "blue"
-  },
-  input: {
-    backgroundColor: "rgba(255,255,255,.5)",
-    borderRadius: 10,
-    height: 40,
-    textAlign: "center",
-    borderColor: "gray",
-    borderWidth: 2,
-    margin: 10
-  },
-  textMessage: {
-    margin: 10,
-    color: "red"
-  },
-  cardImage: {
-    width: 240,
-    height: 130
-  },
-
-  genderRadio: {
-    flexDirection: "row",
-    margin: 10
-  },
-  textMessage: {
-    margin: 10,
-    color: "red"
-  },
-  registerButton: {
-    backgroundColor: "rgba(255,255,0,.7)",
-    borderRadius: 200,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-    borderColor: "white",
-    borderWidth: 2
-  },
-  formContainer: {
-    paddingBottom: 150
-  },
-  faceBookButton: {
-    backgroundColor: "rgba(0,0,255,.7)",
-    borderRadius: 200,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-    borderColor: "white",
-    borderWidth: 2
-  },
-  googleButton: {
-    backgroundColor: "rgba(0,255,0,.7)",
-    borderRadius: 200,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-    borderColor: "white",
-    borderWidth: 2
-  },
-  buttonText: {
-    color: "white"
-  }
-});
