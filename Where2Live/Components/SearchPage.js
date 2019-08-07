@@ -26,12 +26,12 @@ var radio_props = [
   {
     icon: <Ionicons name="ios-man" size={18} color="" />,
     label: "  השכרה  ",
-    value: "השכרה"
+    value: "R"
   },
   {
     icon: <Ionicons name="ios-woman" size={18} color="" />,
     label: "  קניה  ",
-    value: "קניה"
+    value: "B"
   }
 ];
 export default class PartyPage extends React.Component {
@@ -54,10 +54,12 @@ export default class PartyPage extends React.Component {
       place: null
     };
     this.viewPage = null;
-    this.gender="";
+    this.RB="";
   }
-  changeGender = e => {
-    this.gender = e;
+  changeRB = e => {
+
+    this.RB = e;
+    console.log("RB =" +this.RB)
   };
   componentDidMount() {
     this.btnLocation();
@@ -261,7 +263,7 @@ export default class PartyPage extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
+        source={require("../assets/BackGround.jpg")}
         style={styles.container}
       >
         <View
@@ -302,9 +304,9 @@ export default class PartyPage extends React.Component {
           {/* <View style={{flexDirection:'row-reverse'}}> */}
           <RadioForm
               radio_props={radio_props}
-              initial={null}
+              initial={null}              
               style={styles.genderRadio}
-              onPress={this.changeGender}
+              onPress={this.changeRB}
             />
    {/* <CheckBox
    center   
