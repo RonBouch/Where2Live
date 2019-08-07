@@ -17,6 +17,12 @@ export default StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,.3)',
         
     },
+    genderRadio: {
+        // backgroundColor: "rgba(255,255,255,.5)",
+        flexDirection: "row",
+        margin: 10,
+        justifyContent: "center"
+      },
     TextInputStyleClass:{
 
         height: 80,

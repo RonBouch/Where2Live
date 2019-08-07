@@ -26,7 +26,6 @@ const StackNav = createStackNavigator(
 
     HomePage: HomePage,
 
-    SearchPage: SearchPage,
 
     AboutUsPage: AboutUsPage,
 
@@ -40,7 +39,7 @@ const StackNav = createStackNavigator(
   },
   { headerMode: "none", defaultNavigationOptions: { headerVisable: false } },
   {
-    initialRouteName: "LoginPage"
+    initialRouteName: "SearchPage"
   }
 );
 

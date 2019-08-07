@@ -18,10 +18,22 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Location, Permissions } from "expo";
 import { ActionButton } from "react-native-material-ui";
 import { MapView } from "expo";
+import RadioForm from "react-native-simple-radio-button";
 
 
 const { Marker } = MapView;
-
+var radio_props = [
+  {
+    icon: <Ionicons name="ios-man" size={18} color="" />,
+    label: "  השכרה  ",
+    value: "R"
+  },
+  {
+    icon: <Ionicons name="ios-woman" size={18} color="" />,
+    label: "  קניה  ",
+    value: "B"
+  }
+];
 export default class PartyPage extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +54,13 @@ export default class PartyPage extends React.Component {
       place: null
     };
     this.viewPage = null;
+    this.RB="";
   }
+  changeRB = e => {
+
+    this.RB = e;
+    console.log("RB =" +this.RB)
+  };
   componentDidMount() {
     this.btnLocation();
     this.GetPlaces();
@@ -245,7 +263,7 @@ export default class PartyPage extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
+        source={require("../assets/BackGround.jpg")}
         style={styles.container}
       >
         <View
@@ -258,14 +276,14 @@ export default class PartyPage extends React.Component {
         <View style={styles.Header}>
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/Street.jpg")}
+              source={require("../assets/Where2LiveLogo.png")}
               style={styles.cardImage}
               resizeMode="cover"
             />
           </View>
 
           <View style={styles.formContainer}>
-            <Text style={{fontSize:20}}>לאן יוצאים... </Text>
+            <Text style={{fontSize:20}}>חיפוש לפי איזור... </Text>
 
             <View>
               <TextInput
@@ -283,6 +301,35 @@ export default class PartyPage extends React.Component {
               <Text style={{fontSize:15}}>חפש לי מסיבה</Text>
             </TouchableOpacity>
           </View>
+          {/* <View style={{flexDirection:'row-reverse'}}> */}
+          <RadioForm
+              radio_props={radio_props}
+              initial={null}              
+              style={styles.genderRadio}
+              onPress={this.changeRB}
+            />
+   {/* <CheckBox
+   center   
+title=' Buy'
+iconRight
+iconType='material'
+checkedIcon='clear'
+uncheckedIcon='add'
+checkedColor='red'
+checked={this.state.checkedBuy}
+/>
+<CheckBox
+   center   
+   
+title='Rent'
+iconRight
+iconType='material'
+checkedIcon='clear'
+uncheckedIcon='add'
+checkedColor='red'
+checked={this.state.checkedRent}
+/> */}
+   {/* </View> */}
 
           <View style={styles.Content}>
             <View
