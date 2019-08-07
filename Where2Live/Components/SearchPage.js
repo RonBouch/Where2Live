@@ -258,7 +258,7 @@ export default class PartyPage extends React.Component {
         <View style={styles.Header}>
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/Street.jpg")}
+              source={require("../assets/Where2LiveLogo.png")}
               style={styles.cardImage}
               resizeMode="cover"
             />

@@ -27,7 +27,7 @@ export default class HomeMenuView extends React.Component {
       >
         <View style={{ padding: 20 }}>
           <Image
-            source={require("../assets/Street.jpg")}
+            source={require("../assets/Where2LiveLogo.png")}
             style={styles.cardImage}
             resizeMode="cover"
           />

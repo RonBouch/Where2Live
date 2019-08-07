@@ -115,7 +115,7 @@ export default class Login extends React.Component {
           <View style={styles.formContainer}>
             <View>
               <Image
-                source={require("../assets/Street.jpg")}
+                source={require("../assets/Where2LiveLogo.png")}
                 style={styles.cardImage}
                 resizeMode="cover"
               />
