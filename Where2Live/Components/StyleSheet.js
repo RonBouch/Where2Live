@@ -86,7 +86,7 @@ export default StyleSheet.create({
   },
   googleButton: {
     flexDirection: "row",
-    backgroundColor: "rgba(0,255,0,.9)",
+    backgroundColor: "red",
     borderRadius: 200,
     height: 45,
     width: 200,

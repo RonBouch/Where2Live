@@ -184,7 +184,12 @@ export default class Login extends React.Component {
                 {"  "}
                 Google
               </Text>
-              <Icon name="google" type="font-awesome" color="white" size={18} />
+              <Icon
+                name="logo-googleplus"
+                type="ionicon"
+                color="white"
+                size={24}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
