@@ -263,7 +263,7 @@ export default class PartyPage extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../assets/BackGround.jpg")}
+        source={require("../assets/background1.jpg")}
         style={styles.container}
       >
         <View

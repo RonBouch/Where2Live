@@ -9,6 +9,7 @@ import FaceBookPage from "./Components/FaceBookPage";
 import AboutUsPage from "./Components/AboutUsPage";
 import GooglePage from "./Components/GooglePage";
 import NewPage from "./Components/NewPage";
+import FavoritePage from "./Components/FavoritePage";
 
 class App extends React.Component {
   render() {
@@ -18,13 +19,14 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {
-
+    HomePage: HomePage,
+    FavoritePage:FavoritePage,
+    SearchPage:SearchPage,
     LoginPage: LoginPage,
 
     NewPage: NewPage,
 
 
-    HomePage: HomePage,
 
 
     AboutUsPage: AboutUsPage,
@@ -39,7 +41,7 @@ const StackNav = createStackNavigator(
   },
   { headerMode: "none", defaultNavigationOptions: { headerVisable: false } },
   {
-    initialRouteName: "SearchPage"
+    initialRouteName: "HomePage"
   }
 );
 

@@ -88,7 +88,9 @@ export default class HomeMenuView extends React.Component {
               <Text style={styles.info}>{}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity 
+           onPress={() => this.props.navigation.navigate("FavoritePage")}
+            style={styles.buttonContainer}>
               <Image
                 style={styles.icon}
                 source={require("../assets/Favorite.jpg")}

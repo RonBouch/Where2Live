@@ -37,8 +37,6 @@ export default class Login extends React.Component {
   };
 
   validation = () => {
-    this.props.navigation.navigate("HomePage");
-
     if (this.email == "") {
       this.setState({ message: "* אנא הכנס כתובת אימייל" });
     } else if (this.password == "") {
@@ -57,7 +55,7 @@ export default class Login extends React.Component {
       };
       console.log(data);
       fetch(
-        "http://ruppinmobile.tempdomain.co.il/site11/WebService.asmx/Login",
+        "http://ruppinmobile.tempdomain.co.il/site11//WebServise.asmx/Login",
         {
           method: "post",
           headers: new Headers({
