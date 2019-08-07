@@ -108,7 +108,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
+        source={require("../assets/3.jpg")}
         style={styles.container}
       >
         <View style={styles.container}>
@@ -185,7 +185,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(255,255,255,.3)",
     alignItems: "center",
-    padding: 40
+    padding: 40,
+    resizeMode: 'cover'
+
+    
   },
   title: {
     fontSize: 40,

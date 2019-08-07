@@ -18,10 +18,22 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Location, Permissions } from "expo";
 import { ActionButton } from "react-native-material-ui";
 import { MapView } from "expo";
+import RadioForm from "react-native-simple-radio-button";
 
 
 const { Marker } = MapView;
-
+var radio_props = [
+  {
+    icon: <Ionicons name="ios-man" size={18} color="" />,
+    label: "  השכרה  ",
+    value: "השכרה"
+  },
+  {
+    icon: <Ionicons name="ios-woman" size={18} color="" />,
+    label: "  קניה  ",
+    value: "קניה"
+  }
+];
 export default class PartyPage extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +54,11 @@ export default class PartyPage extends React.Component {
       place: null
     };
     this.viewPage = null;
+    this.gender="";
   }
+  changeGender = e => {
+    this.gender = e;
+  };
   componentDidMount() {
     this.btnLocation();
     this.GetPlaces();
@@ -265,7 +281,7 @@ export default class PartyPage extends React.Component {
           </View>
 
           <View style={styles.formContainer}>
-            <Text style={{fontSize:20}}>לאן יוצאים... </Text>
+            <Text style={{fontSize:20}}>חיפוש לפי איזור... </Text>
 
             <View>
               <TextInput
@@ -283,6 +299,35 @@ export default class PartyPage extends React.Component {
               <Text style={{fontSize:15}}>חפש לי מסיבה</Text>
             </TouchableOpacity>
           </View>
+          {/* <View style={{flexDirection:'row-reverse'}}> */}
+          <RadioForm
+              radio_props={radio_props}
+              initial={null}
+              style={styles.genderRadio}
+              onPress={this.changeGender}
+            />
+   {/* <CheckBox
+   center   
+title=' Buy'
+iconRight
+iconType='material'
+checkedIcon='clear'
+uncheckedIcon='add'
+checkedColor='red'
+checked={this.state.checkedBuy}
+/>
+<CheckBox
+   center   
+   
+title='Rent'
+iconRight
+iconType='material'
+checkedIcon='clear'
+uncheckedIcon='add'
+checkedColor='red'
+checked={this.state.checkedRent}
+/> */}
+   {/* </View> */}
 
           <View style={styles.Content}>
             <View
