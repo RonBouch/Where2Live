@@ -17,7 +17,9 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     paddingLeft: "10%",
-    paddingRight: "10%"
+    paddingRight: "10%",
+    width: "100%",
+    height: "100%"
   },
   main: {
     backgroundColor: "rgba(255,255,255,.6)",
@@ -97,8 +99,13 @@ export default StyleSheet.create({
     color: "white"
   },
 
-  //Login Page Style
-
+  //Register Page Style
+  main2: {
+    backgroundColor: "rgba(255,255,255,.3)",
+    alignItems: "center",
+    width: "100%",
+    height: "100%"
+  },
   genderRadio: {
     backgroundColor: "rgba(255,255,255,.5)",
     flexDirection: "row",
@@ -110,10 +117,33 @@ export default StyleSheet.create({
     flexDirection: "row",
     height: 45,
     width: 200,
-    marginTop:10,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     borderColor: "white",
     borderWidth: 2
+  },
+
+  //Home Page Style
+
+  iconsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 25
+  },
+  icon: {
+    width: 70,
+    height: 70
+  },
+  buttonContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "9%",
+    marginTop: 25
+  },
+  textIcon: {
+    fontWeight: "bold"
   }
 });
