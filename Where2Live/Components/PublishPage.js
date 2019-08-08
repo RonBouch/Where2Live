@@ -4,9 +4,9 @@ import {
   ThemeProvider,
   Header,
   CheckBox,
-  Input,
+  Input
 } from "react-native-elements";
-import styles from "./SearchPageStyle";
+import styles from "./StyleSheet";
 import { Location, Permissions, ImagePicker } from "expo";
 // import CheckBox from 'react-native-check-box'
 import { Icon } from "react-native-elements";
@@ -25,6 +25,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 const { height, width } = Dimensions.get("window");
 
@@ -46,7 +47,7 @@ export default class Public extends React.Component {
       location: null,
       data: "",
       delta: 0.1,
-      eventphone:"",
+      eventphone: "",
       address: "",
       latitude: 37.78825,
       longitude: -122.4324,
@@ -146,7 +147,7 @@ export default class Public extends React.Component {
         eventname: this.state.eventname,
         eventabout: this.state.eventabout,
         img: this.state.img,
-        eventphone:this.state.eventphone
+        eventphone: this.state.eventphone
       };
       console.log(data);
       console.log(
@@ -207,104 +208,210 @@ export default class Public extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
-        style={styles.container}
+        source={require("../assets/background2.jpg")}
+        style={styles.backgroundImage}
       >
-        <View
-          style={{
-            marginTop: 10,
-            backgroundColor: "rgba(255,255,255,.3)",
-            padding: 10
-          }}
-        >
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-            <Ionicons name="md-arrow-back" size={28} />
-          </TouchableOpacity>
-        </View>
+        <View style={styles.container}>
+          <View style={styles.main}>
+            <ScrollView>
+              <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <View style={styles.logo}>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}
+                  >
+                    <Icon
+                      name="arrow-circle-left"
+                      type="font-awesome"
+                      iconStyle={{ marginLeft: "85%" }}
+                      color="black"
+                      size={34}
+                    />
+                  </TouchableOpacity>
+                  <Image
+                    source={require("../assets/houseLogo.png")}
+                    style={{ width: "100%", height: "100%" }}
+                    resizeMode="contain"
+                  />
+                </View>
 
-
-        <View
-          style={{
-            alignItems: "center",
-            backgroundColor: "rgba(255,255,255,.3)"
-          }}
-        >
-          <Image
-            source={require("../assets/Where2LiveLogo.png")}
-            style={styles.cardImage}
-            resizeMode="cover"
-          />
-        </View>
-
-        
-        <View style={styles.Header}>
-          <View>
-            <Input
-              containerStyle={{ width: 300 }}
-              errorMessage="*ציין את שם האירוע המלא"
-              rightIcon={<Entypo name="edit" size={20} />}
-              onChangeText={e => this.setState({ eventname: e })}
-            />
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorMessage="*ציין את שם האירוע המלא"
+                    rightIcon={
+                      <Icon
+                        name="edit"
+                        type="font-awesome"
+                        color="black"
+                        size={24}
+                      />
+                    }
+                    onChangeText={e => this.setState({ eventname: e })}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorMessage="*ציין את הכתובת המדוייקת של האירוע"
+                    onChangeText={this.handleAddress}
+                    rightIcon={<Entypo name="location" size={20} />}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorStyle={{ color: "red" }}
+                    errorMessage="*טלפון להזמנת מקום"
+                    onChangeText={e => this.setState({ eventphone: e })}
+                    rightIcon={<AntDesign name="mobile1" size={20} />}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorStyle={{ color: "red" }}
+                    errorMessage="*טלפון להזמנת מקום"
+                    onChangeText={e => this.setState({ eventphone: e })}
+                    rightIcon={<AntDesign name="mobile1" size={20} />}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorStyle={{ color: "red" }}
+                    errorMessage="*טלפון להזמנת מקום"
+                    onChangeText={e => this.setState({ eventphone: e })}
+                    rightIcon={<AntDesign name="mobile1" size={20} />}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorStyle={{ color: "red" }}
+                    errorMessage="*טלפון להזמנת מקום"
+                    onChangeText={e => this.setState({ eventphone: e })}
+                    rightIcon={<AntDesign name="mobile1" size={20} />}
+                  />
+                </View>
+                <View>
+                  <Input
+                    containerStyle={{ width: 220 }}
+                    errorStyle={{ color: "red" }}
+                    errorMessage="*טלפון להזמנת מקום"
+                    onChangeText={e => this.setState({ eventphone: e })}
+                    rightIcon={<AntDesign name="mobile1" size={20} />}
+                  />
+                </View>
+                <TextInput
+                  style={styles.TextInputStyleClass}
+                  underlineColorAndroid="transparent"
+                  placeholder={"ספר על האירוע"}
+                  placeholderTextColor={"#9E9E9E"}
+                  numberOfLines={10}
+                  multiline={true}
+                  onChangeText={e => this.setState({ eventabout: e })}
+                />
+              </KeyboardAvoidingView>
+            </ScrollView>
           </View>
-
-          <View>
-            <Input
-              containerStyle={{ width: 300 }}
-              errorMessage="*ציין את הכתובת המדוייקת של האירוע"
-              onChangeText={this.handleAddress}
-              rightIcon={<Entypo name="location" size={20} />}
-            />
-          </View>
-
-          <View>
-            <Input
-              containerStyle={{ width: 300 }}
-              errorStyle={{ color: "red" }}
-              errorMessage="*טלפון להזמנת מקום"
-              onChangeText={e => this.setState({ eventphone: e })}
-              rightIcon={<AntDesign name="mobile1" size={20} />}
-            />
-          </View>
-          <TextInput
-            style={styles.TextInputStyleClass}
-            underlineColorAndroid="transparent"
-            placeholder={"ספר על האירוע"}
-            placeholderTextColor={"#9E9E9E"}
-            numberOfLines={10}
-            multiline={true}
-            onChangeText={e => this.setState({ eventabout: e })}
-
-          />
-
-          <View style={styles.addImage}>
-            <TouchableOpacity onPress={this.openCamera} style={styles.icon}>
-              <View>
-                <Ionicons name="ios-camera" size={60} color="black" />
-              </View>
-              <Text>מצלמה</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.openGallery} style={styles.icon}>
-              <View>
-                <Ionicons name="md-images" size={60} color="black" />
-                <Text>גלריה</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-              style={styles.publishButton}
-              onPress={this.handleSubmit}
-            >
-              <Text style={{ color: "white" }}>פרסם אירוע</Text>
-            </TouchableOpacity>
-
-
-          {!this.state.Show && (
-            <Text style={{ color: "red" }}> {this.state.resLabel}</Text>
-          )}
         </View>
       </ImageBackground>
+      // <ImageBackground
+      //   source={require("../assets/Street.jpg")}
+      //   style={styles.container}
+      // >
+      //   <View
+      //     style={{
+      //       marginTop: 10,
+      //       backgroundColor: "rgba(255,255,255,.3)",
+      //       padding: 10
+      //     }}
+      //   >
+      //     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+      //       <Ionicons name="md-arrow-back" size={28} />
+      //     </TouchableOpacity>
+      //   </View>
+
+      //   <View
+      //     style={{
+      //       alignItems: "center",
+      //       backgroundColor: "rgba(255,255,255,.3)"
+      //     }}
+      //   >
+      //     <Image
+      //       source={require("../assets/Where2LiveLogo.png")}
+      //       style={styles.cardImage}
+      //       resizeMode="cover"
+      //     />
+      //   </View>
+
+      //   <View style={styles.Header}>
+      // <View>
+      //   <Input
+      //     containerStyle={{ width: 300 }}
+      //     errorMessage="*ציין את שם האירוע המלא"
+      //     rightIcon={<Entypo name="edit" size={20} />}
+      //     onChangeText={e => this.setState({ eventname: e })}
+      //   />
+      // </View>
+
+      // <View>
+      //   <Input
+      //     containerStyle={{ width: 300 }}
+      //     errorMessage="*ציין את הכתובת המדוייקת של האירוע"
+      //     onChangeText={this.handleAddress}
+      //     rightIcon={<Entypo name="location" size={20} />}
+      //   />
+      // </View>
+
+      // <View>
+      //   <Input
+      //     containerStyle={{ width: 300 }}
+      //     errorStyle={{ color: "red" }}
+      //     errorMessage="*טלפון להזמנת מקום"
+      //     onChangeText={e => this.setState({ eventphone: e })}
+      //     rightIcon={<AntDesign name="mobile1" size={20} />}
+      //   />
+      // </View>
+      // <TextInput
+      //   style={styles.TextInputStyleClass}
+      //   underlineColorAndroid="transparent"
+      //   placeholder={"ספר על האירוע"}
+      //   placeholderTextColor={"#9E9E9E"}
+      //   numberOfLines={10}
+      //   multiline={true}
+      //   onChangeText={e => this.setState({ eventabout: e })}
+
+      // />
+
+      //     <View style={styles.addImage}>
+      //       <TouchableOpacity onPress={this.openCamera} style={styles.icon}>
+      //         <View>
+      //           <Ionicons name="ios-camera" size={60} color="black" />
+      //         </View>
+      //         <Text>מצלמה</Text>
+      //       </TouchableOpacity>
+
+      //       <TouchableOpacity onPress={this.openGallery} style={styles.icon}>
+      //         <View>
+      //           <Ionicons name="md-images" size={60} color="black" />
+      //           <Text>גלריה</Text>
+      //         </View>
+      //       </TouchableOpacity>
+      //     </View>
+
+      //     <TouchableOpacity
+      //         style={styles.publishButton}
+      //         onPress={this.handleSubmit}
+      //       >
+      //         <Text style={{ color: "white" }}>פרסם אירוע</Text>
+      //       </TouchableOpacity>
+
+      //     {!this.state.Show && (
+      //       <Text style={{ color: "red" }}> {this.state.resLabel}</Text>
+      //     )}
+      //   </View>
+      // </ImageBackground>
     );
   }
 }
