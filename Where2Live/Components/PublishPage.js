@@ -205,7 +205,12 @@ export default class Public extends React.Component {
     return valid;
   }
 
+  onContentSizeChange = (contentWidth, contentHeight) => {
+    this.setState({ screenHeight: contentHeight });
+  };
+
   render() {
+    const scrollEnabled = this.state.screenHeight > height;
     return (
       <ImageBackground
         source={require("../assets/background2.jpg")}
@@ -213,28 +218,34 @@ export default class Public extends React.Component {
       >
         <View style={styles.container}>
           <View style={styles.main}>
-            <ScrollView>
-              <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <View style={styles.logo}>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.goBack()}
-                  >
-                    <Icon
-                      name="arrow-circle-left"
-                      type="font-awesome"
-                      iconStyle={{ marginLeft: "85%" }}
-                      color="black"
-                      size={34}
-                    />
-                  </TouchableOpacity>
-                  <Image
-                    source={require("../assets/houseLogo.png")}
-                    style={{ width: "100%", height: "100%" }}
-                    resizeMode="contain"
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
+              <View style={styles.logo}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.goBack()}
+                >
+                  <Icon
+                    name="arrow-circle-left"
+                    type="font-awesome"
+                    iconStyle={{ marginLeft: "85%" }}
+                    color="black"
+                    size={34}
                   />
-                </View>
-
-                <View>
+                </TouchableOpacity>
+                <Image
+                  source={require("../assets/houseLogo.png")}
+                  style={{ width: "100%", height: "100%" }}
+                  resizeMode="contain"
+                />
+              </View>
+              <ScrollView
+                contentContainerStyle={styles.scrollview}
+                scrollEnabled={scrollEnabled}
+                onContentSizeChange={this.onContentSizeChange}
+              >
+                <View style={{borderColor:"black",borderWidth:1,borderRadius:10,}}>
+                  <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                    כתובת
+                  </Text>
                   <Input
                     containerStyle={{ width: 220 }}
                     errorMessage="*ציין את שם האירוע המלא"
@@ -257,62 +268,8 @@ export default class Public extends React.Component {
                     rightIcon={<Entypo name="location" size={20} />}
                   />
                 </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorStyle={{ color: "red" }}
-                    errorMessage="*טלפון להזמנת מקום"
-                    onChangeText={e => this.setState({ eventphone: e })}
-                    rightIcon={<AntDesign name="mobile1" size={20} />}
-                  />
-                </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorStyle={{ color: "red" }}
-                    errorMessage="*טלפון להזמנת מקום"
-                    onChangeText={e => this.setState({ eventphone: e })}
-                    rightIcon={<AntDesign name="mobile1" size={20} />}
-                  />
-                </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorStyle={{ color: "red" }}
-                    errorMessage="*טלפון להזמנת מקום"
-                    onChangeText={e => this.setState({ eventphone: e })}
-                    rightIcon={<AntDesign name="mobile1" size={20} />}
-                  />
-                </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorStyle={{ color: "red" }}
-                    errorMessage="*טלפון להזמנת מקום"
-                    onChangeText={e => this.setState({ eventphone: e })}
-                    rightIcon={<AntDesign name="mobile1" size={20} />}
-                  />
-                </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorStyle={{ color: "red" }}
-                    errorMessage="*טלפון להזמנת מקום"
-                    onChangeText={e => this.setState({ eventphone: e })}
-                    rightIcon={<AntDesign name="mobile1" size={20} />}
-                  />
-                </View>
-                <TextInput
-                  style={styles.TextInputStyleClass}
-                  underlineColorAndroid="transparent"
-                  placeholder={"ספר על האירוע"}
-                  placeholderTextColor={"#9E9E9E"}
-                  numberOfLines={10}
-                  multiline={true}
-                  onChangeText={e => this.setState({ eventabout: e })}
-                />
-              </KeyboardAvoidingView>
-            </ScrollView>
+              </ScrollView>
+            </KeyboardAvoidingView>
           </View>
         </View>
       </ImageBackground>

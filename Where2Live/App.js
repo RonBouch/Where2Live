@@ -23,10 +23,9 @@ const StackNav = createStackNavigator(
 
     LoginPage: LoginPage,
 
-    PublishPage: PublishPage,
+    LoginPage: LoginPage,
 
     HomePage: HomePage,
-
 
     RegisterPage: RegisterPage,
 
