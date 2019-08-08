@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./StyleSheet";
 import {
   Text,
   View,
@@ -11,6 +12,8 @@ import {
   KeyboardAvoidingView,
   Image
 } from "react-native";
+import { Icon } from "react-native-elements";
+
 import DatePicker from "react-native-datepicker";
 import RadioForm from "react-native-simple-radio-button";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,12 +26,10 @@ const DissmisKeyboard = ({ children }) => (
 
 var radio_props = [
   {
-    icon: <Ionicons name="ios-man" size={18} color="" />,
     label: "  זכר  ",
     value: "זכר"
   },
   {
-    icon: <Ionicons name="ios-woman" size={18} color="" />,
     label: "  נקבה  ",
     value: "נקבה"
   }
@@ -190,191 +191,133 @@ export default class Register extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/Street.jpg")}
-        style={styles.container}
+        source={require("../assets/background2.jpg")}
+        style={styles.backgroundImage}
       >
         <View style={styles.container}>
-          <View style={styles.formContainer}>
-            <DissmisKeyboard>
-              <KeyboardAvoidingView
-                keyboardVerticalOffset="-30"
-                behavior="position"
-              >
-                <View style={{ marginTop: -10 }}>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.goBack()}
-                  >
-                    <Ionicons name="md-arrow-back" size={28} />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <Image
-                    source={require("../assets/Where2LiveLogo.png")}
-                    style={styles.cardImage}
-                    resizeMode="cover"
+          <View style={styles.main}>
+            <KeyboardAvoidingView style={styles.main} behavior="padding">
+              <View style={styles.logo}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.goBack()}
+                >
+                  <Icon
+                    name="arrow-circle-left"
+                    type="font-awesome"
+                    iconStyle={{ marginLeft: "85%" }}
+                    color="black"
+                    size={34}
                   />
-                </View>
-
-                <TextInput
-                  style={styles.input}
-                  placeholder="שם פרטי"
-                  onChangeText={this.changeFirstName}
+                </TouchableOpacity>
+                <Image
+                  source={require("../assets/houseLogo.png")}
+                  style={{ width: "100%", height: "100%" }}
+                  resizeMode="contain"
                 />
+              </View>
+              <TextInput
+                style={styles.input}
+                placeholder="שם פרטי"
+                onChangeText={this.changeFirstName}
+              />
 
-                <TextInput
-                  style={styles.input}
-                  placeholder="שם משפחה"
-                  onChangeText={this.changeLastName}
-                />
+              <TextInput
+                style={styles.input}
+                placeholder="שם משפחה"
+                onChangeText={this.changeLastName}
+              />
 
-                <TextInput
-                  style={styles.input}
-                  keyboardType="email-address"
-                  placeholder="אמייל"
-                  onChangeText={this.changeEmail}
-                />
+              <TextInput
+                style={styles.input}
+                keyboardType="email-address"
+                placeholder="אמייל"
+                onChangeText={this.changeEmail}
+              />
 
-                <TextInput
-                  style={styles.input}
-                  secureTextEntry={true}
-                  placeholder="סיסמא"
-                  onChangeText={this.changePassword}
-                />
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                placeholder="סיסמא"
+                onChangeText={this.changePassword}
+              />
 
-                <TextInput
-                  style={styles.input}
-                  secureTextEntry={true}
-                  placeholder="אימות סיסמא"
-                  onChangeText={this.changeVerifyPassword}
-                />
-
-                <DatePicker
-                  style={{
-                    width: 200,
-                    margin: 10,
-                    backgroundColor: "rgba(255,255,255,.5)"
-                  }}
-                  date={this.state.date}
-                  mode="date"
-                  placeholder="יום הולדת"
-                  format="DD-MM-YYYY"
-                  minDate={
-                    new Date().getDate() +
-                    "-" +
-                    (new Date().getMonth() + 1) +
-                    "-" +
-                    (new Date().getFullYear() - 120)
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                placeholder="אימות סיסמא"
+                onChangeText={this.changeVerifyPassword}
+              />
+              <DatePicker
+                style={{
+                  width: 200,
+                  margin: 5,
+                  backgroundColor: "rgba(255,255,255,.5)"
+                }}
+                date={this.state.date}
+                mode="date"
+                placeholder="יום הולדת"
+                format="DD-MM-YYYY"
+                minDate={
+                  new Date().getDate() +
+                  "-" +
+                  (new Date().getMonth() + 1) +
+                  "-" +
+                  (new Date().getFullYear() - 120)
+                }
+                maxDate={new Date()}
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
                   }
-                  maxDate={new Date()}
-                  customStyles={{
-                    dateIcon: {
-                      position: "absolute",
-                      left: 0,
-                      top: 4,
-                      marginLeft: 0
-                    },
-                    dateInput: {
-                      marginLeft: 36
-                    }
-                    // ... You can check the source to find the other keys.
-                  }}
-                  onDateChange={date => {
-                    this.setState({ date: date });
-                  }}
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={date => {
+                  this.setState({ date: date });
+                }}
+              />
+
+              <RadioForm
+                radio_props={radio_props}
+                initial={null}
+                style={styles.genderRadio}
+                onPress={this.changeGender}
+              />
+
+              <TouchableOpacity
+                style={styles.registerButton2}
+                onPress={this.register}
+              >
+                <Text>
+                  הרשמה
+                  {"  "}
+                </Text>
+                <Icon
+                  name="user-plus"
+                  type="font-awesome"
+                  color="black"
+                  size={18}
                 />
-              </KeyboardAvoidingView>
-            </DissmisKeyboard>
+              </TouchableOpacity>
 
-            <RadioForm
-              radio_props={radio_props}
-              initial={null}
-              style={styles.genderRadio}
-              onPress={this.changeGender}
-            />
-
-            <TouchableOpacity
-              style={styles.registerButton}
-              onPress={this.register}
-            >
-              <Text>הרשם</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.textMessage}>
-              {this.state.errors.firstName ||
-                this.state.errors.lastName ||
-                this.state.errors.email ||
-                this.state.errors.password ||
-                this.state.errors.verifyPassword ||
-                this.state.errors.birthday ||
-                this.state.errors.gender}
-            </Text>
+              <Text style={styles.textMessage}>
+                {this.state.errors.firstName ||
+                  this.state.errors.lastName ||
+                  this.state.errors.email ||
+                  this.state.errors.password ||
+                  this.state.errors.verifyPassword ||
+                  this.state.errors.birthday ||
+                  this.state.errors.gender}
+              </Text>
+            </KeyboardAvoidingView>
           </View>
         </View>
       </ImageBackground>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "rgba(255,255,255,.3)",
-    alignItems: "center",
-    padding: 20
-  },
-  title: {
-    fontSize: 40,
-    margin: 30
-  },
-  input: {
-    backgroundColor: "rgba(255,255,255,.5)",
-    borderRadius: 10,
-    height: 40,
-    textAlign: "center",
-    borderColor: "gray",
-    borderWidth: 2,
-    margin: 10
-  },
-  textMessage: {
-    margin: 50,
-    color: "red"
-  },
-  cardImage: {
-    width: 240,
-    height: 130
-  },
-  genderRadio: {
-    backgroundColor: "rgba(255,255,255,.5)",
-    flexDirection: "row",
-    margin: 10,
-    justifyContent: "center"
-  },
-  textMessage: {
-    margin: 10,
-    color: "red"
-  },
-  registerButton: {
-    backgroundColor: "rgba(255,255,0,.7)",
-    borderRadius: 200,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 10,
-    borderColor: "white",
-    borderWidth: 2
-  },
-  formContainer: {
-    paddingBottom: 150
-  },
-  buttonContainerFB: {
-    backgroundColor: "gray",
-    paddingVertical: 10,
-    width: 240,
-    height: 45,
-    borderRadius: 200,
-    alignItems: "center",
-    flexGrow: 1,
-    justifyContent: "center",
-    marginTop: 30
-  }
-});

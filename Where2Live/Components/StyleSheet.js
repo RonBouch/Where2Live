@@ -8,9 +8,9 @@ export default StyleSheet.create({
     resizeMode: "cover"
   },
   logo: {
+    marginTop: "15%",
     width: "90%",
-    height: "30%",
-    marginTop: "15%"
+    height: "30%"
   },
   container: {
     flex: 1,
@@ -62,7 +62,6 @@ export default StyleSheet.create({
   registerButton: {
     backgroundColor: "rgba(255,255,0,.9)",
     flexDirection: "row",
-    borderRadius: 200,
     height: 45,
     width: 200,
     alignItems: "center",
@@ -75,7 +74,6 @@ export default StyleSheet.create({
   faceBookButton: {
     flexDirection: "row",
     backgroundColor: "rgba(0,0,255,.9)",
-    borderRadius: 200,
     height: 45,
     width: 200,
     alignItems: "center",
@@ -87,7 +85,6 @@ export default StyleSheet.create({
   googleButton: {
     flexDirection: "row",
     backgroundColor: "red",
-    borderRadius: 200,
     height: 45,
     width: 200,
     alignItems: "center",
@@ -98,5 +95,25 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: "white"
+  },
+
+  //Login Page Style
+
+  genderRadio: {
+    backgroundColor: "rgba(255,255,255,.5)",
+    flexDirection: "row",
+    margin: 10,
+    justifyContent: "center"
+  },
+  registerButton2: {
+    backgroundColor: "rgba(255,255,0,.9)",
+    flexDirection: "row",
+    height: 45,
+    width: 200,
+    marginTop:10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "white",
+    borderWidth: 2
   }
 });
