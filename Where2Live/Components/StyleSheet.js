@@ -23,9 +23,24 @@ export default StyleSheet.create({
     backgroundColor: "rgba(255,255,255,.6)",
     alignItems: "center",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    flex:1
   },
+  scrollview:{
+     flexGrow:1
+  },
+  card: {
 
+    // backgroundColor: 'rgba(255,255,255,.5)',
+    // shadowColor: "#000",
+    height: '100%',
+    width: '100%',
+    // backgroundColor:'gray',
+    position: 'relative',
+    // bottom: -40,
+    // marginTop:13
+     borderWidth:2
+  },
   //Login Page Style
 
   loginForm: {
