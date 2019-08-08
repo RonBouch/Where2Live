@@ -19,11 +19,12 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {
+    LoginPage: LoginPage,
+
     PublishPage: PublishPage,
 
     HomePage: HomePage,
 
-    LoginPage: LoginPage,
 
     RegisterPage: RegisterPage,
 
