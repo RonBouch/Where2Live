@@ -196,7 +196,7 @@ export default class Register extends React.Component {
       >
         <View style={styles.container}>
           <View style={styles.main}>
-            <KeyboardAvoidingView style={styles.main} behavior="padding">
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
               <View style={styles.logo}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.goBack()}
