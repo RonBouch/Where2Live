@@ -1,22 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
-  Text,
-  View,
-  Dimensions,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-  Linking,
-  ScrollView
-} from "react-native";
-import styles from "./StyleSheet.js";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Ionicons } from "@expo/vector-icons";
-import { CheckBox } from "react-native-elements";
-import RadioForm from "react-native-simple-radio-button";
+    Text,
+    View,
+    Dimensions,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    ImageBackground,
+    Linking,
+    ScrollView
+    
+  } from "react-native";
+  import styles from "./StyleSheet.js";
+  import Icon from "react-native-vector-icons/FontAwesome";
+  import { Ionicons } from "@expo/vector-icons";
+  import { CheckBox } from "react-native-elements";
+  import RadioForm from "react-native-simple-radio-button";
 
-const { height } = Dimensions.get("window");
+const {height} = Dimensions.get('window');
 export default class FavoritePage extends React.Component {
     constructor(props) {
         super(props);
@@ -105,17 +106,7 @@ export default class FavoritePage extends React.Component {
     render() {
         const scrollEnabled= this.state.screenHeight>height-100;
 
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    this.setState({ screenHeight: contentHeight });
-  };
-  _pressCall = () => {
-    const url = "tel:" + this.state.place.Phone;
-    Linking.openURL(url);
-  };
-  render() {
-    const scrollEnabled = this.state.screenHeight > height;
-
-    let Houses = [];
+        let Houses = [];
 
     if (this.state.places != null) {
       debugger;
@@ -187,68 +178,35 @@ export default class FavoritePage extends React.Component {
 
                   </ImageBackground>
 
-              <View style={{ flexDirection: "row-reverse", bottom: 5 }}>
-                <View style={{ flex: 1 }} />
-                <View style={{ flex: 2, marginTop: 10 }}>
-                  {this.state.showNumber != true ? (
-                    <TouchableOpacity
-                      onPress={this._pressCall}
-                      success
-                      type="outline"
-                    >
-                      <Icon name="phone" color="green" size={40} />
-                    </TouchableOpacity>
-                  ) : (
-                    <Text
-                      style={{ color: "blue", fontSize: 18, marginLeft: 30 }}
-                    >
-                      0526666666
-                    </Text>
-                  )}
-                </View>
-                <View>
-                  <CheckBox
-                    title=" מועדפים"
-                    style={{ position: "absolute", flex: 3 }}
-                    iconRight
-                    iconType="material"
-                    checkedIcon="star"
-                    uncheckedIcon="star"
-                    checkedColor="yellow"
-                    checked={this.state.checkedB}
-                    onPress={() =>
-                      this.setState({ checkedB: !this.state.checkedB })
-                    }
-                  />
-                </View>
-              </View>
-            </ImageBackground>
           </View>
+
         );
       });
     }
-    console.log("Houses = ", Houses);
+    console.log("Houses = ",Houses);
 
-    return (
-      <ImageBackground
+        return (
+                <ImageBackground
         source={require("../assets/background2.jpg")}
         style={styles.backgroundImage}
       >
         <View style={styles.container}>
+      
           <View style={styles.main}>
+         
             <View style={styles.logo}>
               <Image
                 source={require("../assets/houseLogo.png")}
                 style={{ width: "100%", height: "100%", marginTop: "15%" }}
                 resizeMode="contain"
               />
+
             </View>
             <ScrollView
-              contentContainerStyle={styles.scrollview}
-              scrollEnabled={scrollEnabled}
-              onContentSizeChange={this.onContentSizeChange}
-            >
-              {Houses}
+            contentContainerStyle={styles.scrollview}
+            scrollEnabled={scrollEnabled}
+            onContentSizeChange={this.onContentSizeChange}>
+            {Houses}
             </ScrollView>
 
 
@@ -306,8 +264,11 @@ export default class FavoritePage extends React.Component {
               console.log("mjcjcjc")
             )}
           </View>
+
         </View>
       </ImageBackground>
     );
   }
+        
+    
 }
