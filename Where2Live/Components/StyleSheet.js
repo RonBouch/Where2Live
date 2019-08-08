@@ -154,14 +154,37 @@ export default StyleSheet.create({
  },
  card: {
 
-   // backgroundColor: 'rgba(255,255,255,.5)',
-   // shadowColor: "#000",
+  backgroundColor: "rgba(255,255,255,.4)",
+  // shadowColor: "#000",
+  
    height: '100%',
    width: '100%',
-   // backgroundColor:'gray',
+  //  backgroundColor:'gray',
    position: 'relative',
    // bottom: -40,
    // marginTop:13
     borderWidth:2
  },
+ phoneCard:{
+  backgroundColor: "rgba(255,255,255,.9)",
+  shadowColor: "#000",
+  justifyContent:'center',
+  alignItems:'center',
+  textAlign:'center',
+  padding:4,
+  borderWidth:2,
+  width:'50%',
+  flex:3, 
+  borderRadius: 50,
+
+  flexDirection: "row-reverse",
+
+ },
+ textCard:{
+  fontSize: 14,
+  fontWeight: "bold",
+   flex: 2,
+   marginBottom:5,
+   marginRight:10
+ }
 });

@@ -26,16 +26,18 @@ export default class FavoritePage extends React.Component {
                 place:null,
                 checkedB:true,
                 screenHeight:0,
+                placePhone:"",
+                pageToShow:null,
+
             }
     }
     componentDidMount(){
-        console.log("idddd"+id)
         this.GetPlaces();
     }
      GetPlaces = () => {
-            console.log("iddddd"+id);
+            
             const data = {
-                userid:id
+                userid:1
               };
             fetch(
               "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlacesFromFavorite",
@@ -79,12 +81,30 @@ export default class FavoritePage extends React.Component {
           this.setState({screenHeight:contentHeight})
 
           }
-    _pressCall=()=>{
-        const url='tel:'+this.state.place.Phone
+    _pressCall=(p)=>{
+        this.setState({
+            placePhone:p
+        })
+        const url='tel:'+p.Phone
         Linking.openURL(url)
       }
+      infoWindow = (p, i) => {
+        // console.log('page to show  -- -- - = = == '+ p.City+i)
+    
+        if (this.state.pageToShow == null || this.state.pageToShow != i) {
+          this.setState({
+            pageToShow: i,
+            place: p
+          });
+        } else {
+          this.setState({
+            pageToShow: null,
+            place: null
+          });
+        }
+    }
     render() {
-        const scrollEnabled= this.state.screenHeight>height;
+        const scrollEnabled= this.state.screenHeight>height-100;
 
         let Houses = [];
 
@@ -94,76 +114,68 @@ export default class FavoritePage extends React.Component {
         // if (index == this.state.pageToShow) {
         //   this.viewPage = place.Address;
         // }
+        
         return (
             <View
-            style={{width:'100%',height:'18%',resizeMode:'cover',marginBottom:10
-        }}
+            style={{width:'100%',height:'18%',marginBottom:10,backgroundColor: "rgba(255,255,255,.4)"        }}
             key={index}
           >
           
           <ImageBackground
-            source={require("../assets/background.jpg")}
+            source={require("../assets/BG2.jpg")}
              style={styles.card}>
       
                  
-                    <View style={{ flexDirection: "row-reverse" }}>
-                      <View>
-                        <Image
-                          source={require("../assets/background1.jpg")
-                          }
-                          style={{ width: 130, height: 100 }}
-                          resizeMode="cover"
-                        />
-                      </View>
+                    <View style={{ flexDirection: "row-reverse" ,flex:1}}>
 
-                      <View style={{ flex: 2 }} />
-                      <View>
+                      <View style={{width:'75%', padding:'3%'}}>
                         <Text
-                          style={{ fontSize: 18, fontWeight: "bold", flex: 2 }}
+                          style={{ fontSize: 18, fontWeight: "bold" }}
                         >
                           {place.Address}
                         </Text>
-                        <Text
-                          style={{ fontSize: 16, fontWeight: "bold", flex: 2 }}
-                        >
-                          שם המקום:{place.Name}
-                        </Text>
-                      </View>
-                    </View>
-                    <View>
-                      <Text style={{ fontSize: 14, fontWeight: "bold" }}>
-                        מידע על האירוע : {place.About}{" "}
-                      </Text>
-                    </View>
-
-                    <View style={{ flexDirection: "row-reverse", bottom:5 }}>
-                      <View style={{ flex: 1 }} />
-                      <View style={{ flex: 2, marginTop: 10 }}>
-                      {this.state.showNumber!=true?  <TouchableOpacity
-                          onPress={this._pressCall}
+                       <View style={{flexDirection: "row-reverse"}}>
+                     
+                        {place.Floor!=""?<Text
+                          style={styles.textCard}
+                        > קומה:{place.Floor} 
+                        </Text>:console.log(place.Floor)}
+                        <Text    style={styles.textCard}>
+                           חדרים:{place.Room}
+                       </Text>
+                       </View>
+                       <View style={{width:'100%',marginTop:'5%', flexDirection: "row-reverse",justifyContent: 'space-between'}}>
+                      
+                       <TouchableOpacity
+                          onPress={()=>this._pressCall(place.Phone)}
                           success
                           type="outline"
+                          style={styles.phoneCard}
                         >
-                          <Icon name="phone" color="green" size={40} />
-                        </TouchableOpacity>:<Text style={{color:'blue',fontSize:18,marginLeft:30}}>0526666666</Text>}
+                          <Icon name="phone" color="green" size={30} />
+                          <Text style={styles.textCard}>התקשר:</Text>
+
+                        </TouchableOpacity>
+
+                       
+                      <Text    style={{fontSize:16,flex:3,color:'red',  fontWeight: "bold",marginRight:17}}>
+                          ₪{place.Price}
+                       </Text> 
                       </View>
-                      <View>
-                        <CheckBox
-                          title=" מועדפים"
-                          style={{ position: "absolute", flex: 3 }}
-                          iconRight
-                          iconType="material"
-                          checkedIcon="star"
-                          uncheckedIcon="star"
-                          checkedColor="yellow"
-                          checked={this.state.checkedB}
-                          onPress={() =>
-                            this.setState({ checkedB: !this.state.checkedB })
+                      </View>
+                      
+                      <View style={{width:'25%'}}>
+                        <Image
+                          source={require("../assets/Home.jpg")
                           }
+                          style={{ width: '90%', height: '90%' }}
+                          
                         />
                       </View>
-                    
-                  </View>
+
+                    </View>
+                    <View ><Text style={styles.textCard}  onPress={() => {this.infoWindow(place, index); }}>עוד..</Text></View>
+
                   </ImageBackground>
 
           </View>
@@ -197,6 +209,60 @@ export default class FavoritePage extends React.Component {
             {Houses}
             </ScrollView>
 
+
+
+
+ {this.state.pageToShow != null ? (
+
+             
+                <ImageBackground
+                  source={require("../assets/BG2.jpg")}
+                  style={{ width: "100%", height: "100%" }}
+                >
+                  
+                  <View
+                    style={{
+                      backgroundColor: "rgba(255,255,255,.6)",height:'70%'
+                    }}
+                  >
+                        <TouchableOpacity
+                  onPress={()=>this.setState({pageToShow:null})}>
+                  <Icon
+                    name="times-circle"
+                    type="font-awesome"
+                    iconStyle={{}}
+                    color="black"
+                    size={34}
+                  />
+                  </TouchableOpacity>
+            
+                   <View style={{alignItems:'center',width: '100%', height: '15%'}}>
+                   <Image
+                          source={require("../assets/Home.jpg")
+                          }
+                          style={{ width: '30%', height: '100%' ,borderWidth:2}}
+                          
+                        />
+                   </View>
+                   <View style={{height:'80%',width:'100%',flexDirection:'row-reverse',borderTopColor: 'black',borderTopWidth: 3}}>
+                      
+                   
+                       <Text style={styles.textCard}>
+                       מ"ר:{this.state.place.SquareMeter}
+                       </Text>   
+                        <Text style={styles.textCard}>
+                       קומה:{this.state.place.Floor}
+                       </Text>
+
+                       <Text style={styles.textCard}>
+                       חדרים:{this.state.place.Room}
+                       </Text>
+                   </View>
+                  </View>
+                </ImageBackground>
+            ) : (
+              console.log("mjcjcjc")
+            )}
           </View>
 
         </View>
