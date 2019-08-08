@@ -41,7 +41,7 @@ const StackNav = createStackNavigator(
   },
   { headerMode: "none", defaultNavigationOptions: { headerVisable: false } },
   {
-    initialRouteName: "HomePage"
+    initialRouteName: "LoginPage"
   }
 );
 

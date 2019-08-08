@@ -7,25 +7,32 @@ import {
     TextInput,
     TouchableOpacity,
     ImageBackground,
-    Linking
+    Linking,
+    ScrollView
+    
   } from "react-native";
-  import styles from "./SearchPageStyle";
+  import styles from "./StyleSheet.js";
+  import Icon from "react-native-vector-icons/FontAwesome";
+  import { Ionicons } from "@expo/vector-icons";
+  import { CheckBox } from "react-native-elements";
+  import RadioForm from "react-native-simple-radio-button";
 
-
-export default class FavoritePage extends Component {
+const {height} = Dimensions.get('window');
+export default class FavoritePage extends React.Component {
     constructor(props) {
         super(props);
             this.state={
                 places:null,
                 place:null,
                 checkedB:true,
+                screenHeight:0,
             }
     }
     componentDidMount(){
+        console.log("idddd"+id)
         this.GetPlaces();
     }
-    GetPlaces(){
-        GetPlaces = () => {
+     GetPlaces = () => {
             console.log("iddddd"+id);
             const data = {
                 userid:id
@@ -68,12 +75,17 @@ export default class FavoritePage extends Component {
               );
           };
         
-    }
+          onContentSizeChange=(contentWidth,contentHeight)=>{
+          this.setState({screenHeight:contentHeight})
+
+          }
     _pressCall=()=>{
         const url='tel:'+this.state.place.Phone
         Linking.openURL(url)
       }
     render() {
+        const scrollEnabled= this.state.screenHeight>height;
+
         let Houses = [];
 
     if (this.state.places != null) {
@@ -83,25 +95,22 @@ export default class FavoritePage extends Component {
         //   this.viewPage = place.Address;
         // }
         return (
-          <View style={styles.card}>
-           
-           <ImageBackground
-                  source={require("../assets/background1.jpg")}
-                  style={{ width: "100%", height: "100%" }}
-                >
-                  <View
-                    style={{
-                      backgroundColor: "rgba(255,255,255,.6)",
-                      height: "100%"
-                    }}
-                  >
+            <View
+            style={{width:'100%',height:'18%',resizeMode:'cover',marginBottom:10
+        }}
+            key={index}
+          >
+          
+          <ImageBackground
+            source={require("../assets/background.jpg")}
+             style={styles.card}>
+      
+                 
                     <View style={{ flexDirection: "row-reverse" }}>
                       <View>
                         <Image
-                          source={{
-                            uri:
-                              "http://ruppinmobile.tempdomain.co.il/site11/image/"+this.state.place.Img
-                          }}
+                          source={require("../assets/background1.jpg")
+                          }
                           style={{ width: 130, height: 100 }}
                           resizeMode="cover"
                         />
@@ -112,18 +121,18 @@ export default class FavoritePage extends Component {
                         <Text
                           style={{ fontSize: 18, fontWeight: "bold", flex: 2 }}
                         >
-                          {this.state.place.Address}
+                          {place.Address}
                         </Text>
                         <Text
                           style={{ fontSize: 16, fontWeight: "bold", flex: 2 }}
                         >
-                          שם המקום:{this.state.place.Name}
+                          שם המקום:{place.Name}
                         </Text>
                       </View>
                     </View>
                     <View>
                       <Text style={{ fontSize: 14, fontWeight: "bold" }}>
-                        מידע על האירוע : {this.state.place.About}{" "}
+                        מידע על האירוע : {place.About}{" "}
                       </Text>
                     </View>
 
@@ -153,50 +162,47 @@ export default class FavoritePage extends Component {
                           }
                         />
                       </View>
-                    </View>
+                    
                   </View>
-                </ImageBackground>
+                  </ImageBackground>
+
           </View>
 
-          //       index==this.state.pageToShow?
-          //   <View style={styles.card} key={index}>
-          //             <View style={{height:'35%'}}>
-          //             <Image
-          //               source={require('../assets/party1.jpg')}
-          //               style={styles.cardImage}
-          //               resizeMode="cover"
-          //             />
-          //             </View>
-          //             <View  style={{}}>
-          //             <CheckBox
-          //         center
-          // title=' מועדפים'
-          // iconRight
-          // iconType='material'
-          // checkedIcon='done'
-          // uncheckedIcon='add'
-          // checkedColor='yellow'
-          // checked={this.state.checkedB}
-          // onPress={() => this.setState({checkedB: !this.state.checkedB})}/>
-
-          //             </View>
-          //             <View style={{}}>
-          //               <Text>
-          //               {place.Address}'\n'
-          //                  מס 0523665524
-          //                 פתוח 24//7
-          //                 </Text>
-          //             </View>
-          //           </View>
         );
       });
     }
+    console.log("Houses = ",Houses);
 
         return (
-            <View style={{alignItems:'center'}}>
-                <Text>Hi aLL</Text>
-                {Houses}
+                <ImageBackground
+        source={require("../assets/background2.jpg")}
+        style={styles.backgroundImage}
+      >
+        <View style={styles.container}>
+      
+          <View style={styles.main}>
+         
+            <View style={styles.logo}>
+              <Image
+                source={require("../assets/houseLogo.png")}
+                style={{ width: "100%", height: "100%", marginTop: "15%" }}
+                resizeMode="contain"
+              />
+
             </View>
-        )
-    }
+            <ScrollView
+            contentContainerStyle={styles.scrollview}
+            scrollEnabled={scrollEnabled}
+            onContentSizeChange={this.onContentSizeChange}>
+            {Houses}
+            </ScrollView>
+
+          </View>
+
+        </View>
+      </ImageBackground>
+    );
+  }
+        
+    
 }
