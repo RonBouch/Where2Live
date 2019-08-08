@@ -114,11 +114,13 @@ export default class Login extends React.Component {
       >
         <View style={styles.container}>
           <View style={styles.main}>
-            <Image
-              source={require("../assets/houseLogo.png")}
-              style={styles.logo}
-              resizeMode="contain"
-            />
+            <View style={styles.logo}>
+              <Image
+                source={require("../assets/houseLogo.png")}
+                style={{ width: "100%", height: "100%", marginTop: "15%" }}
+                resizeMode="contain"
+              />
+            </View>
             <View style={styles.loginForm}>
               <View style={styles.input}>
                 <Icon
