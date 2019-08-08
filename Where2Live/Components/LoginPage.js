@@ -134,6 +134,7 @@ export default class Login extends React.Component {
                   keyboardType="email-address"
                   placeholder="אימייל"
                   onChangeText={this.changeEmail}
+                  style={{ width: 150 }}
                 />
               </View>
               <View style={styles.input}>
@@ -148,6 +149,7 @@ export default class Login extends React.Component {
                   secureTextEntry={true}
                   placeholder="סיסמא"
                   onChangeText={this.changePass}
+                  style={{ width: 150 }}
                 />
               </View>
               <TouchableOpacity
