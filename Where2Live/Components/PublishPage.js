@@ -27,6 +27,8 @@ import {
   KeyboardAvoidingView,
   ScrollView
 } from "react-native";
+import { Dropdown } from "react-native-material-dropdown";
+
 const { height, width } = Dimensions.get("window");
 
 const DissmisKeyboard = ({ children }) => (
@@ -210,7 +212,57 @@ export default class Public extends React.Component {
   };
 
   render() {
-    const scrollEnabled = this.state.screenHeight > height;
+    let houseRooms = [
+      {
+        value: "1"
+      },
+      {
+        value: "1.5"
+      },
+      {
+        value: "2"
+      },
+      {
+        value: "2.5"
+      },
+      {
+        value: "3"
+      },
+      {
+        value: "3.5"
+      },
+      {
+        value: "4"
+      },
+      {
+        value: "4.5"
+      },
+      {
+        value: "5"
+      }
+    ];
+    let houseType = [
+      {
+        value: "דירה"
+      },
+      {
+        value: "דירת גן"
+      },
+      {
+        value: "פרטי"
+      },
+      {
+        value: "פנטהאוז"
+      },
+      {
+        value: "יחידת דיור"
+      },
+      {
+        value: "מגרש"
+      }
+    ];
+
+    const scrollEnabled = this.state.screenHeight > height - 200;
     return (
       <ImageBackground
         source={require("../assets/background2.jpg")}
@@ -218,157 +270,229 @@ export default class Public extends React.Component {
       >
         <View style={styles.container}>
           <View style={styles.main}>
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
-              <View style={styles.logo}>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.goBack()}
-                >
-                  <Icon
-                    name="arrow-circle-left"
-                    type="font-awesome"
-                    iconStyle={{ marginLeft: "85%" }}
-                    color="black"
-                    size={34}
-                  />
-                </TouchableOpacity>
-                <Image
-                  source={require("../assets/houseLogo.png")}
-                  style={{ width: "100%", height: "100%" }}
-                  resizeMode="contain"
+            <View style={styles.logo}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon
+                  name="arrow-circle-left"
+                  type="font-awesome"
+                  iconStyle={{ marginLeft: "85%" }}
+                  color="black"
+                  size={34}
                 />
-              </View>
+              </TouchableOpacity>
+              <Image
+                source={require("../assets/houseLogo.png")}
+                style={{ width: "100%", height: "100%" }}
+                resizeMode="contain"
+              />
+            </View>
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
               <ScrollView
                 contentContainerStyle={styles.scrollview}
                 scrollEnabled={scrollEnabled}
                 onContentSizeChange={this.onContentSizeChange}
               >
-                <View style={{borderColor:"black",borderWidth:1,borderRadius:10,}}>
-                  <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                    כתובת
-                  </Text>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorMessage="*ציין את שם האירוע המלא"
-                    rightIcon={
-                      <Icon
-                        name="edit"
-                        type="font-awesome"
-                        color="black"
-                        size={24}
+                <View style={{ alignItems: "center" }}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      borderBottomWidth: 0.2,
+                      borderBottomColor: "rgb(150,150,150)",
+                      width: 210,
+                      marginBottom: 15
+                    }}
+                  >
+                    <TextInput
+                      placeholder="כתובת הנכס"
+                      placeholderTextColor="rgb(150,150,150)"
+                      style={{
+                        width: "80%",
+                        marginRight: "10%",
+                        fontSize: 16
+                      }}
+                      onChangeText={e => this.setState({ eventname: e })}
+                    />
+                    <Icon
+                      name="map-marker"
+                      type="font-awesome"
+                      color="rgb(150,150,150)"
+                      size={24}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      borderBottomWidth: 0.2,
+                      borderBottomColor: "rgb(150,150,150)",
+                      width: 210,
+                      marginBottom: 15
+                    }}
+                  >
+                    <TextInput
+                      keyboardType="number-pad"
+                      placeholderTextColor="rgb(150,150,150)"
+                      placeholder={"מס' טלפון"}
+                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                    />
+                    <Icon
+                      name="phone"
+                      type="font-awesome"
+                      color="rgb(150,150,150)"
+                      size={24}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      borderBottomWidth: 0.2,
+                      borderBottomColor: "rgb(150,150,150)",
+                      width: 210,
+                      marginBottom: 15
+                    }}
+                  >
+                    <TextInput
+                      placeholder="איש קשר"
+                      placeholderTextColor="rgb(150,150,150)"
+                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                    />
+                    <Icon
+                      name="user"
+                      type="font-awesome"
+                      color="rgb(150,150,150)"
+                      size={24}
+                    />
+                  </View>
+
+                  <View style={{ flexDirection: "row" }}>
+                    <Dropdown
+                      label="סוג הנכס"
+                      itemColor="black"
+                      dropdownMargins={{ min: 0, max: 1 }}
+                      dropdownOffset={{ top: 15, left: 0 }}
+                      containerStyle={{ width: 110, padding: 5 }}
+                      data={houseType}
+                    />
+                    <Dropdown
+                      label="מס' חדרים"
+                      itemColor="black"
+                      dropdownMargins={{ min: 0, max: 1 }}
+                      dropdownOffset={{ top: 15, left: 0 }}
+                      containerStyle={{ width: 110, padding: 5 }}
+                      data={houseRooms}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        borderBottomWidth: 0.2,
+                        borderBottomColor: "rgb(150,150,150)",
+                        width: 105,
+                        padding: 5
+                      }}
+                    >
+                      <TextInput
+                        placeholderTextColor="rgb(150,150,150)"
+                        keyboardType="number-pad"
+                        style={{
+                          width: "100%",
+                          textAlign: "center",
+                          fontSize: 16
+                        }}
+                        placeholder="קומה"
                       />
-                    }
-                    onChangeText={e => this.setState({ eventname: e })}
-                  />
-                </View>
-                <View>
-                  <Input
-                    containerStyle={{ width: 220 }}
-                    errorMessage="*ציין את הכתובת המדוייקת של האירוע"
-                    onChangeText={this.handleAddress}
-                    rightIcon={<Entypo name="location" size={20} />}
-                  />
+                    </View>
+                    <View style={{ width: 10 }} />
+                    <View
+                      style={{
+                        borderBottomWidth: 0.2,
+                        borderBottomColor: "rgb(150,150,150)",
+                        width: 105,
+                        padding: 5
+                      }}
+                    >
+                      <TextInput
+                        placeholderTextColor="rgb(150,150,150)"
+                        keyboardType="number-pad"
+                        style={{
+                          width: "100%",
+                          textAlign: "center",
+                          fontSize: 16
+                        }}
+                        placeholder="גודל במ'ר"
+                      />
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      borderBottomWidth: 1,
+                      borderBottomColor: "rgb(100,100,100)",
+                      width: 150,
+                      padding: 5,
+                      marginTop: 15,
+                      marginBottom: 10
+                    }}
+                  >
+                    <TextInput
+                      placeholderTextColor="rgb(100,100,100)"
+                      keyboardType="number-pad"
+                      placeholder="מחיר"
+                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                    />
+                    <Icon
+                      name="shekel"
+                      type="font-awesome"
+                      color="rgb(100,100,100)"
+                      size={24}
+                    />
+                  </View>
+
+                  <View style={styles.addImage}>
+                    <TouchableOpacity
+                      onPress={this.openCamera}
+                      style={styles.uploadIcon}
+                    >
+                      <View>
+                        <Ionicons name="ios-camera" size={60} color="black" />
+                      </View>
+                      <Text style={styles.textIcon}>מצלמה</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={this.openGallery}
+                      style={styles.uploadIcon}
+                    >
+                      <View>
+                        <Ionicons name="md-images" size={60} color="black" />
+                        <Text style={styles.textIcon}> גלריה</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+
+                  <View>
+                    <TouchableOpacity
+                      onPress={this.handleSubmit}
+                      style={styles.publishButton}
+                    >
+                      <Text style={{ color: "white" }}>פרסם דירה {"  "}</Text>
+                      <Icon
+                        name="upload"
+                        type="font-awesome"
+                        color="white"
+                        size={18}
+                      />
+                    </TouchableOpacity>
+                  </View>
+
+                  {!this.state.Show && (
+                    <Text style={{ color: "red" }}> {this.state.resLabel}</Text>
+                  )}
                 </View>
               </ScrollView>
             </KeyboardAvoidingView>
           </View>
         </View>
       </ImageBackground>
-      // <ImageBackground
-      //   source={require("../assets/Street.jpg")}
-      //   style={styles.container}
-      // >
-      //   <View
-      //     style={{
-      //       marginTop: 10,
-      //       backgroundColor: "rgba(255,255,255,.3)",
-      //       padding: 10
-      //     }}
-      //   >
-      //     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-      //       <Ionicons name="md-arrow-back" size={28} />
-      //     </TouchableOpacity>
-      //   </View>
-
-      //   <View
-      //     style={{
-      //       alignItems: "center",
-      //       backgroundColor: "rgba(255,255,255,.3)"
-      //     }}
-      //   >
-      //     <Image
-      //       source={require("../assets/Where2LiveLogo.png")}
-      //       style={styles.cardImage}
-      //       resizeMode="cover"
-      //     />
-      //   </View>
-
-      //   <View style={styles.Header}>
-      // <View>
-      //   <Input
-      //     containerStyle={{ width: 300 }}
-      //     errorMessage="*ציין את שם האירוע המלא"
-      //     rightIcon={<Entypo name="edit" size={20} />}
-      //     onChangeText={e => this.setState({ eventname: e })}
-      //   />
-      // </View>
-
-      // <View>
-      //   <Input
-      //     containerStyle={{ width: 300 }}
-      //     errorMessage="*ציין את הכתובת המדוייקת של האירוע"
-      //     onChangeText={this.handleAddress}
-      //     rightIcon={<Entypo name="location" size={20} />}
-      //   />
-      // </View>
-
-      // <View>
-      //   <Input
-      //     containerStyle={{ width: 300 }}
-      //     errorStyle={{ color: "red" }}
-      //     errorMessage="*טלפון להזמנת מקום"
-      //     onChangeText={e => this.setState({ eventphone: e })}
-      //     rightIcon={<AntDesign name="mobile1" size={20} />}
-      //   />
-      // </View>
-      // <TextInput
-      //   style={styles.TextInputStyleClass}
-      //   underlineColorAndroid="transparent"
-      //   placeholder={"ספר על האירוע"}
-      //   placeholderTextColor={"#9E9E9E"}
-      //   numberOfLines={10}
-      //   multiline={true}
-      //   onChangeText={e => this.setState({ eventabout: e })}
-
-      // />
-
-      //     <View style={styles.addImage}>
-      //       <TouchableOpacity onPress={this.openCamera} style={styles.icon}>
-      //         <View>
-      //           <Ionicons name="ios-camera" size={60} color="black" />
-      //         </View>
-      //         <Text>מצלמה</Text>
-      //       </TouchableOpacity>
-
-      //       <TouchableOpacity onPress={this.openGallery} style={styles.icon}>
-      //         <View>
-      //           <Ionicons name="md-images" size={60} color="black" />
-      //           <Text>גלריה</Text>
-      //         </View>
-      //       </TouchableOpacity>
-      //     </View>
-
-      //     <TouchableOpacity
-      //         style={styles.publishButton}
-      //         onPress={this.handleSubmit}
-      //       >
-      //         <Text style={{ color: "white" }}>פרסם אירוע</Text>
-      //       </TouchableOpacity>
-
-      //     {!this.state.Show && (
-      //       <Text style={{ color: "red" }}> {this.state.resLabel}</Text>
-      //     )}
-      //   </View>
-      // </ImageBackground>
     );
   }
 }

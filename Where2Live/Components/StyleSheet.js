@@ -25,9 +25,9 @@ export default StyleSheet.create({
     backgroundColor: "rgba(255,255,255,.6)",
     alignItems: "center",
     width: "100%",
-    height: "100%",
+    height: "100%"
   },
- 
+
   //Login Page Style
 
   loginForm: {
@@ -147,44 +147,65 @@ export default StyleSheet.create({
     fontWeight: "bold"
   },
 
-  //FavoritePage Style
+  //Publish Page Style
+  publishButton: {
+    backgroundColor: "rgba(0,0,255,.7)",
+    flexDirection: "row",
+    height: 45,
+    width: 200,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "white",
+    borderWidth: 2
+  },
+  addImage: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  uploadIcon: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 5,
+    marginTop: 5
+  },
 
-  scrollview:{
-    flexGrow:1
- },
- card: {
+  //Favorite Page Style
 
-  backgroundColor: "rgba(255,255,255,.4)",
-  // shadowColor: "#000",
-  
-   height: '100%',
-   width: '100%',
-  //  backgroundColor:'gray',
-   position: 'relative',
-   // bottom: -40,
-   // marginTop:13
-    borderWidth:2
- },
- phoneCard:{
-  backgroundColor: "rgba(255,255,255,.9)",
-  shadowColor: "#000",
-  justifyContent:'center',
-  alignItems:'center',
-  textAlign:'center',
-  padding:4,
-  borderWidth:2,
-  width:'50%',
-  flex:3, 
-  borderRadius: 50,
+  scrollview: {
+    flexGrow: 1
+  },
+  card: {
+    backgroundColor: "rgba(255,255,255,.4)",
+    // shadowColor: "#000",
 
-  flexDirection: "row-reverse",
+    height: "100%",
+    width: "100%",
+    //  backgroundColor:'gray',
+    position: "relative",
+    // bottom: -40,
+    // marginTop:13
+    borderWidth: 2
+  },
+  phoneCard: {
+    backgroundColor: "rgba(255,255,255,.9)",
+    shadowColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: 4,
+    borderWidth: 2,
+    width: "50%",
+    flex: 3,
+    borderRadius: 50,
 
- },
- textCard:{
-  fontSize: 14,
-  fontWeight: "bold",
-   flex: 2,
-   marginBottom:5,
-   marginRight:10
- }
+    flexDirection: "row-reverse"
+  },
+  textCard: {
+    fontSize: 14,
+    fontWeight: "bold",
+    flex: 2,
+    marginBottom: 5,
+    marginRight: 10
+  }
 });
