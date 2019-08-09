@@ -141,8 +141,9 @@ export default class PartyPage extends React.Component {
   };
 
   GetPlaces = () => {
+    console.log('sddddddddddddddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     fetch(
-      "http://ruppinmobile.tempdomain.co.il/site11/WebService.asmx/GetPlaces",
+      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlaces",
       {
         method: "post",
         headers: new Headers({
@@ -184,21 +185,77 @@ export default class PartyPage extends React.Component {
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
+        checkedB:false,
         pageToShow: i,
         place: p,
-        showNumber:false
       });
     } else {
       this.setState({
         pageToShow: null,
         place: null,
-        showNumber:false
       });
     }
   };
   _pressCall=()=>{
     const url='tel:'+this.state.place.EventPhone
     Linking.openURL(url)
+  }
+  FavoriteChack(){
+    this.setState({
+      checkedB:!this.state.checkedB
+    })
+    this.Favorite();
+  }
+  Favorite=()=>{
+    
+
+    if(!this.state.checkedB){
+ 
+      console.log("place id = "+this.state.place.ID+" "+this.state.checkedB);
+      
+      const data = {
+        userid:28,
+        placeid:this.state.place.ID
+      };
+    fetch(
+      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/InsertFavorite",
+      {
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/Json;"
+        }),
+        body: JSON.stringify(data)
+      }
+    )
+      .then(res => {
+        console.log("res=", res);
+        return res.json();
+      })
+      .then(
+        result => {
+          console.log("fetch POST= ", result);
+          let fav = JSON.parse(result.d);
+          if (fav == -1) {
+            this.setState({
+              checkedB:true
+            })
+            
+            console.log("Allready Exist this favorite")
+            return;
+          } else {
+            console.log("U = " + fav);
+            this.setState({
+              checkedB:true
+            })
+          }
+          console.log(result.d);
+          console.log(result);
+        },
+        error => {
+          console.log("err post=", error);
+        }
+      );
+    }
   }
   render() {
     let markers = [];
@@ -221,42 +278,14 @@ export default class PartyPage extends React.Component {
             key={index}
           >
             {index == this.state.pageToShow ? (
-              <Icon name="user" color="blue" size={30} />
-            ) : (
-              console.log("ccccccc")
-            )}
+              <Icon name="home"                
+             type="font-awesome"
+              color="blue" size={30} />
+            ) :<Icon name="home"                
+            type="font-awesome"
+             color="black" size={30} />}
           </Marker>
 
-          //       index==this.state.pageToShow?
-          //   <View style={styles.card} key={index}>
-          //             <View style={{height:'35%'}}>
-          //             <Image
-          //               source={require('../assets/party1.jpg')}
-          //               style={styles.cardImage}
-          //               resizeMode="cover"
-          //             />
-          //             </View>
-          //             <View  style={{}}>
-          //             <CheckBox
-          //         center
-          // title=' מועדפים'
-          // iconRight
-          // iconType='material'
-          // checkedIcon='done'
-          // uncheckedIcon='add'
-          // checkedColor='yellow'
-          // checked={this.state.checkedB}
-          // onPress={() => this.setState({checkedB: !this.state.checkedB})}/>
-
-          //             </View>
-          //             <View style={{}}>
-          //               <Text>
-          //               {place.Address}'\n'
-          //                  מס 0523665524
-          //                 פתוח 24//7
-          //                 </Text>
-          //             </View>
-          //           </View>
         );
       });
     }
@@ -363,6 +392,7 @@ checked={this.state.checkedRent}
                  
                 />
                
+               
 
               </MapView>
             </View>
@@ -441,9 +471,7 @@ checked={this.state.checkedRent}
                           uncheckedIcon="star"
                           checkedColor="yellow"
                           checked={this.state.checkedB}
-                          onPress={() =>
-                            this.setState({ checkedB: !this.state.checkedB })
-                          }
+                          onPress={()=>this.FavoriteChack()}
                         />
                       </View>
                     </View>
