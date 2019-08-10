@@ -6,6 +6,8 @@ import {
   CheckBox,
   Input
 } from "react-native-elements";
+import RadioForm from "react-native-simple-radio-button";
+
 import styles from "./StyleSheet";
 import { Location, Permissions, ImagePicker } from "expo";
 // import CheckBox from 'react-native-check-box'
@@ -29,6 +31,17 @@ import {
 } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
 
+var radio_props = [
+  {
+    label: "  השכרה  ",
+    value: "השכרה"
+  },
+  {
+    label: "  מכירה  ",
+    value: "מכירה"
+  }
+];
+
 const { height, width } = Dimensions.get("window");
 
 const DissmisKeyboard = ({ children }) => (
@@ -40,7 +53,7 @@ const DissmisKeyboard = ({ children }) => (
 export default class Public extends React.Component {
   constructor(props) {
     super(props);
-
+    this.rentOrSell = "";
     let formIsValid = false;
     this.state = {
       errors: {},
@@ -58,6 +71,11 @@ export default class Public extends React.Component {
       img: "Street.jpg"
     };
   }
+
+  postType = e => {
+    this.rentOrSell = e;
+  };
+
   handleAddress = e => {
     this.setState({
       address: e
@@ -262,7 +280,7 @@ export default class Public extends React.Component {
       }
     ];
 
-    const scrollEnabled = this.state.screenHeight > height - 200;
+    const scrollEnabled = this.state.screenHeight > height - 300;
     return (
       <ImageBackground
         source={require("../assets/background2.jpg")}
@@ -363,6 +381,13 @@ export default class Public extends React.Component {
                     />
                   </View>
 
+                  <RadioForm
+                    radio_props={radio_props}
+                    initial={null}
+                    style={styles.radioBtn}
+                    onPress={this.postType}
+                  />
+
                   <View style={{ flexDirection: "row" }}>
                     <Dropdown
                       label="סוג הנכס"
@@ -424,6 +449,28 @@ export default class Public extends React.Component {
                   </View>
                   <View
                     style={{
+                      marginTop: 20,
+                      borderWidth: 1,
+                      width: 210,
+                      height: 100,
+                      backgroundColor: "white",
+                      justifyContent: "center",
+                      borderColor: "black"
+                    }}
+                  >
+                    <TextInput
+                      multiline={true}
+                      maxLength={60}
+                      placeholder="ספר בקצרה על הנכס עד 60 תווים..."
+                      style={{
+                        textAlign: "center",
+                        fontSize: 16,
+                        width: 200
+                      }}
+                    />
+                  </View>
+                  <View
+                    style={{
                       flexDirection: "row",
                       borderBottomWidth: 1,
                       borderBottomColor: "rgb(100,100,100)",
@@ -437,7 +484,7 @@ export default class Public extends React.Component {
                       placeholderTextColor="rgb(100,100,100)"
                       keyboardType="number-pad"
                       placeholder="מחיר"
-                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                      style={{ width: "70%", marginRight: "10%", fontSize: 16 }}
                     />
                     <Icon
                       name="shekel"

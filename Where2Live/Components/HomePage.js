@@ -56,7 +56,7 @@ export default class HomeMenuView extends React.Component {
                     style={styles.icon}
                     source={require("../assets/housePublish.png")}
                   />
-                  <Text style={styles.textIcon}>פרסום דירה</Text>
+                  <Text style={styles.textIcon}>פרסום נכס</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.buttonContainer}>

@@ -106,8 +106,7 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%"
   },
-  genderRadio: {
-    backgroundColor: "rgba(255,255,255,.5)",
+  radioBtn: {
     flexDirection: "row",
     margin: 10,
     justifyContent: "center"
@@ -169,6 +168,7 @@ export default StyleSheet.create({
     marginBottom: 5,
     marginTop: 5
   },
+
 
   //Favorite Page Style
 

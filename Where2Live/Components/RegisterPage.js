@@ -286,7 +286,7 @@ export default class Register extends React.Component {
               <RadioForm
                 radio_props={radio_props}
                 initial={null}
-                style={styles.genderRadio}
+                style={styles.radioBtn}
                 onPress={this.changeGender}
               />
 
