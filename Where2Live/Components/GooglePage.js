@@ -38,6 +38,7 @@ console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
       
           
         })
+      
         console.log(this.state.FirstName+" ln= " +this.state.lastname+"email=:"+this.state.Email)
       } else {
         console.log("cancelled")
@@ -55,7 +56,7 @@ console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
     };
     console.log('dataaaaw',data)
     fetch(
-      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/Register",
+      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/RegisterWithGoogle",
       {
         method: "post",
         headers: new Headers({
@@ -71,12 +72,16 @@ console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
       .then(
         result => {
           console.log("fetch POST= ", result);
-          let places = JSON.parse(result.d);
-          if (places == null) {
-            
+          let u = JSON.parse(result.d);
+          console.log("result d ="+result.d);
+          if (u == null) {
+            console.log("allready exist!!!!!!!!!!!!!!1");
+            this.props.navigation.navigate('HomePage');
+
             return;
           } else {
-            console.log("U = " + places);
+            console.log("U = " + u);
+            id = u.ID;
             this.props.navigation.navigate('HomePage');
           }
           console.log(result.d);

@@ -36,9 +36,9 @@ export default class FavoritePage extends React.Component {
     }
 
      GetPlaces = () => {
-      console.log("iddddd"+id);            
+      // console.log("iddddd"+id);            
             const data = {
-                userid:id
+                userid:1
               };
             fetch(
               "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlacesFromFavorite",

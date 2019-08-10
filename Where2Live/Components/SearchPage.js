@@ -214,7 +214,7 @@ export default class PartyPage extends React.Component {
       console.log("place id = "+this.state.place.ID+" "+this.state.checkedB);
       
       const data = {
-        userid:28,
+        userid:id,
         placeid:this.state.place.ID
       };
     fetch(

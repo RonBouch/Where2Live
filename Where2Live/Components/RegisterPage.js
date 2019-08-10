@@ -174,8 +174,9 @@ export default class Register extends React.Component {
               });
               return;
             } else {
-              global.id = u.ID;
-              console.log("user id = " + global.id);
+              console.log("ID"+id);
+              id = u.ID;
+
               this.props.navigation.navigate("HomePage");
             }
             console.log(result.d);
