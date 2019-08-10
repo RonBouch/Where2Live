@@ -8,6 +8,7 @@ export default StyleSheet.create({
     resizeMode: "cover"
   },
   logo: {
+    alignItems:"center",
     marginTop: "15%",
     width: "90%",
     height: "30%"
@@ -100,12 +101,6 @@ export default StyleSheet.create({
   },
 
   //Register Page Style
-  main2: {
-    backgroundColor: "rgba(255,255,255,.3)",
-    alignItems: "center",
-    width: "100%",
-    height: "100%"
-  },
   radioBtn: {
     flexDirection: "row",
     margin: 10,

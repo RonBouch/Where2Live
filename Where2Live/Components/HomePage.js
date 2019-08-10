@@ -59,7 +59,12 @@ export default class HomeMenuView extends React.Component {
                   <Text style={styles.textIcon}>פרסום נכס</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() =>
+                    this.props.navigation.navigate("MyProfilePage")
+                  }
+                >
                   <Image
                     style={styles.icon}
                     source={require("../assets/profile.png")}
