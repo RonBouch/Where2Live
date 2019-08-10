@@ -34,8 +34,9 @@ export default class FavoritePage extends React.Component {
     componentDidMount(){
         this.GetPlaces();
     }
+
      GetPlaces = () => {
-            
+      // console.log("iddddd"+id);            
             const data = {
                 userid:1
               };

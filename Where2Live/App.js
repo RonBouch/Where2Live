@@ -18,18 +18,27 @@ class App extends React.Component {
 }
 
 const StackNav = createStackNavigator(
-  {
-    HomePage: HomePage,
-
-    LoginPage: LoginPage,
+  {   
+     HomePage: HomePage,
 
     FavoritePage: FavoritePage,
 
+    LoginPage: LoginPage,
+
+
+
+
+    SearchPage: SearchPage,
+
     PublishPage: PublishPage,
+
+
+
+    FavoritePage: FavoritePage,
+
 
     RegisterPage: RegisterPage,
 
-    SearchPage: SearchPage,
 
     NewPage: NewPage,
 
@@ -41,7 +50,7 @@ const StackNav = createStackNavigator(
   },
   { headerMode: "none", defaultNavigationOptions: { headerVisable: false } },
   {
-    initialRouteName: "LoginPage"
+    initialRouteName: "FavoritePage"
   }
 );
 
