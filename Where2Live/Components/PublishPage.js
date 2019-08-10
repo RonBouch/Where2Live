@@ -192,17 +192,15 @@ export default class Public extends React.Component {
         squareMeter:this.state.squareMeter,
         rb:this.rentOrSell,
       };
-      console.log("DAtttaaaa aaa  =",JSON.stringify(data)+'id='+id);
       
 
       fetch(
-        "http://ruppinmobile.tempdomain.co.il/site11//WebServise.asmx/InsertHouse",
+        "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/InsertHouse",
         {
           method: "post",
           headers: new Headers({
-            "Content-Type": "application/json;"
+            "Content-Type": "application/Json;"
           }),
-
           body: JSON.stringify(data)
         }
       )
@@ -216,23 +214,22 @@ export default class Public extends React.Component {
             let u = JSON.parse(result.d);
             console.log("u = " + u);
             if (u == null) {
-              console.log("ASffasasf");
               this.setState({
-                lblerr: ":("
+                resLabel: "הרשמה נכשלה"
               });
               return;
             } else {
+        
               this.props.navigation.navigate("HomePage");
             }
+            console.log(result.d);
+            console.log(result);
           },
           error => {
             console.log("err post=", error);
           }
         );
-    } else {
-      this.setState({
-        resLabel: "*אנא מלא את כל השדות"
-      });
+    
     }
   };
 

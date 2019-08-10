@@ -150,7 +150,7 @@ export default class Register extends React.Component {
       };
       console.log(data);
       fetch(
-        "http://ruppinmobile.tempdomain.co.il/site11/WebService.asmx/Register",
+        "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/Register",
         {
           method: "post",
           headers: new Headers({
