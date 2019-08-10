@@ -326,7 +326,7 @@ export default class Public extends React.Component {
                       placeholderTextColor="rgb(150,150,150)"
                       style={{
                         width: "80%",
-                        marginRight: "10%",
+                        marginRight: "8%",
                         fontSize: 16
                       }}
                       onChangeText={e => this.setState({ eventname: e })}
@@ -353,7 +353,7 @@ export default class Public extends React.Component {
                       keyboardType="number-pad"
                       placeholderTextColor="rgb(150,150,150)"
                       placeholder={"מס' טלפון"}
-                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                      style={{ width: "80%", marginRight: "8%", fontSize: 16 }}
                     />
                     <Icon
                       name="phone"
@@ -376,7 +376,7 @@ export default class Public extends React.Component {
                     <TextInput
                       placeholder="איש קשר"
                       placeholderTextColor="rgb(150,150,150)"
-                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                      style={{ width: "80%", marginRight: "8%", fontSize: 16 }}
                     />
                     <Icon
                       name="user"
