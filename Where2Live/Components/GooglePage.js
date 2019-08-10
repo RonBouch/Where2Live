@@ -98,13 +98,13 @@ console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
   render() {
     return (
       <View style={styles.container}>
-        {this.state.signedIn ? (
+ 
+               {this.state.signedIn ? (
           <LoggedInPage FirstName={this.state.FirstName} photoUrl={this.state.photoUrl} Email={this.state.Email} />
         ) : (
           <LoginPage signIn={this.signIn} />
       
         )}
-        <Button title="Go to app" onPress={() => this.props.navigation.navigate('HomePage')}/>
       </View>
     )
   }
@@ -113,6 +113,14 @@ console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
 const LoginPage = props => {
   return (
     <View>
+      <View style={{alignItems:'center'}}>
+      <Image
+                source={require("../assets/Google.png")}
+                style={{ width: 200, height:200, marginTop: "15%" }}
+                resizeMode="contain"
+              />       
+      </View>
+      
       <Text style={styles.header}>Sign In With Google</Text>
       <Button title="Sign in with Google" onPress={() => props.signIn()} />
     </View>
