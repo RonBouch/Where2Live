@@ -98,45 +98,45 @@ export default class Public extends React.Component {
     });
   };
  
-  openCamera = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      allowsEditing: false, // higher res on iOS
-      aspect: [4, 3]
-    });
+  // openCamera = async () => {
+  //   let result = await ImagePicker.launchCameraAsync({
+  //     allowsEditing: false, // higher res on iOS
+  //     aspect: [4, 3]
+  //   });
 
-    if (result.cancelled) {
-      return;
-    }
+  //   if (result.cancelled) {
+  //     return;
+  //   }
 
-    let localUri = result.uri;
-    let filename = localUri.split("/").pop();
+  //   let localUri = result.uri;
+  //   let filename = localUri.split("/").pop();
 
-    let match = /\.(\w+)$/.exec(filename);
-    let type = match ? `image/${match[1]}` : `image`;
+  //   let match = /\.(\w+)$/.exec(filename);
+  //   let type = match ? `image/${match[1]}` : `image`;
 
-    let formData = new FormData();
-    formData.append("photo", { uri: localUri, name: filename, type });
-    console.log("formdata = ", formData);
-    return await fetch("http://ruppinmobile.tempdomain.co.il/site11/image", {
-      method: "POST",
-      body: formData,
-      header: {
-        "content-type": "multipart/form-data"
-      }
-    });
-  };
+  //   let formData = new FormData();
+  //   formData.append("photo", { uri: localUri, name: filename, type });
+  //   console.log("formdata = ", formData);
+  //   return await fetch("http://ruppinmobile.tempdomain.co.il/site11/image", {
+  //     method: "POST",
+  //     body: formData,
+  //     header: {
+  //       "content-type": "multipart/form-data"
+  //     }
+  //   });
+  // };
 
-  openGallery = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3]
-    });
-    if (!result.cancelled) {
-      console.log("result ", result);
-      this.setState({ img: result.uri });
-      alert(this.state.img);
-    }
-  };
+  // openGallery = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     allowsEditing: true,
+  //     aspect: [4, 3]
+  //   });
+  //   if (!result.cancelled) {
+  //     console.log("result ", result);
+  //     this.setState({ img: result.uri });
+  //     alert(this.state.img);
+  //   }
+  // };
 
   handleSubmit = async () => {
     if (this.isValid()) {
