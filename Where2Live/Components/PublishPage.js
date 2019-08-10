@@ -34,11 +34,11 @@ import { Dropdown } from "react-native-material-dropdown";
 var radio_props = [
   {
     label: "  השכרה  ",
-    value: "השכרה"
+    value: "R"
   },
   {
     label: "  מכירה  ",
-    value: "מכירה"
+    value: "B"
   }
 ];
 
@@ -62,16 +62,32 @@ export default class Public extends React.Component {
       location: null,
       data: "",
       delta: 0.1,
-      eventphone: "",
-      address: "",
       latitude: 37.78825,
       longitude: -122.4324,
-      eventname: "",
-      eventabout: "",
+
+      address: "",
+      phone: "",
+      name: "",
+      type:"",
+      room:"",
+      floor:"",
+      squareMeter:"",
+      about: "",
+      price:"",
       img: "Street.jpg"
     };
   }
+  HouseType =e=>{
+    this.setState({
+      type:e
+    })
+  }
+  HouseRooms=e=>{
+    this.setState({
+      room:e
+    })
 
+  }
   postType = e => {
     this.rentOrSell = e;
   };
@@ -81,7 +97,7 @@ export default class Public extends React.Component {
       address: e
     });
   };
-
+ 
   openCamera = async () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: false, // higher res on iOS
@@ -145,7 +161,7 @@ export default class Public extends React.Component {
         });
         return;
       }
-      if (this.state.eventabout == "" || this.state.eventname == "") {
+      if (this.state.about == "" || this.state.name == "") {
         this.setState({
           resLabel: "*אנא מלא את כל השדות!."
         });
@@ -161,21 +177,26 @@ export default class Public extends React.Component {
       console.log("latitdue  = " + this.state.latitude);
 
       const data = {
+        userid:id,
         address: this.state.address,
         lati: this.state.latitude,
         longi: this.state.longitude,
-        eventname: this.state.eventname,
-        eventabout: this.state.eventabout,
+        name: this.state.name,
+        about: this.state.about,
+        phone: this.state.phone,
         img: this.state.img,
-        eventphone: this.state.eventphone
+        price:this.state.price,
+        room:this.state.room,
+        floor:this.state.floor,
+        type:this.state.type,
+        squareMeter:this.state.squareMeter,
+        rb:this.rentOrSell,
       };
-      console.log(data);
-      console.log(
-        "event about event name " + this.state.eventname + this.state.eventabout
-      );
+      console.log("DAtttaaaa aaa  =",JSON.stringify(data)+'id='+id);
+      
 
       fetch(
-        "http://ruppinmobile.tempdomain.co.il/site11/WebService.asmx/InsertEvent",
+        "http://ruppinmobile.tempdomain.co.il/site11//WebServise.asmx/InsertHouse",
         {
           method: "post",
           headers: new Headers({
@@ -329,7 +350,7 @@ export default class Public extends React.Component {
                         marginRight: "10%",
                         fontSize: 16
                       }}
-                      onChangeText={e => this.setState({ eventname: e })}
+                      onChangeText={this.handleAddress}
                     />
                     <Icon
                       name="map-marker"
@@ -353,6 +374,7 @@ export default class Public extends React.Component {
                       keyboardType="number-pad"
                       placeholderTextColor="rgb(150,150,150)"
                       placeholder={"מס' טלפון"}
+                      onChangeText={e=>{this.setState({phone:e})}}
                       style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
                     />
                     <Icon
@@ -376,6 +398,8 @@ export default class Public extends React.Component {
                     <TextInput
                       placeholder="איש קשר"
                       placeholderTextColor="rgb(150,150,150)"
+                      onChangeText={e=>{this.setState({name:e})}}
+
                       style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
                     />
                     <Icon
@@ -409,6 +433,8 @@ export default class Public extends React.Component {
                       dropdownOffset={{ top: 0, left: 0 }}
                       containerStyle={{ width: 110, padding: 5 }}
                       data={houseType}
+                      onChangeText={this.HouseType}
+
                     />
                     <Text style={{ color: "red" }}>*</Text>
 
@@ -419,6 +445,7 @@ export default class Public extends React.Component {
                       dropdownOffset={{ top: 0, left: 0 }}
                       containerStyle={{ width: 110, padding: 5 }}
                       data={houseRooms}
+                      onChangeText={this.HouseRooms}
                     />
                   </View>
                   <View style={{ flexDirection: "row" }}>
@@ -438,7 +465,10 @@ export default class Public extends React.Component {
                           textAlign: "center",
                           fontSize: 16
                         }}
+                        onChangeText={e=>{this.setState({floor:e})}}
+
                         placeholder="קומה"
+                        
                       />
                     </View>
                     <View style={{ width: 10 }} />
@@ -459,6 +489,8 @@ export default class Public extends React.Component {
                           fontSize: 16
                         }}
                         placeholder="גודל במ'ר"
+                        onChangeText={e=>{this.setState({squareMeter:e})}}
+
                       />
                     </View>
                   </View>
@@ -476,6 +508,8 @@ export default class Public extends React.Component {
                     <TextInput
                       multiline={true}
                       maxLength={60}
+                      onChangeText={e=>{this.setState({about:e})}}
+
                       placeholder="ספר בקצרה על הנכס עד 60 תווים..."
                       style={{
                         textAlign: "center",
@@ -502,6 +536,7 @@ export default class Public extends React.Component {
                       keyboardType="number-pad"
                       placeholder="מחיר"
                       style={{ width: "70%", marginRight: "10%", fontSize: 16 }}
+                      onChangeText={e=>{this.setState({price:e})}}
                     />
                     <Icon
                       name="shekel"

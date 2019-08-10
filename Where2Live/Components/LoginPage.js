@@ -8,8 +8,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  Image
+  Image,Dimensions
 } from "react-native";
+import registerForPushNotificationsAsync from './registerForPushNotificationsAsync.js';
+import { Notifications,Permissions } from 'expo';
 
 import { Icon } from "react-native-elements";
 
@@ -26,8 +28,54 @@ export default class Login extends React.Component {
       (this.state = {
         message: ""
       });
+      this.state={
+        token: '',
+        txtToken: '',
+        notification: {},
+      }
   }
 
+  componentDidMount () {
+    registerForPushNotificationsAsync()
+          .then(tok => {
+              this.setState({ token: tok });
+          });
+          console.log("Token   = " + this.state.tok)
+      this._notificationSubscription = Notifications.addListener(this._handleNotification);
+  }
+  _handleNotification = (notification) => {
+    this.setState({ notification: notification });
+};
+
+  btnSendPushFromClient = () => {
+    let per = {
+        to: this.state.token,
+        title: 'תודה שנכנסת שוב :)',
+        body: "מצא את הדירה שלך עכשיו!",
+        badge : 3,
+        data : {name:"nir", grade:100 }
+    };
+
+    // POST adds a random id to the object sent
+    fetch('https://exp.host/--/api/v2/push/send', {
+        method: 'POST',
+        body: JSON.stringify(per),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then(response => response.json())
+        .then(json => {
+            if (json != null) {
+                console.log(`
+                returned from server\n
+                json.data= ${JSON.stringify( json.data)}`);
+
+            } else {
+                alert('err json');
+            }
+        });
+}
   changePass = e => {
     this.password = e;
   };
@@ -80,6 +128,7 @@ export default class Login extends React.Component {
               });
               return;
             } else {
+              this.btnSendPushFromClient();
               global.id = u.ID;
               console.log("user id = " + global.id);
               this.props.navigation.navigate("HomePage");
