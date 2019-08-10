@@ -8,10 +8,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  Image,Dimensions
+  Image,
+  Dimensions
 } from "react-native";
-import registerForPushNotificationsAsync from './registerForPushNotificationsAsync.js';
-import { Notifications,Permissions } from 'expo';
+import registerForPushNotificationsAsync from "./registerForPushNotificationsAsync.js";
+import { Notifications, Permissions } from "expo";
 
 import { Icon } from "react-native-elements";
 
@@ -25,57 +26,63 @@ export default class Login extends React.Component {
     this.email = "";
     this.vaildForm = false;
     (global.id = 0),
+      (global.firstName = ""),
+      (global.lastName = ""),
+      (global.email = ""),
+      (global.password = ""),
+      (global.birthday = ""),
+      (global.gender = ""),
       (this.state = {
         message: ""
       });
-      this.state={
-        token: '',
-        txtToken: '',
-        notification: {},
-      }
+    this.state = {
+      token: "",
+      txtToken: "",
+      notification: {}
+    };
   }
 
-  componentDidMount () {
-    registerForPushNotificationsAsync()
-          .then(tok => {
-              this.setState({ token: tok });
-          });
-          console.log("Token   = " + this.state.tok)
-      this._notificationSubscription = Notifications.addListener(this._handleNotification);
+  componentDidMount() {
+    registerForPushNotificationsAsync().then(tok => {
+      this.setState({ token: tok });
+    });
+    console.log("Token   = " + this.state.tok);
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification
+    );
   }
-  _handleNotification = (notification) => {
+  _handleNotification = notification => {
     this.setState({ notification: notification });
-};
+  };
 
   btnSendPushFromClient = () => {
     let per = {
-        to: this.state.token,
-        title: 'תודה שנכנסת שוב :)',
-        body: "מצא את הדירה שלך עכשיו!",
-        badge : 3,
-        data : {name:"nir", grade:100 }
+      to: this.state.token,
+      title: "תודה שנכנסת שוב :)",
+      body: "מצא את הדירה שלך עכשיו!",
+      badge: 3,
+      data: { name: "nir", grade: 100 }
     };
 
     // POST adds a random id to the object sent
-    fetch('https://exp.host/--/api/v2/push/send', {
-        method: 'POST',
-        body: JSON.stringify(per),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
+    fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      body: JSON.stringify(per),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
     })
-        .then(response => response.json())
-        .then(json => {
-            if (json != null) {
-                console.log(`
+      .then(response => response.json())
+      .then(json => {
+        if (json != null) {
+          console.log(`
                 returned from server\n
-                json.data= ${JSON.stringify( json.data)}`);
-
-            } else {
-                alert('err json');
-            }
-        });
-}
+                json.data= ${JSON.stringify(json.data)}`);
+        } else {
+          alert("err json");
+        }
+      });
+  };
   changePass = e => {
     this.password = e;
   };
@@ -130,7 +137,20 @@ export default class Login extends React.Component {
             } else {
               this.btnSendPushFromClient();
               global.id = u.ID;
+              global.firstName = u.FirstName;
+              global.lastName = u.LastName;
+              global.email = u.Email;
+              global.password = u.Password;
+              global.birthday = u.Birthday;
+              global.gender = u.Gender;
               console.log("user id = " + global.id);
+              console.log("user first name = " + global.firstName);
+              console.log("user last name = " + global.lastName);
+              console.log("user email = " + global.email);
+              console.log("user password = " + global.password);
+              console.log("user birthday = " + global.birthday);
+              console.log("user gender = " + global.gender);
+
               this.props.navigation.navigate("HomePage");
             }
             console.log(result.d);
