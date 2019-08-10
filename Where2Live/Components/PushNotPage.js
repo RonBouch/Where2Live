@@ -1,9 +1,9 @@
 import React from 'react';
+import styles from "./StyleSheet.js";
 import { Text, View, TouchableOpacity, TextInput, Image, Dimensions } from 'react-native';
-import styles from './pageStyle';
 import { Button, Dialog, DialogDefaultActions, purple } from 'react-native-material-ui';
-import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
-import { Notifications } from 'expo';
+import registerForPushNotificationsAsync from './registerForPushNotificationsAsync.js';
+import { Notifications,Permissions } from 'expo';
 
 export default class PushNotPage extends React.Component {
     static navigationOptions = {
@@ -19,11 +19,12 @@ export default class PushNotPage extends React.Component {
         }
     }
 
-    componentDidMount() {
-        registerForPushNotificationsAsync()
+    componentDidMount () {
+      registerForPushNotificationsAsync()
             .then(tok => {
                 this.setState({ token: tok });
             });
+            console.log("Token   = " + this.state.tok)
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
     }
 
@@ -97,19 +98,19 @@ export default class PushNotPage extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.Header}>
-                    <Text style={styles.textBig}>Push Page</Text>
+            <View>
+                <View >
+                    <Text style={styles.textCard}>Push Page</Text>
                     <Image
                         style={{ alignSelf: 'center', width: 100, height: 100 }}
-                        source={require('../assets/icon.png')} />
+                        source={require('../assets/pushIconHome.png')} />
                     <View style={{ margin: 10, justifyContent: 'flex-start' }}>
                         <Button
                             primary text="Go to Home Page"
                             icon="arrow-back"
                             upperCase={false}
                             onPress={() => {
-                                this.props.navigation.navigate('Home');
+                                this.props.navigation.navigate('HomePage');
                             }} />
                     </View>
                 </View>

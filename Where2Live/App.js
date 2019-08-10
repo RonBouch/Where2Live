@@ -10,6 +10,8 @@ import AboutUsPage from "./Components/AboutUsPage";
 import GooglePage from "./Components/GooglePage";
 import NewPage from "./Components/NewPage";
 import FavoritePage from "./Components/FavoritePage";
+import PushNotPage from './Components/PushNotPage';
+import registerForPushNotificationsAsync from './Components/registerForPushNotificationsAsync';
 
 class App extends React.Component {
   render() {
@@ -19,6 +21,10 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {   
+    PushNotPage:PushNotPage,
+    
+    registerForPushNotificationsAsync:registerForPushNotificationsAsync,
+
      HomePage: HomePage,
 
     FavoritePage: FavoritePage,
