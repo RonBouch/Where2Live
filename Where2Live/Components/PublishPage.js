@@ -347,7 +347,7 @@ export default class Public extends React.Component {
                       placeholderTextColor="rgb(150,150,150)"
                       style={{
                         width: "80%",
-                        marginRight: "10%",
+                        marginRight: "8%",
                         fontSize: 16
                       }}
                       onChangeText={this.handleAddress}
