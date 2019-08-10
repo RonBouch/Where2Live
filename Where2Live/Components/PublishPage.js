@@ -316,10 +316,11 @@ export default class Public extends React.Component {
                       flexDirection: "row",
                       borderBottomWidth: 0.2,
                       borderBottomColor: "rgb(150,150,150)",
-                      width: 210,
+                      width: 200,
                       marginBottom: 15
                     }}
                   >
+                    <Text style={{ color: "red" }}> *</Text>
                     <TextInput
                       placeholder="כתובת הנכס"
                       placeholderTextColor="rgb(150,150,150)"
@@ -342,10 +343,12 @@ export default class Public extends React.Component {
                       flexDirection: "row",
                       borderBottomWidth: 0.2,
                       borderBottomColor: "rgb(150,150,150)",
-                      width: 210,
+                      width: 200,
                       marginBottom: 15
                     }}
                   >
+                    <Text style={{ color: "red" }}> *</Text>
+
                     <TextInput
                       keyboardType="number-pad"
                       placeholderTextColor="rgb(150,150,150)"
@@ -364,10 +367,12 @@ export default class Public extends React.Component {
                       flexDirection: "row",
                       borderBottomWidth: 0.2,
                       borderBottomColor: "rgb(150,150,150)",
-                      width: 210,
+                      width: 200,
                       marginBottom: 15
                     }}
                   >
+                    <Text style={{ color: "red" }}> *</Text>
+
                     <TextInput
                       placeholder="איש קשר"
                       placeholderTextColor="rgb(150,150,150)"
@@ -380,28 +385,38 @@ export default class Public extends React.Component {
                       size={24}
                     />
                   </View>
-
-                  <RadioForm
-                    radio_props={radio_props}
-                    initial={null}
-                    style={styles.radioBtn}
-                    onPress={this.postType}
-                  />
+                  <View
+                    style={{
+                      flexDirection: "row"
+                    }}
+                  >
+                    <Text style={{ color: "red" }}>*</Text>
+                    <RadioForm
+                      radio_props={radio_props}
+                      initial={null}
+                      style={styles.radioBtn}
+                      onPress={this.postType}
+                    />
+                  </View>
 
                   <View style={{ flexDirection: "row" }}>
+                    <Text style={{ color: "red" }}>*</Text>
+
                     <Dropdown
                       label="סוג הנכס"
                       itemColor="black"
                       dropdownMargins={{ min: 0, max: 1 }}
-                      dropdownOffset={{ top: 15, left: 0 }}
+                      dropdownOffset={{ top: 0, left: 0 }}
                       containerStyle={{ width: 110, padding: 5 }}
                       data={houseType}
                     />
+                    <Text style={{ color: "red" }}>*</Text>
+
                     <Dropdown
                       label="מס' חדרים"
                       itemColor="black"
                       dropdownMargins={{ min: 0, max: 1 }}
-                      dropdownOffset={{ top: 15, left: 0 }}
+                      dropdownOffset={{ top: 0, left: 0 }}
                       containerStyle={{ width: 110, padding: 5 }}
                       data={houseRooms}
                     />
@@ -480,6 +495,8 @@ export default class Public extends React.Component {
                       marginBottom: 10
                     }}
                   >
+                    <Text style={{ color: "red" }}> *</Text>
+
                     <TextInput
                       placeholderTextColor="rgb(100,100,100)"
                       keyboardType="number-pad"
