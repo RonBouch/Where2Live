@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Button } from "react-native"
 import * as Expo from "expo"
 //import Expo from "expo"
 
-const WSURL = 'http://ruppinmobile.tempdomain.co.il/site20/WSUsers.asmx';
+const WSURL ="http://ruppinmobile.tempdomain.co.il/site11//WebServise.asmx/Register";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,8 +11,12 @@ export default class App extends React.Component {
     this.state = {
       signedIn: false,
       FirstName: "",
+      lastname:"",
       photoUrl: "",
       Email: "",
+      password:"",
+      gender:"",
+      birthday:null,
     }
   }
   signIn = async () => {
@@ -23,46 +27,67 @@ export default class App extends React.Component {
         //iosClientId: YOUR_CLIENT_ID_HERE,  <-- if you use iOS
         scopes: ["profile", "email"]
       })
-
+console.log("SADdddddddddddddddddddddddddddddddddddddddddddddddddddddasdssda")
       if (result.type === "success") {
         this.setState({
           signedIn: true,
-          FirstName: result.user.name,
+          FirstName: result.user.givenName,
+          lastname:result.user.familyName,
           photoUrl: result.user.photoUrl,
           Email: result.user.email,
+      
           
         })
+        console.log(this.state.FirstName+" ln= " +this.state.lastname+"email=:"+this.state.Email)
       } else {
         console.log("cancelled")
       }
     } catch (e) {
       console.log("error", e)
     }
-
-    fetch(WSURL + '/Google', {
-      method: "POST",
-      headers: new Headers({
-        'Content-Type': 'application/json;',
-      }),
-      body: JSON.stringify({
-        FirstName: FirstName,
-        Email: Email,
-      })
-    })
-    console.log("FirstName=", FirstName)
+    const data={
+      firstName: this.state.FirstName,
+      lastName:this.state.lastname,
+      email: this.state.Email,
+      password:"Google",
+      gender:"Google",
+      birthday:"1900-01-01"
+    };
+    console.log('dataaaaw',data)
+    fetch(
+      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/Register",
+      {
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/Json;"
+        }),
+        body: JSON.stringify(data)
+      }
+    )
       .then(res => {
-        console.log('res=', res);
-        return res.json()
+        console.log("res=", res);
+        return res.json();
       })
-      .then((response) => response.json)
-        .then((responseJson) => {
-          alert(responseJson);
-        })
-        .catch((error)=>{
-          console.error(error);
-        })
-        
-  }
+      .then(
+        result => {
+          console.log("fetch POST= ", result);
+          let places = JSON.parse(result.d);
+          if (places == null) {
+            
+            return;
+          } else {
+            console.log("U = " + places);
+            this.props.navigation.navigate('HomePage');
+          }
+          console.log(result.d);
+          console.log(result);
+        },
+        error => {
+          console.log("err post=", error);
+        }
+      );
+  };
+      
 
 
   render() {
@@ -74,7 +99,7 @@ export default class App extends React.Component {
           <LoginPage signIn={this.signIn} />
       
         )}
-        <Button title="Go to app" onPress={() => this.props.navigation.navigate('SearchPage')}/>
+        <Button title="Go to app" onPress={() => this.props.navigation.navigate('HomePage')}/>
       </View>
     )
   }
