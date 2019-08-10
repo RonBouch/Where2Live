@@ -22,7 +22,7 @@ export default StyleSheet.create({
     height: "100%"
   },
   main: {
-    backgroundColor: "rgba(255,255,255,.6)",
+    backgroundColor: "rgba(255,255,255,.7)",
     alignItems: "center",
     width: "100%",
     height: "100%"

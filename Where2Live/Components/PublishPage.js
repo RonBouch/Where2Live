@@ -474,7 +474,7 @@ export default class Public extends React.Component {
                       onPress={this.handleSubmit}
                       style={styles.publishButton}
                     >
-                      <Text style={{ color: "white" }}>פרסם דירה {"  "}</Text>
+                      <Text style={{ color: "white" }}>פרסם נכס {"  "}</Text>
                       <Icon
                         name="upload"
                         type="font-awesome"
