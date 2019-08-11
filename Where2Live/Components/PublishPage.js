@@ -31,7 +31,7 @@ import {
 } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
 
-var radio_props = [
+const radio_props = [
   {
     label: "  השכרה  ",
     value: "R"
@@ -65,6 +65,7 @@ export default class Public extends React.Component {
       latitude: 37.78825,
       longitude: -122.4324,
 
+      
       address: "",
       phone: "",
       name: "",
@@ -74,7 +75,7 @@ export default class Public extends React.Component {
       squareMeter:"",
       about: "",
       price:"",
-      img: "Street.jpg"
+      img: "house.jpg"
     };
   }
   HouseType =e=>{
@@ -98,45 +99,45 @@ export default class Public extends React.Component {
     });
   };
  
-  // openCamera = async () => {
-  //   let result = await ImagePicker.launchCameraAsync({
-  //     allowsEditing: false, // higher res on iOS
-  //     aspect: [4, 3]
-  //   });
+  openCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false, // higher res on iOS
+      aspect: [4, 3]
+    });
 
-  //   if (result.cancelled) {
-  //     return;
-  //   }
+    if (result.cancelled) {
+      return;
+    }
 
-  //   let localUri = result.uri;
-  //   let filename = localUri.split("/").pop();
+    let localUri = result.uri;
+    let filename = localUri.split("/").pop();
 
-  //   let match = /\.(\w+)$/.exec(filename);
-  //   let type = match ? `image/${match[1]}` : `image`;
+    let match = /\.(\w+)$/.exec(filename);
+    let type = match ? `image/${match[1]}` : `image`;
 
-  //   let formData = new FormData();
-  //   formData.append("photo", { uri: localUri, name: filename, type });
-  //   console.log("formdata = ", formData);
-  //   return await fetch("http://ruppinmobile.tempdomain.co.il/site11/image", {
-  //     method: "POST",
-  //     body: formData,
-  //     header: {
-  //       "content-type": "multipart/form-data"
-  //     }
-  //   });
-  // };
+    let formData = new FormData();
+    formData.append("photo", { uri: localUri, name: filename, type });
+    console.log("formdata = ", formData);
+    return await fetch("http://ruppinmobile.tempdomain.co.il/site11/image", {
+      method: "POST",
+      body: formData,
+      header: {
+        "content-type": "multipart/form-data"
+      }
+    });
+  };
 
-  // openGallery = async () => {
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     allowsEditing: true,
-  //     aspect: [4, 3]
-  //   });
-  //   if (!result.cancelled) {
-  //     console.log("result ", result);
-  //     this.setState({ img: result.uri });
-  //     alert(this.state.img);
-  //   }
-  // };
+  openGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3]
+    });
+    if (!result.cancelled) {
+      console.log("result ", result);
+      this.setState({ img: result.uri });
+      alert(this.state.img);
+    }
+  };
 
   handleSubmit = async () => {
     if (this.isValid()) {
@@ -178,21 +179,21 @@ export default class Public extends React.Component {
 
       const data = {
         userid:id,
-        address: this.state.address,
-        lati: this.state.latitude,
-        longi: this.state.longitude,
-        name: this.state.name,
-        about: this.state.about,
-        phone: this.state.phone,
-        img: this.state.img,
+        address:this.state.address,
+         lati:this.state.latitude,
+        longi:this.state.longitude,
+        name:this.state.name,
+        about:this.state.about,
+        phone:this.state.phone,
+        img:this.state.img,
         price:this.state.price,
         room:this.state.room,
         floor:this.state.floor,
         type:this.state.type,
         squareMeter:this.state.squareMeter,
-        rb:this.rentOrSell,
+        rb:this.rentOrSell
       };
-      
+      console.log(JSON.stringify(data));
 
       fetch(
         "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/InsertHouse",
@@ -215,11 +216,11 @@ export default class Public extends React.Component {
             console.log("u = " + u);
             if (u == null) {
               this.setState({
-                resLabel: "הרשמה נכשלה"
+                message: "הרשמה נכשלה"
               });
               return;
             } else {
-        
+
               this.props.navigation.navigate("HomePage");
             }
             console.log(result.d);
@@ -230,7 +231,8 @@ export default class Public extends React.Component {
           }
         );
     
-    }
+        } 
+    
   };
 
   isValid() {

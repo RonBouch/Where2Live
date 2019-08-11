@@ -28,6 +28,8 @@ const StackNav = createStackNavigator(
     PublishPage: PublishPage,
 
 
+
+
     HomePage: HomePage,
 
     PushNotPage:PushNotPage,
@@ -40,9 +42,9 @@ const StackNav = createStackNavigator(
 
     registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
+
     FavoritePage: FavoritePage,
 
-    LoginPage: LoginPage,
 
     SearchPage: SearchPage,
 

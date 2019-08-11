@@ -135,7 +135,7 @@ export default class Login extends React.Component {
               });
               return;
             } else {
-              this.btnSendPushFromClient();
+              // this.btnSendPushFromClient();
               global.id = u.ID;
               global.firstName = u.FirstName;
               global.lastName = u.LastName;
