@@ -46,24 +46,30 @@ export default class PartyPage extends React.Component {
       delta: 0.1,
       address: "",
       location: null,
-      places: null,
+      apartments : null,
+      apartmentsB:null,
+      apartmentsR:null,
       show: false,
       pageToShow: null,
       showNumber:false,
       checkedB: false,
-      place: null
+      place: null,
+      rb:"RB"
     };
     this.viewPage = null;
-    this.RB="";
+    this.RB="RB";
   }
   changeRB = e => {
-
+     this.setState({
+       rb:e
+     })
     this.RB = e;
-    console.log("RB =" +this.RB)
+    this.Getapartments()
+    console.log("RB =" +this.RB+this.state.rb)
   };
   componentDidMount() {
     this.btnLocation();
-    this.GetPlaces();
+    this.Getapartments();
   }
 
   handleAddress = e => {
@@ -140,16 +146,33 @@ export default class PartyPage extends React.Component {
     );
   };
 
-  GetPlaces = () => {
+  Getapartments  = () => {
+    const data={
+      rb:this.RB
+    }
+    if(this.RB=="R"&&this.state.apartmentsR!=null)
+    {
+        this.setState({
+          apartments:this.state.apartmentsR
+       });
+       return;   
+    }
+     else if(this.RB=="B"&&this.state.apartmentsB!=null){
+         this.setState({
+        apartments:this.state.apartmentsB
+      })
+      return;
+    }
+      
     console.log('sddddddddddddddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     fetch(
-      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlaces",
+      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlacesHouses",
       {
         method: "post",
         headers: new Headers({
           "Content-Type": "application/Json;"
-        })
-        // body: JSON.stringify(data)
+        }),
+        body: JSON.stringify(data)
       }
     )
       .then(res => {
@@ -159,17 +182,33 @@ export default class PartyPage extends React.Component {
       .then(
         result => {
           console.log("fetch POST= ", result);
-          let places = JSON.parse(result.d);
-          if (places == null) {
+          let apartments  = JSON.parse(result.d);
+          if (apartments  == null) {
             this.setState({
               message: "הרשמה נכשלה"
             });
             return;
           } else {
-            console.log("U = " + places);
-            this.setState({
-              places: places
-            });
+            console.log("U = " + apartments );
+            if(this.RB=="R"){
+              this.setState({
+                apartmentsR : apartments ,
+                apartments : apartments 
+
+              });
+            }
+            else if(this.RB=="B"){
+              this.setState({
+                apartmentsB : apartments ,
+                apartments : apartments 
+
+              });
+            }else{
+              this.setState({
+                apartments : apartments 
+              });
+            }
+          
           }
           console.log(result.d);
           console.log(result);
@@ -260,9 +299,9 @@ export default class PartyPage extends React.Component {
   render() {
     let markers = [];
 
-    if (this.state.places != null) {
+    if (this.state.apartments  != null) {
       debugger;
-      markers = this.state.places.map((place, index) => {
+      markers = this.state.apartments .map((place, index) => {
         if (index == this.state.pageToShow) {
           this.viewPage = place.Address;
         }
