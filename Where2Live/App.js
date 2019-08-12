@@ -12,6 +12,7 @@ import NewPage from "./Components/NewPage";
 import FavoritePage from "./Components/FavoritePage";
 import PushNotPage from "./Components/PushNotPage";
 import MyProfilePage from "./Components/MyProfilePage";
+import EditPage from "./Components/EditPage";
 
 import registerForPushNotificationsAsync from "./Components/registerForPushNotificationsAsync";
 
@@ -22,21 +23,20 @@ class App extends React.Component {
 }
 
 const StackNav = createStackNavigator(
-  {   
+  {
     LoginPage: LoginPage,
-
-    PublishPage: PublishPage,
-
 
     HomePage: HomePage,
 
-    PushNotPage:PushNotPage,
-
-    registerForPushNotificationsAsync:registerForPushNotificationsAsync,
-
-
     MyProfilePage: MyProfilePage,
 
+    EditPage: EditPage,
+
+    PublishPage: PublishPage,
+
+    PushNotPage: PushNotPage,
+
+    registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
     registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
@@ -45,7 +45,6 @@ const StackNav = createStackNavigator(
     LoginPage: LoginPage,
 
     SearchPage: SearchPage,
-
 
     FavoritePage: FavoritePage,
 

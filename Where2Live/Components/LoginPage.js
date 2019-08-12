@@ -143,14 +143,6 @@ export default class Login extends React.Component {
               global.password = u.Password;
               global.birthday = u.Birthday;
               global.gender = u.Gender;
-              console.log("user id = " + global.id);
-              console.log("user first name = " + global.firstName);
-              console.log("user last name = " + global.lastName);
-              console.log("user email = " + global.email);
-              console.log("user password = " + global.password);
-              console.log("user birthday = " + global.birthday);
-              console.log("user gender = " + global.gender);
-
               this.props.navigation.navigate("HomePage");
             }
             console.log(result.d);

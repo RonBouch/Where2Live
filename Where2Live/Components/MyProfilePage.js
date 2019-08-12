@@ -1,5 +1,11 @@
 import React from "react";
-import { View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import styles from "./StyleSheet";
 import { Icon } from "react-native-elements";
 import { ImagePicker } from "expo";
@@ -63,20 +69,36 @@ export default class Login extends React.Component {
                 {this.state.img != "" ? (
                   <Image
                     style={{
-                      height: 50,
-                      width: 50
+                      height: 100,
+                      width: 100,
+                      borderRadius: 100
                     }}
                     source={{ uri: this.state.img }}
                   />
                 ) : (
                   <Image
                     style={{
-                      height: 50,
-                      width: 50
+                      height: 100,
+                      width: 100,
+                      borderRadius: 100
                     }}
                     source={this.profileImage}
                   />
                 )}
+              </TouchableOpacity>
+              <Text style={{ marginTop: 30, fontWeight: "bold", fontSize: 24 }}>
+                ברוך הבא, {global.firstName} {global.lastName}
+              </Text>
+
+              <TouchableOpacity
+                style={styles.registerButton2}
+                onPress={() => this.props.navigation.navigate("EditPage")}
+              >
+                <Text style={styles.register}>
+                  עידכון פרטים
+                  {"  "}
+                </Text>
+                <Icon name="edit" type="font-awesome" color="black" size={18} />
               </TouchableOpacity>
             </View>
           </View>
