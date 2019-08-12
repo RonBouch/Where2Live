@@ -13,8 +13,7 @@ import {
 export default class HomeMenuView extends React.Component {
   constructor(props) {
     super(props);
-    let userId = this.props.navigation.state.params;
-    console.log("userID= " + JSON.stringify(userId));
+
   }
 
   logOut = () => {

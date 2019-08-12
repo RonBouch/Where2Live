@@ -40,9 +40,9 @@ const StackNav = createStackNavigator(
 
     registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
+
     FavoritePage: FavoritePage,
 
-    LoginPage: LoginPage,
 
     SearchPage: SearchPage,
 
