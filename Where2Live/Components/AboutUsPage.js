@@ -1,5 +1,11 @@
 import React from "react";
-import { View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import styles from "./StyleSheet";
 import { Icon } from "react-native-elements";
 
@@ -32,6 +38,7 @@ export default class Login extends React.Component {
                 resizeMode="contain"
               />
             </View>
+            <Text>אפליקצה זאת </Text>
           </View>
         </View>
       </ImageBackground>

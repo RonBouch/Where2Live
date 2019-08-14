@@ -12,14 +12,13 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import styles from "./SearchPageStyle";
+import styles from "./StyleSheet";
 import { CheckBox } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Location, Permissions } from "expo";
 import { ActionButton } from "react-native-material-ui";
 import { MapView } from "expo";
 import RadioForm from "react-native-simple-radio-button";
-
 
 const { Marker } = MapView;
 var radio_props = [
@@ -28,6 +27,7 @@ var radio_props = [
     label: "  השכרה  ",
     value: "R"
   },
+
   {
     icon: <Ionicons name="ios-woman" size={18} color="" />,
     label: "  קניה  ",
@@ -46,26 +46,26 @@ export default class PartyPage extends React.Component {
       delta: 0.1,
       address: "",
       location: null,
-      apartments : null,
-      apartmentsB:null,
-      apartmentsR:null,
+      apartments: null,
+      apartmentsB: null,
+      apartmentsR: null,
       show: false,
       pageToShow: null,
-      showNumber:false,
+      showNumber: false,
       checkedB: false,
       place: null,
-      rb:"RB"
+      rb: "RB"
     };
     this.viewPage = null;
-    this.RB="RB";
+    this.RB = "RB";
   }
   changeRB = e => {
-     this.setState({
-       rb:e
-     })
+    this.setState({
+      rb: e
+    });
     this.RB = e;
-    this.Getapartments()
-    console.log("RB =" +this.RB+this.state.rb)
+    this.Getapartments();
+    console.log("RB =" + this.RB + this.state.rb);
   };
   componentDidMount() {
     this.btnLocation();
@@ -146,25 +146,25 @@ export default class PartyPage extends React.Component {
     );
   };
 
-  Getapartments  = () => {
-    const data={
-      rb:this.RB
-    }
-    if(this.RB=="R"&&this.state.apartmentsR!=null)
-    {
-        this.setState({
-          apartments:this.state.apartmentsR
-       });
-       return;   
-    }
-     else if(this.RB=="B"&&this.state.apartmentsB!=null){
-         this.setState({
-        apartments:this.state.apartmentsB
-      })
+  Getapartments = () => {
+    const data = {
+      rb: this.RB
+    };
+    if (this.RB == "R" && this.state.apartmentsR != null) {
+      this.setState({
+        apartments: this.state.apartmentsR
+      });
+      return;
+    } else if (this.RB == "B" && this.state.apartmentsB != null) {
+      this.setState({
+        apartments: this.state.apartmentsB
+      });
       return;
     }
-      
-    console.log('sddddddddddddddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
+    console.log(
+      "sddddddddddddddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    );
     fetch(
       "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlacesHouses",
       {
@@ -182,33 +182,29 @@ export default class PartyPage extends React.Component {
       .then(
         result => {
           console.log("fetch POST= ", result);
-          let apartments  = JSON.parse(result.d);
-          if (apartments  == null) {
+          let apartments = JSON.parse(result.d);
+          if (apartments == null) {
             this.setState({
               message: "הרשמה נכשלה"
             });
             return;
           } else {
-            console.log("U = " + apartments );
-            if(this.RB=="R"){
+            console.log("U = " + apartments);
+            if (this.RB == "R") {
               this.setState({
-                apartmentsR : apartments ,
-                apartments : apartments 
-
+                apartmentsR: apartments,
+                apartments: apartments
+              });
+            } else if (this.RB == "B") {
+              this.setState({
+                apartmentsB: apartments,
+                apartments: apartments
+              });
+            } else {
+              this.setState({
+                apartments: apartments
               });
             }
-            else if(this.RB=="B"){
-              this.setState({
-                apartmentsB : apartments ,
-                apartments : apartments 
-
-              });
-            }else{
-              this.setState({
-                apartments : apartments 
-              });
-            }
-          
           }
           console.log(result.d);
           console.log(result);
@@ -224,84 +220,83 @@ export default class PartyPage extends React.Component {
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
-        checkedB:false,
+        checkedB: false,
         pageToShow: i,
-        place: p,
+        place: p
       });
     } else {
       this.setState({
         pageToShow: null,
-        place: null,
+        place: null
       });
     }
   };
-  _pressCall=()=>{
-    const url='tel:'+this.state.place.EventPhone
-    Linking.openURL(url)
-  }
-  FavoriteChack(){
+  _pressCall = () => {
+    const url = "tel:" + this.state.place.EventPhone;
+    Linking.openURL(url);
+  };
+  FavoriteChack() {
     this.setState({
-      checkedB:!this.state.checkedB
-    })
+      checkedB: !this.state.checkedB
+    });
     this.Favorite();
   }
-  Favorite=()=>{
-    
-
-    if(!this.state.checkedB){
- 
-      console.log("place id = "+this.state.place.ID+" "+this.state.checkedB);
-      
-      const data = {
-        userid:id,
-        placeid:this.state.place.ID
-      };
-    fetch(
-      "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/InsertFavorite",
-      {
-        method: "post",
-        headers: new Headers({
-          "Content-Type": "application/Json;"
-        }),
-        body: JSON.stringify(data)
-      }
-    )
-      .then(res => {
-        console.log("res=", res);
-        return res.json();
-      })
-      .then(
-        result => {
-          console.log("fetch POST= ", result);
-          let fav = JSON.parse(result.d);
-          if (fav == -1) {
-            this.setState({
-              checkedB:true
-            })
-            
-            console.log("Allready Exist this favorite")
-            return;
-          } else {
-            console.log("U = " + fav);
-            this.setState({
-              checkedB:true
-            })
-          }
-          console.log(result.d);
-          console.log(result);
-        },
-        error => {
-          console.log("err post=", error);
-        }
+  Favorite = () => {
+    if (!this.state.checkedB) {
+      console.log(
+        "place id = " + this.state.place.ID + " " + this.state.checkedB
       );
+
+      const data = {
+        userid: id,
+        placeid: this.state.place.ID
+      };
+      fetch(
+        "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/InsertFavorite",
+        {
+          method: "post",
+          headers: new Headers({
+            "Content-Type": "application/Json;"
+          }),
+          body: JSON.stringify(data)
+        }
+      )
+        .then(res => {
+          console.log("res=", res);
+          return res.json();
+        })
+        .then(
+          result => {
+            console.log("fetch POST= ", result);
+            let fav = JSON.parse(result.d);
+            if (fav == -1) {
+              this.setState({
+                checkedB: true
+              });
+
+              console.log("Allready Exist this favorite");
+              return;
+            } else {
+              console.log("U = " + fav);
+              this.setState({
+                checkedB: true
+              });
+            }
+            console.log(result.d);
+            console.log(result);
+          },
+          error => {
+            console.log("err post=", error);
+          }
+        );
     }
-  }
+  };
   render() {
     let markers = [];
 
-    if (this.state.apartments  != null) {
+    if (this.state.apartments != null) {
       debugger;
-      markers = this.state.apartments .map((place, index) => {
+      markers = this.state.apartments.map((place, index) => {
         if (index == this.state.pageToShow) {
           this.viewPage = place.Address;
         }
@@ -317,209 +312,190 @@ export default class PartyPage extends React.Component {
             key={index}
           >
             {index == this.state.pageToShow ? (
-              <Icon name="home"                
-             type="font-awesome"
-              color="blue" size={30} />
-            ) :<Icon name="home"                
-            type="font-awesome"
-             color="black" size={30} />}
+              <Icon name="home" type="font-awesome" color="blue" size={30} />
+            ) : (
+              <Icon name="home" type="font-awesome" color="black" size={30} />
+            )}
           </Marker>
-
         );
       });
     }
 
     return (
       <ImageBackground
-        source={require("../assets/background1.jpg")}
-        style={styles.container}
+        source={require("../assets/background2.jpg")}
+        style={styles.backgroundImage}
       >
-        <View
-          style={{ marginTop: 30, backgroundColor: "rgba(255,255,255,.3)" }}
-        >
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-            <Icon name="arrow-left" size={24} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Header}>
-          <View style={{ alignItems: "center" }}>
-            <Image
-              source={require("../assets/Where2LiveLogo.png")}
-              style={styles.cardImage}
-              resizeMode="cover"
-            />
-          </View>
-
-          <View style={styles.formContainer}>
-            <Text style={{fontSize:20}}>חיפוש לפי איזור... </Text>
-
-            <View>
-              <TextInput
-                style={styles.input}
-                onChangeText={this.handleAddress}
-                value={this.state.Address}
-                placeholder="הכנס כתובת"
+        <View style={styles.container}>
+          <View style={styles.main}>
+            <View style={styles.logo}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon
+                  name="arrow-circle-left"
+                  type="font-awesome"
+                  iconStyle={{ marginLeft: "85%", position: "absolute" }}
+                  color="black"
+                  size={34}
+                />
+              </TouchableOpacity>
+              <Image
+                source={require("../assets/houseLogo.png")}
+                style={{ width: "100%", height: "100%" }}
+                resizeMode="contain"
               />
             </View>
 
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.handleSubmit}
-            >
-              <Text style={{fontSize:15}}>חפש לי מסיבה</Text>
-            </TouchableOpacity>
-          </View>
-          {/* <View style={{flexDirection:'row-reverse'}}> */}
-          <RadioForm
-              radio_props={radio_props}
-              initial={null}              
-              style={styles.genderRadio}
-              onPress={this.changeRB}
-            />
-   {/* <CheckBox
-   center   
-title=' Buy'
-iconRight
-iconType='material'
-checkedIcon='clear'
-uncheckedIcon='add'
-checkedColor='red'
-checked={this.state.checkedBuy}
-/>
-<CheckBox
-   center   
-   
-title='Rent'
-iconRight
-iconType='material'
-checkedIcon='clear'
-uncheckedIcon='add'
-checkedColor='red'
-checked={this.state.checkedRent}
-/> */}
-   {/* </View> */}
+            <View style={styles.container}>
+              <View>
+                <RadioForm
+                  radio_props={radio_props}
+                  initial={null}
+                  style={styles.radioBtn}
+                  onPress={this.changeRB}
+                />
+              </View>
+              <View>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={this.handleAddress}
+                  value={this.state.Address}
+                  placeholder="הכנס כתובת"
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.buttonContainerS}
+                onPress={this.handleSubmit}
+              >
+                <Text style={{ fontSize: 15 }}>..חפש </Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.Content}>
-            <View
-              style={{
-                borderColor: "black",
-                borderWidth: 2
-              }}
-            >
-              <MapView
+            <View style={styles.containerMap}>
+              <View
                 style={{
-                  flex: 1,
-
-                  width: Dimensions.get("window").width - 30
-                }}
-                region={{
-                  latitude: this.state.latitude,
-                  longitude: this.state.longitude,
-                  latitudeDelta: 0.0322,
-                  longitudeDelta: 0.0321
+                  borderColor: "black",
+                  borderWidth: 2
                 }}
               >
-                {markers}
-                <Marker
-                  coordinate={{
-                    latitude: this.state.latitude,
-                    longitude: this.state.longitude
+                <MapView
+                  style={{
+                    flex: 1,
+
+                    width: Dimensions.get("window").width - 85
                   }}
-                  title="my place:)"
-                  description="here i am"
-                  color="blue"
-                 
-                />
-               
-               
-
-              </MapView>
-            </View>
-
-            <View
-              style={{
-                position: "absolute",
-                bottom: 0,
-                width: Dimensions.get("window").width - 10,
-                flexDirection: "row-reverse"
-              }}
-            >
-              <ActionButton icon="place" onPress={this.btnLocation} />
-            </View>
-
-            {this.state.pageToShow != null ? (
-              <View style={styles.card}>
-                <ImageBackground
-                  source={require("../assets/Street.jpg")}
-                  style={{ width: "100%", height: "100%" }}
+                  region={{
+                    latitude: this.state.latitude,
+                    longitude: this.state.longitude,
+                    latitudeDelta: 0.0322,
+                    longitudeDelta: 0.0321
+                  }}
                 >
-                  <View
-                    style={{
-                      backgroundColor: "rgba(255,255,255,.6)",
-                      height: "100%"
+                  {markers}
+                  <Marker
+                    coordinate={{
+                      latitude: this.state.latitude,
+                      longitude: this.state.longitude
                     }}
-                  >
-                    <View style={{ flexDirection: "row-reverse" }}>
-                      <View>
-                        <Image
-                          source={{
-                            uri:
-                              "http://ruppinmobile.tempdomain.co.il/site11/image/"+this.state.place.Img
-                          }}
-                          style={{ width: 130, height: 100 }}
-                          resizeMode="cover"
-                        />
-                      </View>
-                      <View style={{ flex: 2 }} />
-                      <View>
-                        <Text
-                          style={{ fontSize: 18, fontWeight: "bold", flex: 2 }}
-                        >
-                          {this.state.place.Address}
-                        </Text>
-                        <Text
-                          style={{ fontSize: 16, fontWeight: "bold", flex: 2 }}
-                        >
-                          שם המקום:{this.state.place.EventName}
-                        </Text>
-                      </View>
-                    </View>
-                    <View>
-                      <Text style={{ fontSize: 14, fontWeight: "bold" }}>
-                        מידע על האירוע : {this.state.place.EventAbout}{" "}
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: "row-reverse", bottom:5 }}>
-                      <View style={{ flex: 1 }} />
-                      <View style={{ flex: 2, marginTop: 10 }}>
-                      {this.state.showNumber!=true?  <TouchableOpacity
-                          onPress={this._pressCall}
-                          success
-                          type="outline"
-                        >
-                          <Icon name="phone" color="green" size={40} />
-                        </TouchableOpacity>:<Text style={{color:'blue',fontSize:18,marginLeft:30}}>0526666666</Text>}
-                      </View>
-                      <View>
-                        <CheckBox
-                          title=" מועדפים"
-                          style={{ position: "absolute", flex: 3 }}
-                          iconRight
-                          iconType="material"
-                          checkedIcon="star"
-                          uncheckedIcon="star"
-                          checkedColor="yellow"
-                          checked={this.state.checkedB}
-                          onPress={()=>this.FavoriteChack()}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </ImageBackground>
+                    title="my place:)"
+                    description="here i am"
+                    color="blue"
+                  />
+                </MapView>
               </View>
-            ) : (
-              console.log("mjcjcjc")
-            )}
+
+              <View
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  width: Dimensions.get("window").width - 85,
+                  flexDirection: "row-reverse"
+                }}
+              >
+                <ActionButton icon="place" onPress={this.btnLocation} />
+              </View>
+
+              {this.state.pageToShow != null ? (
+                <View style={styles.cardInfo}>
+                  <ImageBackground
+                    source={require("../assets/Street.jpg")}
+                    style={{ width: "100%", height: "100%" }}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "rgba(255,255,255,.6)",
+                        height: "100%"
+                      }}
+                    >
+                      <View style={{ flexDirection: "row-reverse" }}>
+                        <View>
+                          <Image
+                            source={require("../assets/Home.jpg")}
+                            style={{ width: 80, height: 80 }}
+                          />
+                        </View>
+                        <View style={{ flex: 2 }} />
+                        <View>
+                          <Text
+                            style={{
+                              fontSize: 18,
+                              fontWeight: "bold",
+                              marginBottom: "5%"
+                            }}
+                          >
+                            {this.state.place.Address}
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              fontWeight: "bold"
+                            }}
+                          >
+                            איש קשר:{this.state.place.Name}
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 14,
+                              fontWeight: "bold",
+                              color: "red"
+                            }}
+                          >
+                            מחיר : {this.state.place.Price + "₪"}{" "}
+                          </Text>
+                        </View>
+                      </View>
+
+                      <View style={{ flexDirection: "row-reverse", bottom: 0 }}>
+                        <View style={{ flex: 1 }} />
+                        <View style={{ flex: 2, marginTop: "3%" }}>
+                          <TouchableOpacity
+                            onPress={this._pressCall}
+                            success
+                            type="outline"
+                          >
+                            <Icon name="phone" color="green" size={40} />
+                          </TouchableOpacity>
+                        </View>
+                        <View>
+                          <CheckBox
+                            title=" מועדפים"
+                            style={{ flex: 3 }}
+                            iconRight
+                            iconType="material"
+                            checkedIcon="star"
+                            uncheckedIcon="star"
+                            checkedColor="yellow"
+                            checked={this.state.checkedB}
+                            onPress={() => this.FavoriteChack()}
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  </ImageBackground>
+                </View>
+              ) : (
+                console.log("mjcjcjc")
+              )}
+            </View>
           </View>
         </View>
       </ImageBackground>

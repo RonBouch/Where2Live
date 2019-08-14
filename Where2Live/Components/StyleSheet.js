@@ -8,8 +8,8 @@ export default StyleSheet.create({
     resizeMode: "cover"
   },
   logo: {
-    alignItems:"center",
-    marginTop: "15%",
+    alignItems: "center",
+    marginTop: "10%",
     width: "90%",
     height: "30%"
   },
@@ -164,7 +164,6 @@ export default StyleSheet.create({
     marginTop: 5
   },
 
-
   //Favorite Page Style
 
   scrollview: {
@@ -202,5 +201,34 @@ export default StyleSheet.create({
     flex: 2,
     marginBottom: 5,
     marginRight: 10
+  },
+  // search page
+  buttonContainerS: {
+    backgroundColor: "rgba(70,60,100,.3)",
+    paddingVertical: 15,
+    width: 120,
+    borderRadius: 110,
+    alignItems: "center",
+    // padding:20,
+    borderColor: "black",
+    borderWidth: 2
+  },
+  containerMap: {
+    flex: 2,
+    flexDirection: "column",
+    alignItems: "center",
+
+    width: "100%",
+    height: "100%"
+  },
+  cardInfo: {
+    backgroundColor: "rgba(255,255,255,.9)",
+    shadowColor: "#000",
+    height: "40%",
+    width: "100%",
+    borderWidth: 2,
+    backgroundColor: "gray",
+    position: "absolute",
+    bottom: 0
   }
 });
