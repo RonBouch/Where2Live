@@ -203,6 +203,13 @@ export default StyleSheet.create({
     marginRight: 10
   },
 
+  textCard2: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft:'5%',
+    marginTop:'5%'
+  },
+
   // search page
 
 

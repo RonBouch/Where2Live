@@ -102,7 +102,7 @@ export default class FavoritePage extends React.Component {
     }
   };
   render() {
-    const scrollEnabled = this.state.screenHeight > height - 500000;
+    const scrollEnabled = this.state.screenHeight > height - 800000;
 
     let Houses = [];
 
@@ -118,7 +118,7 @@ export default class FavoritePage extends React.Component {
             style={{
               width: "100%",
               height: "25%",
-              marginBottom: 10,
+              marginBottom: '2%',
               backgroundColor: "rgba(255,255,255,.4)"
             }}
             key={index}
@@ -241,7 +241,9 @@ export default class FavoritePage extends React.Component {
                 <View
                   style={{
                     backgroundColor: "rgba(255,255,255,.6)",
-                    height: "70%"
+                    height: "70%",
+                    borderColor:'black',
+                    borderWidth:3
                   }}
                 >
                   <TouchableOpacity
@@ -265,29 +267,54 @@ export default class FavoritePage extends React.Component {
                   >
                     <Image
                       source={require("../assets/Home.jpg")}
-                      style={{ width: "25%", height: "100%", borderWidth: 2 }}
+                      style={{ width: "30%", height: "100%", borderWidth: 2 }}
                     />
+                  </View>
+                  <View style={{ borderTopColor: "black",  borderTopWidth: 3,flexDirection:'row-reverse',backgroundColor: "rgba(255,255,255,.9)",shadowColor: "#000"}}>
+                  <Text style={{fontSize:20,fontWeight: "bold",flex:1}}>{this.state.place.RB}</Text>
+                  
+                    <Text style={{fontSize:20,fontWeight: "bold",flex:2}}>{this.state.place.Address}  {" "} / </Text>
                   </View>
                   <View
                     style={{
-                      height: "60%",
-                      width: "100%",
-                      flexDirection: "row-reverse",
                       borderTopColor: "black",
                       borderTopWidth: 3
                     }}
                   >
-                    <Text style={styles.textCard}>
-                      מ"ר:{this.state.place.SquareMeter}
+                  
+                  <Text style={styles.textCard2}>
+                      איש קשר : {this.state.place.Name}
                     </Text>
-                    <Text style={styles.textCard}>
-                      קומה:{this.state.place.Floor}
+                    <Text style={styles.textCard2}>
+                      מ'ס טלפון : {this.state.place.Phone}
+                    </Text>
+                    <Text style={styles.textCard2}>סוג הנכס: {this.state.place.Type}</Text>
+
+                  
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row-reverse"
+                    }}
+                  >
+                    <Text style={styles.textCard2}>
+                      מ"ר: {this.state.place.SquareMeter}
+                    </Text>
+                    <Text style={styles.textCard2}>
+                      קומה: {this.state.place.Floor}
                     </Text>
 
-                    <Text style={styles.textCard}>
-                      חדרים:{this.state.place.Room}
+                    <Text style={styles.textCard2}>
+                      חדרים: {this.state.place.Room}
                     </Text>
+
                   </View>
+                  <View  style={{
+                    }}>
+                  <Text style={styles.textCard2}>על הנכס: {this.state.place.About}</Text>
+                  </View>
+                 <View></View>
+                  <View ><Text style={{fontSize:20,color:'red',fontWeight: "bold"}}>מחיר: ₪{this.state.place.Price}</Text></View>
                 </View>
               </ImageBackground>
             ) : (
