@@ -24,7 +24,11 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {
+    FavoritePage: FavoritePage,
+
     HomePage: HomePage,
+
+
 
     LoginPage: LoginPage,
 
@@ -40,13 +44,10 @@ const StackNav = createStackNavigator(
 
     PushNotPage: PushNotPage,
 
-    registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
     registerForPushNotificationsAsync: registerForPushNotificationsAsync,
 
-    FavoritePage: FavoritePage,
 
-    FavoritePage: FavoritePage,
 
     RegisterPage: RegisterPage,
 

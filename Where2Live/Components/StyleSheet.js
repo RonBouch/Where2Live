@@ -189,7 +189,7 @@ export default StyleSheet.create({
     textAlign: "center",
     padding: 4,
     borderWidth: 2,
-    width: "50%",
+    width: "100%",
     flex: 3,
     borderRadius: 50,
 
@@ -202,7 +202,11 @@ export default StyleSheet.create({
     marginBottom: 5,
     marginRight: 10
   },
+
   // search page
+
+
+
   buttonContainerS: {
     backgroundColor: "rgba(70,60,100,.3)",
     paddingVertical: 15,

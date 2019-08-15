@@ -36,7 +36,7 @@ export default class FavoritePage extends React.Component {
   GetPlaces = () => {
     // console.log("iddddd"+id);
     const data = {
-      userid: id
+      userid: 28
     };
     fetch(
       "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/GetPlacesFromFavorite",
@@ -102,7 +102,7 @@ export default class FavoritePage extends React.Component {
     }
   };
   render() {
-    const scrollEnabled = this.state.screenHeight > height - 100;
+    const scrollEnabled = this.state.screenHeight > height - 500000;
 
     let Houses = [];
 
@@ -117,7 +117,7 @@ export default class FavoritePage extends React.Component {
           <View
             style={{
               width: "100%",
-              height: "18%",
+              height: "25%",
               marginBottom: 10,
               backgroundColor: "rgba(255,255,255,.4)"
             }}
@@ -175,7 +175,7 @@ export default class FavoritePage extends React.Component {
                 <View style={{ width: "25%" }}>
                   <Image
                     source={require("../assets/Home.jpg")}
-                    style={{ width: "90%", height: "90%" }}
+                    style={{ width: "90%", height: "70%" }}
                   />
                 </View>
               </View>
@@ -204,13 +204,28 @@ export default class FavoritePage extends React.Component {
         <View style={styles.container}>
           <View style={styles.main}>
             <View style={styles.logo}>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}style={{marginLeft:'85%'}}>
+                <Icon
+                  name="arrow-circle-left"
+                  type="font-awesome"
+                  color="black"
+                  size={34}
+                />
+              </TouchableOpacity>
               <Image
                 source={require("../assets/houseLogo.png")}
-                style={{ width: "100%", height: "100%", marginTop: "15%" }}
+                style={{ width: "100%", height: "100%"}}
                 resizeMode="contain"
               />
             </View>
+            <View style={{ borderTopColor: "black",
+                      borderTopWidth: 3,width:'100%',alignItems:'center', borderBottomColor: "black",
+                      borderBottomWidth: 3,backgroundColor: "rgba(255,255,255,.9)",
+                      shadowColor: "#000",}}>
+            <Text style={{fontSize:20,    fontWeight: "bold",color:'black'}}>מועדפים</Text>
+            </View>
             <ScrollView
+            style={{marginBottom:'3%',marginTop:'2%'}}
               contentContainerStyle={styles.scrollview}
               scrollEnabled={scrollEnabled}
               onContentSizeChange={this.onContentSizeChange}
@@ -250,12 +265,12 @@ export default class FavoritePage extends React.Component {
                   >
                     <Image
                       source={require("../assets/Home.jpg")}
-                      style={{ width: "30%", height: "100%", borderWidth: 2 }}
+                      style={{ width: "25%", height: "100%", borderWidth: 2 }}
                     />
                   </View>
                   <View
                     style={{
-                      height: "80%",
+                      height: "60%",
                       width: "100%",
                       flexDirection: "row-reverse",
                       borderTopColor: "black",

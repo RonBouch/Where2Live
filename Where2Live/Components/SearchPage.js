@@ -329,11 +329,10 @@ export default class PartyPage extends React.Component {
         <View style={styles.container}>
           <View style={styles.main}>
             <View style={styles.logo}>
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}style={{marginLeft:'85%'}}>
                 <Icon
                   name="arrow-circle-left"
                   type="font-awesome"
-                  iconStyle={{ marginLeft: "85%", position: "absolute" }}
                   color="black"
                   size={34}
                 />
