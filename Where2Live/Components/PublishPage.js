@@ -65,30 +65,28 @@ export default class Public extends React.Component {
       latitude: 37.78825,
       longitude: -122.4324,
 
-      
       address: "",
       phone: "",
       name: "",
-      type:"",
-      room:"",
-      floor:"",
-      squareMeter:"",
+      type: "",
+      room: "",
+      floor: "",
+      squareMeter: "",
       about: "",
-      price:"",
+      price: "",
       img: "house.jpg"
     };
   }
-  HouseType =e=>{
+  HouseType = e => {
     this.setState({
-      type:e
-    })
-  }
-  HouseRooms=e=>{
+      type: e
+    });
+  };
+  HouseRooms = e => {
     this.setState({
-      room:e
-    })
-
-  }
+      room: e
+    });
+  };
   postType = e => {
     this.rentOrSell = e;
   };
@@ -98,7 +96,7 @@ export default class Public extends React.Component {
       address: e
     });
   };
- 
+
   openCamera = async () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: false, // higher res on iOS
@@ -178,20 +176,20 @@ export default class Public extends React.Component {
       console.log("latitdue  = " + this.state.latitude);
 
       const data = {
-        userid:id,
-        address:this.state.address,
-         lati:this.state.latitude,
-        longi:this.state.longitude,
-        name:this.state.name,
-        about:this.state.about,
-        phone:this.state.phone,
-        img:this.state.img,
-        price:this.state.price,
-        room:this.state.room,
-        floor:this.state.floor,
-        type:this.state.type,
-        squareMeter:this.state.squareMeter,
-        rb:this.rentOrSell
+        userid: id,
+        address: this.state.address,
+        lati: this.state.latitude,
+        longi: this.state.longitude,
+        name: this.state.name,
+        about: this.state.about,
+        phone: this.state.phone,
+        img: this.state.img,
+        price: this.state.price,
+        room: this.state.room,
+        floor: this.state.floor,
+        type: this.state.type,
+        squareMeter: this.state.squareMeter,
+        rb: this.rentOrSell
       };
       console.log(JSON.stringify(data));
 
@@ -220,7 +218,6 @@ export default class Public extends React.Component {
               });
               return;
             } else {
-
               this.props.navigation.navigate("HomePage");
             }
             console.log(result.d);
@@ -230,9 +227,7 @@ export default class Public extends React.Component {
             console.log("err post=", error);
           }
         );
-    
-        } 
-    
+    }
   };
 
   isValid() {
@@ -373,8 +368,10 @@ export default class Public extends React.Component {
                       keyboardType="number-pad"
                       placeholderTextColor="rgb(150,150,150)"
                       placeholder={"מס' טלפון"}
-                      onChangeText={e=>{this.setState({phone:e})}}
-                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                      onChangeText={e => {
+                        this.setState({ phone: e });
+                      }}
+                      style={{ width: "80%", marginRight: "8%", fontSize: 16 }}
                     />
                     <Icon
                       name="phone"
@@ -397,9 +394,10 @@ export default class Public extends React.Component {
                     <TextInput
                       placeholder="איש קשר"
                       placeholderTextColor="rgb(150,150,150)"
-                      onChangeText={e=>{this.setState({name:e})}}
-
-                      style={{ width: "80%", marginRight: "10%", fontSize: 16 }}
+                      onChangeText={e => {
+                        this.setState({ name: e });
+                      }}
+                      style={{ width: "80%", marginRight: "8%", fontSize: 16 }}
                     />
                     <Icon
                       name="user"
@@ -433,7 +431,6 @@ export default class Public extends React.Component {
                       containerStyle={{ width: 110, padding: 5 }}
                       data={houseType}
                       onChangeText={this.HouseType}
-
                     />
                     <Text style={{ color: "red" }}>*</Text>
 
@@ -464,10 +461,10 @@ export default class Public extends React.Component {
                           textAlign: "center",
                           fontSize: 16
                         }}
-                        onChangeText={e=>{this.setState({floor:e})}}
-
+                        onChangeText={e => {
+                          this.setState({ floor: e });
+                        }}
                         placeholder="קומה"
-                        
                       />
                     </View>
                     <View style={{ width: 10 }} />
@@ -488,8 +485,9 @@ export default class Public extends React.Component {
                           fontSize: 16
                         }}
                         placeholder="גודל במ'ר"
-                        onChangeText={e=>{this.setState({squareMeter:e})}}
-
+                        onChangeText={e => {
+                          this.setState({ squareMeter: e });
+                        }}
                       />
                     </View>
                   </View>
@@ -507,8 +505,9 @@ export default class Public extends React.Component {
                     <TextInput
                       multiline={true}
                       maxLength={60}
-                      onChangeText={e=>{this.setState({about:e})}}
-
+                      onChangeText={e => {
+                        this.setState({ about: e });
+                      }}
                       placeholder="ספר בקצרה על הנכס עד 60 תווים..."
                       style={{
                         textAlign: "center",
@@ -535,7 +534,9 @@ export default class Public extends React.Component {
                       keyboardType="number-pad"
                       placeholder="מחיר"
                       style={{ width: "70%", marginRight: "10%", fontSize: 16 }}
-                      onChangeText={e=>{this.setState({price:e})}}
+                      onChangeText={e => {
+                        this.setState({ price: e });
+                      }}
                     />
                     <Icon
                       name="shekel"

@@ -113,7 +113,6 @@ export default class FavoritePage extends React.Component {
         // if (index == this.state.pageToShow) {
         //   this.viewPage = place.Address;
         // }
-       let img ="require(../assets/"+place.Img+")";
        
         return (
           <View
@@ -176,7 +175,10 @@ export default class FavoritePage extends React.Component {
 
                 <View style={{ width: "25%" }}>
                   <Image
-                    source={img}
+                    source={{
+                      uri:
+                        "http://ruppinmobile.tempdomain.co.il/site11/image/"+place.Img
+                    }}
                     style={{ width: "90%", height: "70%" }}
                   />
                 </View>
