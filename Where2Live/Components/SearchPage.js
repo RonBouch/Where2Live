@@ -108,7 +108,7 @@ export default class PartyPage extends React.Component {
       });
       console.log("latitdue  = " + this.state.latitude);
     } else {
-      alert("Invalid city");
+      alert("מקום לא קיים");
     }
   };
   isValid() {
