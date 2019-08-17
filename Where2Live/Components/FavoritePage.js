@@ -303,11 +303,11 @@ export default class FavoritePage extends React.Component {
                       backgroundColor: "rgba(255,255,255,.9)"
                     }}
                   >
-                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
                       {this.state.place.Address} /{" "}
                     </Text>
 
-                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
                       {this.state.place.RB}
                     </Text>
                   </View>
