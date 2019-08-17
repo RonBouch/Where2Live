@@ -438,7 +438,10 @@ export default class PartyPage extends React.Component {
                       <View style={{ flexDirection: "row-reverse" }}>
                         <View>
                           <Image
-                            source={require("../assets/Home.jpg")}
+                           source={{
+                            uri:
+                              "http://ruppinmobile.tempdomain.co.il/site11/image/"+this.state.place.Img
+                          }}
                             style={{ width: 80, height: 80 }}
                           />
                         </View>
