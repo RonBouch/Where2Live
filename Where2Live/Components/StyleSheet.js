@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   logo: {
     alignItems: "center",
-    marginTop: "10%",
+    marginTop: "15%",
     width: "90%",
     height: "30%"
   },
