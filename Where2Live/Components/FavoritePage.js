@@ -119,7 +119,7 @@ export default class FavoritePage extends React.Component {
             style={{
               width: "100%",
               height: "25%",
-              marginBottom: '2%',
+              marginBottom: "2%",
               backgroundColor: "rgba(255,255,255,.4)"
             }}
             key={index}
@@ -128,7 +128,7 @@ export default class FavoritePage extends React.Component {
               source={require("../assets/BG2.jpg")}
               style={styles.card}
             >
-              <View style={{ flexDirection: "row-reverse", flex: 1 }}>
+              <View style={{ flexDirection: "row", flex: 1 }}>
                 <View style={{ width: "75%", padding: "3%" }}>
                   <Text style={{ fontSize: 18, fontWeight: "bold" }}>
                     {place.Address}
@@ -155,8 +155,8 @@ export default class FavoritePage extends React.Component {
                       type="outline"
                       style={styles.phoneCard}
                     >
-                      <Icon name="phone" color="green" size={30} />
-                      <Text style={styles.textCard}>התקשר:</Text>
+                      <Text style={styles.textCard}>התקשר</Text>
+                      <Icon name="phone" color="green" size={24} />
                     </TouchableOpacity>
 
                     <Text
@@ -168,7 +168,7 @@ export default class FavoritePage extends React.Component {
                         marginRight: 17
                       }}
                     >
-                      ₪{place.Price}
+                      ₪ {place.Price}
                     </Text>
                   </View>
                 </View>
@@ -208,7 +208,10 @@ export default class FavoritePage extends React.Component {
         <View style={styles.container}>
           <View style={styles.main}>
             <View style={styles.logo}>
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()}style={{marginLeft:'85%'}}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                style={{ marginLeft: "85%" }}
+              >
                 <Icon
                   name="arrow-circle-left"
                   type="font-awesome"
@@ -218,18 +221,30 @@ export default class FavoritePage extends React.Component {
               </TouchableOpacity>
               <Image
                 source={require("../assets/houseLogo.png")}
-                style={{ width: "100%", height: "100%"}}
+                style={{ width: "100%", height: "100%" }}
                 resizeMode="contain"
               />
             </View>
-            <View style={{ borderTopColor: "black",
-                      borderTopWidth: 3,width:'100%',alignItems:'center', borderBottomColor: "black",
-                      borderBottomWidth: 3,backgroundColor: "rgba(255,255,255,.9)",
-                      shadowColor: "#000",}}>
-            <Text style={{fontSize:20,    fontWeight: "bold",color:'black'}}>מועדפים</Text>
+            <View
+              style={{
+                borderTopColor: "black",
+                borderTopWidth: 3,
+                width: "100%",
+                alignItems: "center",
+                borderBottomColor: "black",
+                borderBottomWidth: 3,
+                backgroundColor: "rgba(255,255,255,.9)",
+                shadowColor: "#000"
+              }}
+            >
+              <Text
+                style={{ fontSize: 20, fontWeight: "bold", color: "black" }}
+              >
+                מועדפים
+              </Text>
             </View>
             <ScrollView
-            style={{marginBottom:'3%',marginTop:'2%'}}
+              style={{ marginBottom: "3%", marginTop: "2%" }}
               contentContainerStyle={styles.scrollview}
               scrollEnabled={scrollEnabled}
               onContentSizeChange={this.onContentSizeChange}
@@ -240,14 +255,16 @@ export default class FavoritePage extends React.Component {
             {this.state.pageToShow != null ? (
               <ImageBackground
                 source={require("../assets/BG2.jpg")}
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "75%"
+                }}
               >
                 <View
                   style={{
-                    backgroundColor: "rgba(255,255,255,.6)",
-                    height: "70%",
-                    borderColor:'black',
-                    borderWidth:3
+                    borderColor: "black",
+                    borderWidth: 2,
+                    height: "75%"
                   }}
                 >
                   <TouchableOpacity
@@ -274,10 +291,22 @@ export default class FavoritePage extends React.Component {
                       style={{ width: "30%", height: "100%", borderWidth: 2 }}
                     />
                   </View>
-                  <View style={{ borderTopColor: "black",  borderTopWidth: 3,flexDirection:'row-reverse',backgroundColor: "rgba(255,255,255,.9)",shadowColor: "#000"}}>
-                  <Text style={{fontSize:20,fontWeight: "bold",flex:1}}>{this.state.place.RB}</Text>
-                  
-                    <Text style={{fontSize:20,fontWeight: "bold",flex:2}}>{this.state.place.Address}  {" "} / </Text>
+                  <View
+                    style={{
+                      borderTopColor: "black",
+                      borderTopWidth: 3,
+                      flexDirection: "row-reverse",
+                      backgroundColor: "rgba(255,255,255,.9)",
+                      shadowColor: "#000"
+                    }}
+                  >
+                    <Text style={{ fontSize: 20, fontWeight: "bold", flex: 1 }}>
+                      {this.state.place.RB}
+                    </Text>
+
+                    <Text style={{ fontSize: 20, fontWeight: "bold", flex: 2 }}>
+                      {this.state.place.Address} /{" "}
+                    </Text>
                   </View>
                   <View
                     style={{
@@ -285,16 +314,15 @@ export default class FavoritePage extends React.Component {
                       borderTopWidth: 3
                     }}
                   >
-                  
-                  <Text style={styles.textCard2}>
+                    <Text style={styles.textCard2}>
                       איש קשר : {this.state.place.Name}
                     </Text>
                     <Text style={styles.textCard2}>
                       מ'ס טלפון : {this.state.place.Phone}
                     </Text>
-                    <Text style={styles.textCard2}>סוג הנכס: {this.state.place.Type}</Text>
-
-                  
+                    <Text style={styles.textCard2}>
+                      סוג הנכס: {this.state.place.Type}
+                    </Text>
                   </View>
                   <View
                     style={{
@@ -311,14 +339,20 @@ export default class FavoritePage extends React.Component {
                     <Text style={styles.textCard2}>
                       חדרים: {this.state.place.Room}
                     </Text>
-
                   </View>
-                  <View  style={{
-                    }}>
-                  <Text style={styles.textCard2}>על הנכס: {this.state.place.About}</Text>
+                  <View style={{}}>
+                    <Text style={styles.textCard2}>
+                      על הנכס: {this.state.place.About}
+                    </Text>
                   </View>
-                 <View></View>
-                  <View ><Text style={{fontSize:20,color:'red',fontWeight: "bold"}}>מחיר: ₪{this.state.place.Price}</Text></View>
+                  <View />
+                  <View>
+                    <Text
+                      style={{ fontSize: 20, color: "red", fontWeight: "bold" }}
+                    >
+                      מחיר: ₪{this.state.place.Price}
+                    </Text>
+                  </View>
                 </View>
               </ImageBackground>
             ) : (

@@ -152,6 +152,11 @@ export default StyleSheet.create({
     borderColor: "white",
     borderWidth: 2
   },
+  radioPublish: {
+    flexDirection: "row",
+    margin: 10,
+    justifyContent: "center"
+  },
   addImage: {
     flexDirection: "row",
     alignItems: "center",
@@ -183,24 +188,18 @@ export default StyleSheet.create({
   },
   phoneCard: {
     backgroundColor: "rgba(255,255,255,.9)",
-    shadowColor: "#000",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     padding: 4,
-    borderWidth: 2,
-    width: "100%",
-    flex: 3,
+    borderWidth: 1,
+    width: 100,
     borderRadius: 50,
-
-    flexDirection: "row-reverse"
+    flexDirection: "row"
   },
   textCard: {
     fontSize: 14,
-    fontWeight: "bold",
-    flex: 2,
-    marginBottom: 5,
-    marginRight: 10
+    fontWeight: "bold"
   },
 
   textCard2: {

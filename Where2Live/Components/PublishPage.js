@@ -420,7 +420,7 @@ export default class Public extends React.Component {
                     <RadioForm
                       radio_props={radio_props}
                       initial={null}
-                      style={styles.radioBtn}
+                      style={styles.radioPublish}
                       onPress={this.postType}
                     />
                   </View>
