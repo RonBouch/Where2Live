@@ -24,11 +24,11 @@ class App extends React.Component {
 
 const StackNav = createStackNavigator(
   {
+    HomePage: HomePage,
+
     SearchPage: SearchPage,
 
     RegisterPage: RegisterPage,
-
-    HomePage: HomePage,
 
     FavoritePage: FavoritePage,
 
