@@ -236,7 +236,12 @@ export default class Public extends React.Component {
     if (address.length !== 0) {
       valid = true;
     }
-
+    if(this.name==""||this.room==""||this.address==""||this.phone==""||this.price==""||this.type==""||this.rentOrSell==""){
+      valid=false;
+      this.setState({
+        resLabel:"אנא מלא שדות חובה!"
+      })
+    }
     return valid;
   }
 
