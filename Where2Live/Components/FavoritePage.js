@@ -88,6 +88,7 @@ export default class FavoritePage extends React.Component {
   };
   infoWindow = (p, i) => {
     // console.log('page to show  -- -- - = = == '+ p.City+i)
+    console.log("imgggg = "+p.Img)
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
@@ -112,7 +113,8 @@ export default class FavoritePage extends React.Component {
         // if (index == this.state.pageToShow) {
         //   this.viewPage = place.Address;
         // }
-
+       let img ="require(../assets/"+place.Img+")";
+       
         return (
           <View
             style={{
@@ -174,7 +176,7 @@ export default class FavoritePage extends React.Component {
 
                 <View style={{ width: "25%" }}>
                   <Image
-                    source={require("../assets/Home.jpg")}
+                    source={img}
                     style={{ width: "90%", height: "70%" }}
                   />
                 </View>
@@ -266,7 +268,7 @@ export default class FavoritePage extends React.Component {
                     }}
                   >
                     <Image
-                      source={require("../assets/Home.jpg")}
+                      source={require("../assets/H1.jpg")}
                       style={{ width: "30%", height: "100%", borderWidth: 2 }}
                     />
                   </View>
