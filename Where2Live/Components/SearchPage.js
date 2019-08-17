@@ -329,7 +329,10 @@ export default class PartyPage extends React.Component {
         <View style={styles.container}>
           <View style={styles.main}>
             <View style={styles.logo}>
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()}style={{marginLeft:'85%'}}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                style={{ marginLeft: "85%" }}
+              >
                 <Icon
                   name="arrow-circle-left"
                   type="font-awesome"
@@ -346,14 +349,6 @@ export default class PartyPage extends React.Component {
 
             <View style={styles.container}>
               <View>
-                <RadioForm
-                  radio_props={radio_props}
-                  initial={null}
-                  style={styles.radioBtn}
-                  onPress={this.changeRB}
-                />
-              </View>
-              <View>
                 <TextInput
                   style={styles.input}
                   onChangeText={this.handleAddress}
@@ -361,26 +356,41 @@ export default class PartyPage extends React.Component {
                   placeholder="הכנס כתובת"
                 />
               </View>
-              <TouchableOpacity
-                style={styles.buttonContainerS}
-                onPress={this.handleSubmit}
-              >
-                <Text style={{ fontSize: 15 }}>..חפש </Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: "row" }}>
+                <View>
+                  <RadioForm
+                    radio_props={radio_props}
+                    initial={null}
+                    style={styles.radioRentBuy}
+                    onPress={this.changeRB}
+                  />
+                </View>
+                <TouchableOpacity
+                  style={styles.buttonContainerS}
+                  onPress={this.handleSubmit}
+                >
+                  <Text style={{ fontSize: 15 }}> חפש </Text>
+                  <Icon
+                    name="home"
+                    type="font-awesome"
+                    color="black"
+                    size={18}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.containerMap}>
               <View
                 style={{
-                  borderColor: "black",
-                  borderWidth: 2
+                  padding: 10
                 }}
               >
                 <MapView
                   style={{
                     flex: 1,
-
-                    width: Dimensions.get("window").width - 85
+                    height: Dimensions.get("window").height,
+                    width: Dimensions.get("window").width - 72
                   }}
                   region={{
                     latitude: this.state.latitude,
@@ -449,7 +459,7 @@ export default class PartyPage extends React.Component {
                               fontWeight: "bold"
                             }}
                           >
-                            איש קשר:{this.state.place.Name}
+                            איש קשר: {this.state.place.Name}
                           </Text>
                           <Text
                             style={{

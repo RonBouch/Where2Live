@@ -101,7 +101,7 @@ export default StyleSheet.create({
   },
 
   //Register Page Style
-  radioBtn: {
+  radioGender: {
     flexDirection: "row",
     margin: 10,
     justifyContent: "center"
@@ -206,39 +206,40 @@ export default StyleSheet.create({
   textCard2: {
     fontSize: 18,
     fontWeight: "bold",
-    marginLeft:'5%',
-    marginTop:'5%'
+    marginLeft: "5%",
+    marginTop: "5%"
   },
 
   // search page
 
-
-
   buttonContainerS: {
-    backgroundColor: "rgba(70,60,100,.3)",
-    paddingVertical: 15,
-    width: 120,
-    borderRadius: 110,
+    marginTop: 5,
+    flexDirection: "row",
+    backgroundColor: "rgba(0,0,200,.3)",
+    width: 70,
+    height: 40,
     alignItems: "center",
-    // padding:20,
+    justifyContent: "center",
     borderColor: "black",
-    borderWidth: 2
+    borderWidth: 1
+  },
+  radioRentBuy: {
+    flexDirection: "row",
+    marginTop: 10,
+    justifyContent: "center"
   },
   containerMap: {
-    flex: 2,
+    flex: 4,
     flexDirection: "column",
     alignItems: "center",
-
     width: "100%",
     height: "100%"
   },
   cardInfo: {
-    backgroundColor: "rgba(255,255,255,.9)",
-    shadowColor: "#000",
     height: "40%",
     width: "100%",
-    borderWidth: 2,
-    backgroundColor: "gray",
+    marginBottom: 10,
+    borderWidth: 1,
     position: "absolute",
     bottom: 0
   }

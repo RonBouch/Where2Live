@@ -174,7 +174,7 @@ export default class Register extends React.Component {
               });
               return;
             } else {
-              console.log("ID"+id);
+              console.log("ID" + id);
               id = u.ID;
 
               this.props.navigation.navigate("HomePage");
@@ -286,7 +286,7 @@ export default class Register extends React.Component {
               <RadioForm
                 radio_props={radio_props}
                 initial={null}
-                style={styles.radioBtn}
+                style={styles.radioGender}
                 onPress={this.changeGender}
               />
 
