@@ -79,11 +79,11 @@ export default class FavoritePage extends React.Component {
   onContentSizeChange = (contentWidth, contentHeight) => {
     this.setState({ screenHeight: contentHeight });
   };
-  _pressCall = p => {
+  _pressCall = (p) => {
     this.setState({
       placePhone: p
     });
-    const url = "tel:" + p.Phone;
+    const url = "tel:" + p;
     Linking.openURL(url);
   };
   infoWindow = (p, i) => {
