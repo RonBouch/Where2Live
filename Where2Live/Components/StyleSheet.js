@@ -203,9 +203,8 @@ export default StyleSheet.create({
   },
 
   textCard2: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    marginLeft: "5%",
     marginTop: "5%"
   },
 

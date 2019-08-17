@@ -88,7 +88,7 @@ export default class FavoritePage extends React.Component {
   };
   infoWindow = (p, i) => {
     // console.log('page to show  -- -- - = = == '+ p.City+i)
-    console.log("imgggg = "+p.Img)
+    console.log("imgggg = " + p.Img);
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
@@ -113,7 +113,7 @@ export default class FavoritePage extends React.Component {
         // if (index == this.state.pageToShow) {
         //   this.viewPage = place.Address;
         // }
-       
+
         return (
           <View
             style={{
@@ -177,7 +177,8 @@ export default class FavoritePage extends React.Component {
                   <Image
                     source={{
                       uri:
-                        "http://ruppinmobile.tempdomain.co.il/site11/image/"+place.Img
+                        "http://ruppinmobile.tempdomain.co.il/site11/image/" +
+                        place.Img
                     }}
                     style={{ width: "90%", height: "70%" }}
                   />
@@ -250,6 +251,7 @@ export default class FavoritePage extends React.Component {
               onContentSizeChange={this.onContentSizeChange}
             >
               {Houses}
+              
             </ScrollView>
 
             {this.state.pageToShow != null ? (
@@ -283,29 +285,31 @@ export default class FavoritePage extends React.Component {
                     style={{
                       alignItems: "center",
                       width: "100%",
-                      height: "15%"
+                      height: "20%",
+                      marginBottom: 5
                     }}
                   >
                     <Image
                       source={require("../assets/H1.jpg")}
-                      style={{ width: "30%", height: "100%", borderWidth: 2 }}
+                      style={{ width: "40%", height: "100%" }}
                     />
                   </View>
                   <View
                     style={{
+                      alignItems: "center",
+                      justifyContent: "center",
                       borderTopColor: "black",
                       borderTopWidth: 3,
-                      flexDirection: "row-reverse",
-                      backgroundColor: "rgba(255,255,255,.9)",
-                      shadowColor: "#000"
+                      flexDirection: "row",
+                      backgroundColor: "rgba(255,255,255,.9)"
                     }}
                   >
-                    <Text style={{ fontSize: 20, fontWeight: "bold", flex: 1 }}>
-                      {this.state.place.RB}
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      {this.state.place.Address} /{" "}
                     </Text>
 
-                    <Text style={{ fontSize: 20, fontWeight: "bold", flex: 2 }}>
-                      {this.state.place.Address} /{" "}
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      {this.state.place.RB}
                     </Text>
                   </View>
                   <View
@@ -326,18 +330,18 @@ export default class FavoritePage extends React.Component {
                   </View>
                   <View
                     style={{
-                      flexDirection: "row-reverse"
+                      flexDirection: "row"
                     }}
                   >
                     <Text style={styles.textCard2}>
-                      מ"ר: {this.state.place.SquareMeter}
+                      מ"ר:{this.state.place.SquareMeter}
                     </Text>
                     <Text style={styles.textCard2}>
-                      קומה: {this.state.place.Floor}
+                      קומה:{this.state.place.Floor}
                     </Text>
 
                     <Text style={styles.textCard2}>
-                      חדרים: {this.state.place.Room}
+                      חדרים:{this.state.place.Room}
                     </Text>
                   </View>
                   <View style={{}}>
