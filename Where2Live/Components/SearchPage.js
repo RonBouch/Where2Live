@@ -387,6 +387,7 @@ export default class PartyPage extends React.Component {
                 }}
               >
                 <MapView
+                onPress={()=> this.setState({pageToShow:null,place:null})}
                   style={{
                     flex: 1,
                     height: Dimensions.get("window").height,
