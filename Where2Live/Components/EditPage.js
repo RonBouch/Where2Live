@@ -108,9 +108,10 @@ export default class Register extends React.Component {
     return formIsValid;
   }
 
-  register = () => {
+  EditProfile = () => {
     if (this.validateForm()) {
       const data = {
+        id:id,
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
@@ -118,7 +119,7 @@ export default class Register extends React.Component {
       };
       console.log(data);
       fetch(
-        "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/Register",
+        "http://ruppinmobile.tempdomain.co.il/site11/WebServise.asmx/EditProfile",
         {
           method: "post",
           headers: new Headers({
@@ -145,7 +146,9 @@ export default class Register extends React.Component {
               console.log("ID" + id);
               id = u.ID;
 
+              alert('היי ,'+this.firstName+" "+this.lastName);
               this.props.navigation.navigate("HomePage");
+              
             }
             console.log(result.d);
             console.log(result);
@@ -216,7 +219,7 @@ export default class Register extends React.Component {
 
               <TouchableOpacity
                 style={styles.registerButton2}
-                onPress={this.register}
+                onPress={this.EditProfile}
               >
                 <Text>
                   עדכן
