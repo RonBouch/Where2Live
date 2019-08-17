@@ -103,7 +103,7 @@ export default class FavoritePage extends React.Component {
     }
   };
   render() {
-    const scrollEnabled = this.state.screenHeight > height - 800000;
+    const scrollEnabled = this.state.screenHeight > height - 100;
 
     let Houses = [];
 
@@ -118,7 +118,7 @@ export default class FavoritePage extends React.Component {
           <View
             style={{
               width: "100%",
-              height: "25%",
+              height: 150,
               marginBottom: "2%",
               backgroundColor: "rgba(255,255,255,.4)"
             }}
@@ -165,7 +165,7 @@ export default class FavoritePage extends React.Component {
                         flex: 3,
                         color: "red",
                         fontWeight: "bold",
-                        marginRight: 17
+                        marginRight: 5
                       }}
                     >
                       ₪ {place.Price}
@@ -251,7 +251,6 @@ export default class FavoritePage extends React.Component {
               onContentSizeChange={this.onContentSizeChange}
             >
               {Houses}
-              
             </ScrollView>
 
             {this.state.pageToShow != null ? (
