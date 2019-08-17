@@ -103,7 +103,7 @@ export default class FavoritePage extends React.Component {
     }
   };
   render() {
-    const scrollEnabled = this.state.screenHeight > height - 100;
+    const scrollEnabled = this.state.screenHeight > height - 1000;
 
     let Houses = [];
 
