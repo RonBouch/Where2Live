@@ -43,6 +43,8 @@ export default class PartyPage extends React.Component {
     this.state = {
       latitude: 37.78825,
       longitude: -122.4324,
+      latitude1: 37.78825,
+      longitude1: -122.4324,
       delta: 0.1,
       address: "",
       location: null,
@@ -140,6 +142,12 @@ export default class PartyPage extends React.Component {
           latitude: position.coords.latitude, // +  Math.random()/1000,
           longitude: position.coords.longitude
         });
+        if(this.state.longitude1==-122.4324){
+          this.setState({
+            latitude1: position.coords.latitude, // +  Math.random()/1000,
+            longitude1: position.coords.longitude
+          });
+        }
       },
       error => alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -216,13 +224,16 @@ export default class PartyPage extends React.Component {
   };
 
   infoWindow = (p, i) => {
-    // console.log('page to show  -- -- - = = == '+ p.City+i)
+    console.log('page to show  -- -- - = = == '+ p.Longi+p.Lati)
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
         checkedB: false,
         pageToShow: i,
-        place: p
+        place: p,
+        longitude:parseFloat(p.Longi),
+        latitude:parseFloat(p.Lati)
+        
       });
     } else {
       this.setState({
@@ -403,13 +414,15 @@ export default class PartyPage extends React.Component {
                   {markers}
                   <Marker
                     coordinate={{
-                      latitude: this.state.latitude,
-                      longitude: this.state.longitude
+                      latitude: this.state.latitude1,
+                      longitude: this.state.longitude1
                     }}
                     title="my place:)"
                     description="here i am"
-                    color="blue"
-                  />
+                    color="blue">
+                  <Icon name="map-pin" type="font-awesome" color="red" size={30} />
+               </Marker>
+
                 </MapView>
               </View>
 
@@ -478,8 +491,16 @@ export default class PartyPage extends React.Component {
                       </View>
 
                       <View style={{ flexDirection: "row-reverse", bottom: 0 }}>
-                        <View style={{ flex: 1 }} />
-                        <View style={{ flex: 2, marginTop: "3%" }}>
+                        <View style={{ flex: 1 , marginTop: "3%"}} >
+                        <TouchableOpacity
+                            onPress={this._pressCall}
+                            success
+                            type="outline"
+                          >
+                            <Icon name="ellipsis-h" color="black" size={40} />
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{ flex: 1, marginTop: "3%" }}>
                           <TouchableOpacity
                             onPress={this._pressCall}
                             success
