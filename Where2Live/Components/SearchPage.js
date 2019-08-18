@@ -566,7 +566,7 @@ export default class PartyPage extends React.Component {
                   style={{
                     borderColor: "black",
                     borderWidth: 2,
-                    height: "75%"
+                    height: "100%"
                   }}
                 >
                   <TouchableOpacity

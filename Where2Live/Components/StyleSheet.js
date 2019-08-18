@@ -242,7 +242,7 @@ export default StyleSheet.create({
     bottom: 0
   },
   cardInfo2: {
-    height: "95%",
+    height: "100%",
     width: "100%",
     marginBottom: 10,
     position: "absolute",
