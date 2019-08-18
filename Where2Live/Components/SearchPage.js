@@ -444,9 +444,8 @@ export default class PartyPage extends React.Component {
                     }}
                     title="my place:)"
                     description="here i am"
-                    color="blue">
-                  <Icon name="map-pin" type="font-awesome" color="red" size={30} />
-               </Marker>
+                    color="blue"/>
+                 
 
                 </MapView>
               </View>
