@@ -203,9 +203,9 @@ export default StyleSheet.create({
   },
 
   textCard2: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
-    marginTop: "5%"
+    marginTop: "3%"
   },
 
   // search page

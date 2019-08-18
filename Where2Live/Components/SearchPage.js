@@ -57,7 +57,7 @@ export default class PartyPage extends React.Component {
       checkedB: false,
       place: null,
       rb: "RB",
-      pageToShow2:null
+      pageToShow2: null
     };
     this.viewPage = null;
     this.RB = "RB";
@@ -143,7 +143,7 @@ export default class PartyPage extends React.Component {
           latitude: position.coords.latitude, // +  Math.random()/1000,
           longitude: position.coords.longitude
         });
-        if(this.state.longitude1==-122.4324){
+        if (this.state.longitude1 == -122.4324) {
           this.setState({
             latitude1: position.coords.latitude, // +  Math.random()/1000,
             longitude1: position.coords.longitude
@@ -225,16 +225,15 @@ export default class PartyPage extends React.Component {
   };
 
   infoWindow = (p, i) => {
-    console.log('page to show  -- -- - = = == '+ p.Longi+p.Lati)
+    console.log("page to show  -- -- - = = == " + p.Longi + p.Lati);
 
     if (this.state.pageToShow == null || this.state.pageToShow != i) {
       this.setState({
         checkedB: false,
         pageToShow: i,
         place: p,
-        longitude:parseFloat(p.Longi),
-        latitude:parseFloat(p.Lati)
-        
+        longitude: parseFloat(p.Longi),
+        latitude: parseFloat(p.Lati)
       });
     } else {
       this.setState({
@@ -244,26 +243,25 @@ export default class PartyPage extends React.Component {
     }
   };
   infoWindow2 = (p, i) => {
-    console.log('page to show  -- -- - = = == '+ p.Longi+p.Lati)
+    console.log("page to show  -- -- - = = == " + p.Longi + p.Lati);
 
     if (this.state.pageToShow2 == null) {
       this.setState({
         checkedB: false,
         pageToShow2: i,
 
-        pageToShow:null,
+        pageToShow: null,
         place: p,
-        longitude:parseFloat(p.Longi),
-        latitude:parseFloat(p.Lati)
-        
+        longitude: parseFloat(p.Longi),
+        latitude: parseFloat(p.Lati)
       });
     } else {
       this.setState({
-        pageToShow:i,
+        pageToShow: i,
 
         pageToShow2: null,
 
-        place: p,
+        place: p
       });
     }
   };
@@ -423,7 +421,9 @@ export default class PartyPage extends React.Component {
                 }}
               >
                 <MapView
-                onPress={()=> this.setState({pageToShow:null,place:null})}
+                  onPress={() =>
+                    this.setState({ pageToShow: null, place: null })
+                  }
                   style={{
                     flex: 1,
                     height: Dimensions.get("window").height,
@@ -444,9 +444,8 @@ export default class PartyPage extends React.Component {
                     }}
                     title="my place:)"
                     description="here i am"
-                    color="blue"/>
-                 
-
+                    color="blue"
+                  />
                 </MapView>
               </View>
 
@@ -476,10 +475,11 @@ export default class PartyPage extends React.Component {
                       <View style={{ flexDirection: "row-reverse" }}>
                         <View>
                           <Image
-                           source={{
-                            uri:
-                              "http://ruppinmobile.tempdomain.co.il/site11/image/"+this.state.place.Img
-                          }}
+                            source={{
+                              uri:
+                                "http://ruppinmobile.tempdomain.co.il/site11/image/" +
+                                this.state.place.Img
+                            }}
                             style={{ width: 80, height: 80 }}
                           />
                         </View>
@@ -514,10 +514,21 @@ export default class PartyPage extends React.Component {
                         </View>
                       </View>
 
-                      <View style={{ flexDirection: "row-reverse", bottom: 0,padding:5 }}>
-                        <View style={{ flex: 1 , marginTop: "3%"}} >
-                        <TouchableOpacity
-                            onPress={()=>this.infoWindow2(this.state.place,this.state.pageToShow)}
+                      <View
+                        style={{
+                          flexDirection: "row-reverse",
+                          bottom: 0,
+                          padding: 5
+                        }}
+                      >
+                        <View style={{ flex: 1, marginTop: "3%" }}>
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.infoWindow2(
+                                this.state.place,
+                                this.state.pageToShow
+                              )
+                            }
                             success
                             type="outline"
                           >
@@ -555,114 +566,123 @@ export default class PartyPage extends React.Component {
               )}
               {this.state.pageToShow2 != null ? (
                 <View style={styles.cardInfo2}>
-              <ImageBackground
-                source={require("../assets/BG2.jpg")}
-                style={{
-                  width: "100%",
-                  height: "100%"
-                }}
-              >
-                <View
-                  style={{
-                    borderColor: "black",
-                    borderWidth: 2,
-                    height: "100%"
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={() => this.setState({ pageToShow: this.state.pageToShow2,pageToShow2:null })}
-                  >
-                    <Icon
-                      name="times-circle"
-                      type="font-awesome"
-                      iconStyle={{}}
-                      color="black"
-                      size={34}
-                    />
-                  </TouchableOpacity>
-
-                  <View
+                  <ImageBackground
+                    source={require("../assets/BG2.jpg")}
                     style={{
-                      alignItems: "center",
                       width: "100%",
-                      height: "20%",
-                      marginBottom: 5
+                      height: "100%"
                     }}
                   >
-                    <Image
-                      source={require("../assets/H1.jpg")}
-                      style={{ width: "40%", height: "100%" }}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderTopColor: "black",
-                      borderTopWidth: 3,
-                      flexDirection: "row",
-                      backgroundColor: "rgba(255,255,255,.9)"
-                    }}
-                  >
-                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                      {this.state.place.Address} /{" "}
-                    </Text>
-
-                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                      {this.state.place.RB}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      borderTopColor: "black",
-                      borderTopWidth: 3
-                    }}
-                  >
-                    <Text style={styles.textCard2}>
-                      איש קשר : {this.state.place.Name}
-                    </Text>
-                    <Text style={styles.textCard2}>
-                      מ'ס טלפון : {this.state.place.Phone}
-                    </Text>
-                    <Text style={styles.textCard2}>
-                      סוג הנכס: {this.state.place.Type}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "row"
-                    }}
-                  >
-                    <Text style={styles.textCard2}>
-                      מ"ר:{this.state.place.SquareMeter}
-                    </Text>
-                    <Text style={styles.textCard2}>
-                      קומה:{this.state.place.Floor}
-                    </Text>
-
-                    <Text style={styles.textCard2}>
-                      חדרים:{this.state.place.Room}
-                    </Text>
-                  </View>
-                  <View style={{}}>
-                    <Text style={styles.textCard2}>
-                      על הנכס: {this.state.place.About}
-                    </Text>
-                  </View>
-                  <View />
-                  <View>
-                    <Text
-                      style={{ fontSize: 20, color: "red", fontWeight: "bold" }}
+                    <View
+                      style={{
+                        borderColor: "black",
+                        borderWidth: 2,
+                        height: "100%",
+                      }}
                     >
-                      מחיר: ₪{this.state.place.Price}
-                    </Text>
-                  </View>
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.setState({
+                            pageToShow: this.state.pageToShow2,
+                            pageToShow2: null
+                          })
+                        }
+                      >
+                        <Icon
+                          name="times-circle"
+                          type="font-awesome"
+                          iconStyle={{}}
+                          color="black"
+                          size={34}
+                        />
+                      </TouchableOpacity>
+
+                      <View
+                        style={{
+                          alignItems: "center",
+                          width: "100%",
+                          height: "20%",
+                          marginBottom: 5
+                        }}
+                      >
+                        <Image
+                          source={require("../assets/H1.jpg")}
+                          style={{ width: "40%", height: "100%" }}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          alignItems: "center",
+                          justifyContent: "center",
+                          borderTopColor: "black",
+                          borderTopWidth: 3,
+                          flexDirection: "row",
+                          backgroundColor: "rgba(255,255,255,.9)"
+                        }}
+                      >
+                        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                          {this.state.place.Address} /{" "}
+                        </Text>
+
+                        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                          {this.state.place.RB}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          borderTopColor: "black",
+                          borderTopWidth: 3
+                        }}
+                      >
+                        <Text style={styles.textCard2}>
+                          איש קשר : {this.state.place.Name}
+                        </Text>
+                        <Text style={styles.textCard2}>
+                          מ'ס טלפון : {this.state.place.Phone}
+                        </Text>
+                        <Text style={styles.textCard2}>
+                          סוג הנכס: {this.state.place.Type}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: "row"
+                        }}
+                      >
+                        <Text style={styles.textCard2}>
+                          מ"ר:{this.state.place.SquareMeter}
+                        </Text>
+                        <Text style={styles.textCard2}>
+                          קומה:{this.state.place.Floor}
+                        </Text>
+
+                        <Text style={styles.textCard2}>
+                          חדרים:{this.state.place.Room}
+                        </Text>
+                      </View>
+                      <View style={{}}>
+                        <Text style={styles.textCard2}>
+                          על הנכס: {this.state.place.About}
+                        </Text>
+                      </View>
+                      <View />
+                      <View>
+                        <Text
+                          style={{
+                            fontSize: 20,
+                            color: "red",
+                            fontWeight: "bold"
+                          }}
+                        >
+                          מחיר: ₪{this.state.place.Price}
+                        </Text>
+                      </View>
+                    </View>
+                  </ImageBackground>
                 </View>
-              </ImageBackground>
-            </View>
-            ) : (
-              console.log("mjcjcjc")
-            )}
+              ) : (
+                console.log("mjcjcjc")
+              )}
             </View>
           </View>
         </View>
