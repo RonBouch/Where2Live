@@ -56,7 +56,8 @@ export default class PartyPage extends React.Component {
       showNumber: false,
       checkedB: false,
       place: null,
-      rb: "RB"
+      rb: "RB",
+      pageToShow2:null
     };
     this.viewPage = null;
     this.RB = "RB";
@@ -242,8 +243,32 @@ export default class PartyPage extends React.Component {
       });
     }
   };
+  infoWindow2 = (p, i) => {
+    console.log('page to show  -- -- - = = == '+ p.Longi+p.Lati)
+
+    if (this.state.pageToShow2 == null) {
+      this.setState({
+        checkedB: false,
+        pageToShow2: i,
+
+        pageToShow:null,
+        place: p,
+        longitude:parseFloat(p.Longi),
+        latitude:parseFloat(p.Lati)
+        
+      });
+    } else {
+      this.setState({
+        pageToShow:i,
+
+        pageToShow2: null,
+
+        place: p,
+      });
+    }
+  };
   _pressCall = () => {
-    const url = "tel:" + this.state.place.EventPhone;
+    const url = "tel:" + this.state.place.Phone;
     Linking.openURL(url);
   };
   FavoriteChack() {
@@ -490,10 +515,10 @@ export default class PartyPage extends React.Component {
                         </View>
                       </View>
 
-                      <View style={{ flexDirection: "row-reverse", bottom: 0 }}>
+                      <View style={{ flexDirection: "row-reverse", bottom: 0,padding:5 }}>
                         <View style={{ flex: 1 , marginTop: "3%"}} >
                         <TouchableOpacity
-                            onPress={this._pressCall}
+                            onPress={()=>this.infoWindow2(this.state.place,this.state.pageToShow)}
                             success
                             type="outline"
                           >
@@ -529,6 +554,116 @@ export default class PartyPage extends React.Component {
               ) : (
                 console.log("mjcjcjc")
               )}
+              {this.state.pageToShow2 != null ? (
+                <View style={styles.cardInfo2}>
+              <ImageBackground
+                source={require("../assets/BG2.jpg")}
+                style={{
+                  width: "100%",
+                  height: "100%"
+                }}
+              >
+                <View
+                  style={{
+                    borderColor: "black",
+                    borderWidth: 2,
+                    height: "75%"
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => this.setState({ pageToShow: this.state.pageToShow2,pageToShow2:null })}
+                  >
+                    <Icon
+                      name="times-circle"
+                      type="font-awesome"
+                      iconStyle={{}}
+                      color="black"
+                      size={34}
+                    />
+                  </TouchableOpacity>
+
+                  <View
+                    style={{
+                      alignItems: "center",
+                      width: "100%",
+                      height: "20%",
+                      marginBottom: 5
+                    }}
+                  >
+                    <Image
+                      source={require("../assets/H1.jpg")}
+                      style={{ width: "40%", height: "100%" }}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderTopColor: "black",
+                      borderTopWidth: 3,
+                      flexDirection: "row",
+                      backgroundColor: "rgba(255,255,255,.9)"
+                    }}
+                  >
+                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                      {this.state.place.Address} /{" "}
+                    </Text>
+
+                    <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                      {this.state.place.RB}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      borderTopColor: "black",
+                      borderTopWidth: 3
+                    }}
+                  >
+                    <Text style={styles.textCard2}>
+                      איש קשר : {this.state.place.Name}
+                    </Text>
+                    <Text style={styles.textCard2}>
+                      מ'ס טלפון : {this.state.place.Phone}
+                    </Text>
+                    <Text style={styles.textCard2}>
+                      סוג הנכס: {this.state.place.Type}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row"
+                    }}
+                  >
+                    <Text style={styles.textCard2}>
+                      מ"ר:{this.state.place.SquareMeter}
+                    </Text>
+                    <Text style={styles.textCard2}>
+                      קומה:{this.state.place.Floor}
+                    </Text>
+
+                    <Text style={styles.textCard2}>
+                      חדרים:{this.state.place.Room}
+                    </Text>
+                  </View>
+                  <View style={{}}>
+                    <Text style={styles.textCard2}>
+                      על הנכס: {this.state.place.About}
+                    </Text>
+                  </View>
+                  <View />
+                  <View>
+                    <Text
+                      style={{ fontSize: 20, color: "red", fontWeight: "bold" }}
+                    >
+                      מחיר: ₪{this.state.place.Price}
+                    </Text>
+                  </View>
+                </View>
+              </ImageBackground>
+            </View>
+            ) : (
+              console.log("mjcjcjc")
+            )}
             </View>
           </View>
         </View>

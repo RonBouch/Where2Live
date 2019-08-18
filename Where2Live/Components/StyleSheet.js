@@ -240,5 +240,12 @@ export default StyleSheet.create({
     borderWidth: 1,
     position: "absolute",
     bottom: 0
+  },
+  cardInfo2: {
+    height: "95%",
+    width: "100%",
+    marginBottom: 10,
+    position: "absolute",
+    bottom: 0
   }
 });
