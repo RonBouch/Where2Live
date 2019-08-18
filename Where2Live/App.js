@@ -26,6 +26,8 @@ const StackNav = createStackNavigator(
   {
     LoginPage: LoginPage,
 
+    AboutUsPage: AboutUsPage,
+
     SearchPage: SearchPage,
 
     HomePage: HomePage,
@@ -33,8 +35,6 @@ const StackNav = createStackNavigator(
     RegisterPage: RegisterPage,
 
     FavoritePage: FavoritePage,
-
-    AboutUsPage: AboutUsPage,
 
     MyProfilePage: MyProfilePage,
 
