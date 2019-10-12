@@ -427,7 +427,7 @@ export default class PartyPage extends React.Component {
                   style={{
                     flex: 1,
                     height: Dimensions.get("window").height,
-                    width: Dimensions.get("window").width - 72
+                    width: Dimensions.get("window").width - 80
                   }}
                   region={{
                     latitude: this.state.latitude,

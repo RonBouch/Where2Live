@@ -74,7 +74,7 @@ export default class Public extends React.Component {
       squareMeter: "",
       about: "",
       price: "",
-      img: "house.jpg"
+      img: "H5.jpg"
     };
   }
   HouseType = e => {
@@ -132,8 +132,8 @@ export default class Public extends React.Component {
     });
     if (!result.cancelled) {
       console.log("result ", result);
-      this.setState({ img: result.uri });
-      alert(this.state.img);
+      // this.setState({ img: result.uri });
+      // alert(this.state.img);
     }
   };
 
@@ -217,11 +217,11 @@ export default class Public extends React.Component {
                 message: "הרשמה נכשלה"
               });
               return;
-            } else {
+            }
+             else
+              {
               this.props.navigation.navigate("HomePage");
             }
-            console.log(result.d);
-            console.log(result);
           },
           error => {
             console.log("err post=", error);

@@ -289,7 +289,11 @@ export default class FavoritePage extends React.Component {
                     }}
                   >
                     <Image
-                      source={require("../assets/H1.jpg")}
+                    source={{
+                      uri:
+                        "http://ruppinmobile.tempdomain.co.il/site11/image/" +
+                        this.state.place.Img
+                    }}
                       style={{ width: "40%", height: "100%" }}
                     />
                   </View>

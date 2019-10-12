@@ -177,7 +177,7 @@ export default class Register extends React.Component {
               console.log("ID" + id);
               id = u.ID;
 
-              this.props.navigation.navigate("HomePage");
+              this.props.navigation.navigate("LoginPage");
             }
             console.log(result.d);
             console.log(result);
